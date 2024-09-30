@@ -1,0 +1,35 @@
+{
+    "animes": {
+        "title": "Animes"
+    },
+    "books": {
+        "title": "Books"
+    },
+    "footer": {
+        "allRightsReserved": "All rights reserved",
+        "developedBy": "Developed by",
+        "myOpinion": "My opinion"
+    },
+    "games": {
+        "title": "Games"
+    },
+    "home": {
+        "title": "Home"
+    },
+    "movies": {
+        "title": "Movies"
+    },
+    "series": {
+        "title": "Series"
+    },
+    "navbar01": {
+        "search": "Search..."
+    },
+    "navbar02": {
+        "movies": "Movies",
+        "series": "Series",
+        "animes": "Animes",
+        "games": "Games",
+        "books": "Books"
+    }
+}

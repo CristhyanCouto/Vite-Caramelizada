@@ -1,0 +1,35 @@
+{
+    "animes": {
+        "title": "Animes"
+    },
+    "books": {
+        "title": "Livros"
+    },
+    "footer": {
+        "allRightsReserved": "Todos os direitos reservados",
+        "developedBy": "Desenvolvido por",
+        "myOpinion": "Minha opinião"
+    },
+    "games": {
+        "title": "Jogos"
+    },
+    "home": {
+        "title": "Início"
+    },
+    "movies": {
+        "title": "Filmes"
+    },
+    "series": {
+        "title": "Séries"
+    },
+    "navbar01": {
+        "search": "Pesquisa..."
+    },
+    "navbar02": {
+        "movies": "Filmes",
+        "series": "Séries",
+        "animes": "Animes",
+        "games": "Jogos",
+        "books": "Livros"
+    }
+}
