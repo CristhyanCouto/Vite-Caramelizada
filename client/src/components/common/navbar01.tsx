@@ -14,7 +14,7 @@ function LinkToHome () {
 
 export default function Navbar01() {
   return (
-    <div className="bg-zinc-900 flex flex-cols-1 items-center justify-between py-4 px-12">
+    <div className="bg-zinc-900 flex flex-cols-1 items-center justify-between py-4 px-16">
         <div className="flex items-center gap-2">
             <LinkToHome />
             <DrawerMenu />

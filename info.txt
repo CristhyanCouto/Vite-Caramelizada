@@ -1,0 +1,25 @@
+Client Side Dependencies:
+
+--Axios--
+axios
+to use the api endpoints
+
+Server Side Dependencies:
+
+--Sequelize--
+npm install sequelize-cli sequelize
+npx sequelize-cli init
+
+--Express--
+npm install express
+
+--Cors--
+npm install cors
+to connect backend to frontend
+
+--Mysql2--
+npm install mysql2
+
+--Nodemon--
+npm install nodemon
+to refresh de server
