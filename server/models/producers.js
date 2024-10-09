@@ -6,15 +6,15 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true
         },
         name_producer: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: false
         },
         headquarters_en: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         headquarters_pt: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         about_producer_en: {

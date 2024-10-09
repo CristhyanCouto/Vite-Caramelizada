@@ -6,11 +6,11 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true
         },
         first_name: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: false
         },
         last_name: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         height: {
@@ -42,19 +42,27 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         city_of_birth_en: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         city_of_birth_pt: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         state_of_birth_en: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
             allowNull: true
         },
         state_of_birth_pt: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(),
+            allowNull: true
+        },
+        country_of_birth_en: {
+            type: DataTypes.STRING(),
+            allowNull: true
+        },
+        country_of_birth_pt: {
+            type: DataTypes.STRING(),
             allowNull: true
         },
         about_actor_en: {

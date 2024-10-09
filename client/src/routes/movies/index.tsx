@@ -1,3 +1,4 @@
+import MovieCardList from "@/components/common/movieCardList";
 import Page from "@/components/common/page";
 import { useTranslation } from "react-i18next";
 
@@ -6,7 +7,7 @@ export default function Movies() {
   return (
     <div>
       <Page title={t('movies.title')}>
-        <h1>Movies</h1>
+        <MovieCardList />
       </Page>
     </div>
   )

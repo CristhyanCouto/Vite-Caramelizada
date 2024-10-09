@@ -7,6 +7,7 @@ import Series from './routes/series/index.tsx'
 import Animes from './routes/animes/index.tsx'
 import Games from './routes/games/index.tsx'
 import Books from './routes/books/index.tsx'
+import TestPage from './routes/testPage/index.tsx'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: '/movies/:moviesId',
     element: <MoviePage />,
+  },
+  {
+    path: '/testPage',
+    element: <TestPage />,
   }
 ]);
 
