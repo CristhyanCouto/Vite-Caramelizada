@@ -12,7 +12,7 @@ import {
 import React, { useEffect } from "react";
 
 export default function LanguageSelect() {
-  const [selectedLanguage, setSelectedLanguage] = React.useState("en");
+  const [selectedLanguage, setSelectedLanguage] = React.useState(i18n.language);
 
   useEffect(() => {
     i18n.changeLanguage(selectedLanguage);
