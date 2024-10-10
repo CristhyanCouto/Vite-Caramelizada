@@ -88,6 +88,7 @@
         "title": "Home"
     },
     "movies": {
+        "releaseDate": "Release Date",
         "runtime": "Runtime",
         "title": "Movies"
     },
@@ -103,5 +104,13 @@
         "animes": "Animes",
         "games": "Games",
         "books": "Books"
+    },
+    "sortComboBox":{
+        "alphabetical": "Alphabetical",
+        "myRating": "My Rating",
+        "noSearchResults": "No search results",
+        "selectSort": "Select Sort",
+        "search": "Search",
+        "releaseDate": "Release Date"
     }
 }

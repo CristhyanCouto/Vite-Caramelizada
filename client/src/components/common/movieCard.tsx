@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { MoviesType } from "../../lib/movies";
-import { formatRuntime } from "@/lib/utils";
+import { formatRuntime, formatDateTime } from "@/lib/utils";
 import { genreConverter } from "@/lib/genre";
 import { useTranslation } from "react-i18next";
 import { ageRatedEn, ageRatedPt } from "@/lib/rated";
@@ -113,6 +113,11 @@ export default function MovieCard(props: MoviesType) {
                 {/*Showing Runtime */}
                 <div className="text-1xl">
                     {props.runtime && <p className="text-center">{t("movies.runtime")}: {formatRuntime(props.runtime)}</p>}
+                </div>
+
+                {/*Showing Release Date */}
+                <div className="text-1xl">
+                    {props.release_date && <p className="text-center">{t("movies.releaseDate")}: {formatDateTime(props.release_date)}</p>}
                 </div>
             </div>
           </div>

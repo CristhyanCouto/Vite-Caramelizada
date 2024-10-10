@@ -88,6 +88,7 @@
         "title": "Início"
     },
     "movies": {
+        "releaseDate": "Data de Lançamento",
         "runtime": "Duração",
         "title": "Filmes"
     },
@@ -103,5 +104,13 @@
         "animes": "Animes",
         "games": "Jogos",
         "books": "Livros"
+    },
+    "sortComboBox":{
+        "alphabetical": "Alfabética",
+        "myRating": "Minha Nota",
+        "noSearchResults": "Nenhum resultado encontrado",
+        "selectSort": "Selecione a Ordem",
+        "search": "Pesquisa",
+        "releaseDate": "Data de Lançamento"
     }
 }
