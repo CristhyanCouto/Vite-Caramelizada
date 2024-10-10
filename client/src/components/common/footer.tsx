@@ -21,16 +21,17 @@ export default function Footer() {
                 items-center flex'>{t('footer.myOpinion')}</h1>
             </div>
             <div className='text-center'>
-                <p>{t('footer.developedBy')} <Link to='/'
+                <p>{t('footer.developedBy')} <Link to='https://www.cristhyancouto.com/'
+                target='_blank' rel='noreferrer'
                 className='hover:text-zinc-300'
                 >Cristhyan Couto</Link></p>
 
                 <p>&copy;{year} {t('footer.allRightsReserved')}</p>
             </div>
             <div className='flex gap-4 text-3xl'>
-                <Link to='/' className='hover:text-zinc-300'><CiLinkedin /></Link>
-                <Link to='/movies' className='hover:text-zinc-300'><FaInstagram /></Link>
-                <Link to='/series' className='hover:text-zinc-300'><FaGithub /></Link>
+                <Link target='_blank' rel='noreferrer' to='https://www.linkedin.com/in/cristhyancouto/' className='hover:text-zinc-300'><CiLinkedin /></Link>
+                <Link target='_blank' rel='noreferrer' to='https://www.instagram.com/cristhyancouto/' className='hover:text-zinc-300'><FaInstagram /></Link>
+                <Link target='_blank' rel='noreferrer' to='https://github.com/CristhyanCouto' className='hover:text-zinc-300'><FaGithub /></Link>
             </div>
         </div>
     </div>
