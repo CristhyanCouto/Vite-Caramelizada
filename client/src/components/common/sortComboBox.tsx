@@ -9,7 +9,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -81,9 +80,12 @@ function SortComboBoxMovies({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput 
-            placeholder={`${t("sortComboBox.search")}...`} 
-            onValueChange={(value) => setSearchQuery(value)} // Atualiza o estado da busca
+          <input
+            type="text"
+            placeholder={`${t("sortComboBox.search")}...`}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full p-2 text-sm border-b outline-none"
           />
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
