@@ -107,6 +107,8 @@
     },
     "sortComboBox":{
         "alphabetical": "Alphabetical",
+        "filter": "Filter",
+        "genres": "Genres",
         "myRating": "My Rating",
         "noSearchResults": "No search results",
         "selectGenre": "Select Genre",

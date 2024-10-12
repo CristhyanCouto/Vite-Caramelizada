@@ -107,6 +107,8 @@
     },
     "sortComboBox":{
         "alphabetical": "Alfabética",
+        "filter": "Filtro",
+        "genres": "Gêneros",
         "myRating": "Minha Nota",
         "noSearchResults": "Nenhum resultado encontrado",
         "selectGenre": "Selecione o Gênero",
