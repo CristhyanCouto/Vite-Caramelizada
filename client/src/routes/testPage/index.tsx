@@ -3,14 +3,16 @@ import { useEffect, useState } from "react"
 import { MoviesType } from "../../lib/movies"
 import MovieCard from "@/components/common/movieCard"
 import Page from "@/components/common/page"
+import { CategoryComboBoxMovies } from "@/components/common/categoryComboBox"
 
 
 export default function TestPage() {
 
     const [movieData, setMovieData] = useState<MoviesType | null>(null)
+    const [genre, setGenre] = useState<string[]>([])
 
     useEffect(() => {
-        axios.get("http://localhost:3001/movies")
+        axios.get("http://localhost:3001/genres")
             .then(res => {
                 setMovieData(res.data)
             })
@@ -20,6 +22,7 @@ export default function TestPage() {
     <Page title="Test Page">
       <div>
         <div>
+          <CategoryComboBoxMovies sortValue={genre} setSortValue={setGenre}/>
         </div>
       </div>
       <div className="flex justify-center items-center">
