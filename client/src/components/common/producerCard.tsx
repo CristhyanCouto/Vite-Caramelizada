@@ -18,8 +18,8 @@ export default function ProducerCard(props: ProducerCardProps) {
     }, [props.idproducer]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-center">
-        <div className="rounded-full w-36">
+    <div className="grid grid-cols-5 justify-center items-center text-center">
+        <div className=" grid grid-rows-2 rounded-full w-36">
             <div className="bg-zinc-400 rounded-full p-1">
                 <img src={producers?.producer_image_url} alt={producers?.name_producer} className="rounded-full"/>
             </div>

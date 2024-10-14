@@ -1,6 +1,6 @@
 import Page from "@/components/common/page"
 import { MoviesType } from "@/lib/movies"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { useParams } from "react-router-dom"
 import i18n from "@/lib/i18n/i18n"
@@ -16,6 +16,7 @@ import ActorCard from "@/components/common/actorCard"
 import ProducerCard from "@/components/common/producerCard"
 
 export default function MoviePage() {
+
   const { moviesId } = useParams();
   const { t } = useTranslation();
 
@@ -137,17 +138,21 @@ export default function MoviePage() {
                       />
                     </div>
                 </div>
+
                 {/* Trailer */}
                 <div className="flex justify-center items-center h-full">
                   <div className="grid grid-cols-1 justify-center text-center">
+                  <Suspense fallback={<div>Loading Video...</div>}>
                     <YoutubeVideos
                       width="600"
                       height="420"
                       src={movieData?.trailer_movie_url ?? ""}
                       title={movieData?.title_en ?? ""}
                     />
+                  </Suspense>
                   </div>
                 </div>
+
                 {/*My Rating */}
                 <div className="flex justify-center items-center">
                   <div className="p-5 bg-red-500 rounded-full h-52 flex items-center justify-center">
@@ -188,10 +193,18 @@ export default function MoviePage() {
 
               <Separator className="my-4 h-0.5" orientation="horizontal" />
 
+              {/*My review */}
+              <div className="px-6">
+                <h2 className="text-4xl text-center mb-4">{t('movies.myReview')}</h2>
+                <p className="mb-4">{movieData?.my_review_en}</p>
+              </div>
+
+              <Separator className="my-4 h-0.5" orientation="horizontal" />
+
               {/*Directors */}
               <div>
                 <h2 className="text-4xl text-center">{t('movies.directors')}</h2>
-                <div className="grid sm: grid-cols-5 justify-center gap-4 p-10">
+                <div className="grid sm: grid-cols-5 justify-center gap-4 px-10">
                   {DirectorCards()}
                 </div>
               </div>
@@ -201,7 +214,7 @@ export default function MoviePage() {
               {/*Writers */}
               <div>
                 <h2 className="text-4xl text-center">{t('movies.writers')}</h2>
-                <div className="grid sm: grid-cols-5 justify-center gap-4 p-10">
+                <div className="grid sm: grid-cols-5 justify-center gap-4 px-10">
                   {WriterCards()}
                 </div>
               </div>
@@ -212,7 +225,7 @@ export default function MoviePage() {
               {/*Actors */}
               <div>
                 <h2 className="text-4xl text-center">{t('movies.actors')}</h2>
-                <div className="grid sm:grid-cols-5 justify-center gap-4 p-10">
+                <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
                   {ActorCards()}
                 </div>
               </div>
@@ -222,17 +235,9 @@ export default function MoviePage() {
               {/*Producers */}
               <div>
                 <h2 className="text-4xl text-center">{t('movies.producers')}</h2>
-                <div className="grid sm:grid-cols-5 justify-center gap-4 p-10">
+                <div className="grid sm:grid-cols-5 justify-center gap-4 mt-6 px-10">
                   {ProducerCards()}
                 </div>
-              </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-              {/*My review */}
-              <div className="px-6">
-                <h2 className="text-4xl text-center mb-4">{t('movies.myReview')}</h2>
-                <p className="mb-4">{movieData?.my_review_en}</p>
               </div>
 
             </div>
@@ -255,12 +260,14 @@ export default function MoviePage() {
               {/* Trailer */}
               <div className="flex justify-center items-center h-full">
                 <div className="grid grid-cols-1 justify-center text-center">
-                  <YoutubeVideos
-                    width="600"
-                    height="420"
-                    src={movieData?.trailer_movie_url ?? ""}
-                    title={movieData?.title_pt ?? ""}
-                  />
+                  <Suspense fallback={<div>Loading Video...</div>}>
+                    <YoutubeVideos
+                      width="600"
+                      height="420"
+                      src={movieData?.trailer_movie_url ?? ""}
+                      title={movieData?.title_pt ?? ""}
+                    />
+                  </Suspense>
                 </div>
               </div>
               {/*My Rating */}
@@ -303,10 +310,18 @@ export default function MoviePage() {
 
             <Separator className="my-4 h-0.5" orientation="horizontal" />
 
+            {/*My review */}
+            <div className="px-6">
+              <h2 className="text-4xl text-center mb-4">{t('movies.myReview')}</h2>
+              <p className="mb-4">{movieData?.my_review_pt}</p>
+            </div>
+
+            <Separator className="my-4 h-0.5" orientation="horizontal" />
+
             {/*Directors */}
             <div>
               <h2 className="text-4xl text-center">{t('movies.directors')}</h2>
-              <div className="grid sm: grid-cols-5 justify-center gap-4 p-10">
+              <div className="grid sm: grid-cols-5 justify-center gap-4 px-10">
                 {DirectorCards()}
               </div>
             </div>
@@ -316,7 +331,7 @@ export default function MoviePage() {
             {/*Writers */}
             <div>
               <h2 className="text-4xl text-center">{t('movies.writers')}</h2>
-              <div className="grid sm: grid-cols-5 justify-center gap-4 p-10">
+              <div className="grid sm: grid-cols-5 justify-center gap-4 px-10">
                 {WriterCards()}
               </div>
             </div>
@@ -327,7 +342,7 @@ export default function MoviePage() {
             {/*Actors */}
             <div>
               <h2 className="text-4xl text-center">{t('movies.actors')}</h2>
-              <div className="grid sm:grid-cols-5 justify-center gap-4 p-10">
+              <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
                 {ActorCards()}
               </div>
             </div>
@@ -337,17 +352,9 @@ export default function MoviePage() {
             {/*Producers */}
             <div>
               <h2 className="text-4xl text-center">{t('movies.producers')}</h2>
-              <div className="grid sm:grid-cols-5 justify-center gap-4 p-10">
+              <div className="grid sm:grid-cols-5 justify-center gap-4 mt-6 px-10">
                 {ProducerCards()}
               </div>
-            </div>
-
-            <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-            {/*My review */}
-            <div className="px-6">
-              <h2 className="text-4xl text-center mb-4">{t('movies.myReview')}</h2>
-              <p className="mb-4">{movieData?.my_review_pt}</p>
             </div>
 
           </div>
