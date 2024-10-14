@@ -31,3 +31,24 @@ export const formatDateTime = (date: string) => {
       return '';
   }
 }
+
+export const formatMoney = (value: number): string => {
+  switch (i18n.language) {
+    case 'pt':
+      if (value >= 1_000_000_000) {
+        return (value / 1_000_000_000).toFixed(2) + " bilhões";
+      } else if (value >= 1_000_000) {
+        return (value / 1_000_000).toFixed(2) + " milhões";
+      }
+      return value.toString();
+    case 'en':
+      if (value >= 1_000_000_000) {
+        return (value / 1_000_000_000).toFixed(2) + " billion";
+      } else if (value >= 1_000_000) {
+        return (value / 1_000_000).toFixed(2) + " million";
+      }
+      return value.toString();
+    default:
+      return '';
+    }
+}

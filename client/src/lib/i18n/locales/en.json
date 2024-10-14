@@ -5,6 +5,9 @@
     "books": {
         "title": "Books"
     },
+    "errors": {
+        "errorToFechtMovieData": "Error to fetch movie data"
+    },
     "footer": {
         "allRightsReserved": "All rights reserved",
         "developedBy": "Developed by",
@@ -88,9 +91,18 @@
         "title": "Home"
     },
     "movies": {
+        "actors": "Actors",
+        "boxOffice": "Box Office",
+        "budget": "Budget",
+        "directors": "Directors",
+        "myReview": "My Review",
+        "noInformation": "No information",
+        "producers": "Production Companies",
         "releaseDate": "Release Date",
         "runtime": "Runtime",
-        "title": "Movies"
+        "sinopse": "Sinopse",
+        "title": "Movies",
+        "writers": "Writers"
     },
     "series": {
         "title": "Series"
@@ -115,5 +127,10 @@
         "selectSort": "Select Sort",
         "search": "Search",
         "releaseDate": "Release Date"
+    },
+    "utils": {
+        "billion": "Billion",
+        "million": "Million"
     }
+    
 }

@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfMovies);
 });
 
+//Get request to get a movie by id
+router.get('/:idmovie', async (req, res) => {
+    const id = req.params.idmovie;
+    const movie = await movies.findByPk(id);
+    res.json(movie);
+});
+
 //Post request to create a new record in the movies table
 router.post('/', async (req, res) => {
     const movie = req.body;

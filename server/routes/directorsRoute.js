@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfDirectors);
 });
 
+//Get request to get a director by id
+router.get('/:iddirector', async (req, res) => {
+    const id = req.params.iddirector;
+    const director = await directors.findByPk(id);
+    res.json(director);
+});
+
 //Post request to create a new record in the directors table
 router.post('/', async (req, res) => {
     const director = req.body;

@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfWriters);
 });
 
+//Get request to get a writer by id
+router.get('/:idwriter', async (req, res) => {
+    const id = req.params.idwriter;
+    const writer = await writers.findByPk(id);
+    res.json(writer);
+});
+
 //Post request to create a new record in the writers table
 router.post('/', async (req, res) => {
     const writer = req.body;

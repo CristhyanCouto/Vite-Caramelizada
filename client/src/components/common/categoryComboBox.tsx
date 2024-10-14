@@ -56,7 +56,6 @@ function CategoryComboBoxMovies({
     { value: "29", label: `${t("genre.western")}` },
     { value: "30", label: `${t("genre.scienceFiction")}` },
     { value: "32", label: `${t("genre.stealth")}` },
-    { value: "33", label: `${t("genre.soccer")}` },
     { value: "34", label: `${t("genre.war")}` },
     { value: "36", label: `${t("genre.horror")}` },
     { value: "37", label: `${t("genre.darkHumor")}` },
@@ -106,13 +105,20 @@ function CategoryComboBoxMovies({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <input
-            type="text"
-            placeholder={`${t("sortComboBox.search")}...`}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full p-2 text-sm border-b outline-none"
-          />
+          <div className="relative">
+            <input
+              type="text"
+              placeholder={`${t("sortComboBox.search")}...`}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 text-sm border-b outline-none"
+            />
+            <Button className="w-2 h-6 shrink-0 opacity-50
+            fixed top-[2%] left-[80%] right-0"
+            onClick={()=> setSortValue([])}>
+              x
+            </Button>
+          </div>
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>

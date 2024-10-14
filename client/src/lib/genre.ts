@@ -1,6 +1,8 @@
 export const genreConverter = (genre: number) => {
     
     switch (genre) {
+        case 0:
+            return "0";
         case 1:
             return "2.5d";
         case 2:

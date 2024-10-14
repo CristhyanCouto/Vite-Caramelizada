@@ -3,57 +3,16 @@ import { MoviesType } from "../../lib/movies";
 import { formatRuntime, formatDateTime } from "@/lib/utils";
 import { genreConverter } from "@/lib/genre";
 import { useTranslation } from "react-i18next";
-import { ageRatedEn, ageRatedPt } from "@/lib/rated";
 import i18n from "@/lib/i18n/i18n";
+import { RatedenBackground, RatedPtBackground } from "./ratedenBackground";
 
 export default function MovieCard(props: MoviesType) {
     const { t } = useTranslation();
 
     const genre01 = genreConverter(props.fk_genre_pt01 ?? 0);
     const genre02 = genreConverter(props.fk_genre_pt02 ?? 0);
-    
-    const ratedEn = ageRatedEn(props.fk_rated_pg_en ?? 0);
-    const ratedPt = ageRatedPt(props.fk_rated_pg_pt ?? 0);
 
     const currentLanguage = i18n.language;
-
-    const ratedEnBackground = (age: number) => {
-        return(
-            <div className="text-white text-2xl">
-                {age === 1 && <div className="bg-green-500 rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-                {age === 2 && <div className="bg-orange-500 rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-                {age === 3 && <div className="bg-violet-500 rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-                {age === 4 && <div className="bg-red-500 rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-                {age === 5 && <div className="bg-blue-500 rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-                {age === 6 && <div className="bg-black rounded-sm w-18 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedEn}</div>}
-            </div>
-        )
-    };
-
-    const ratedPtBackground = (age: number) => {
-        return(
-            <div className="text-white text-2xl">
-                {age === 1 && <div className="bg-green-500 rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-                {age === 2 && <div className="bg-blue-500 rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-                {age === 3 && <div className="bg-yellow-500 rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-                {age === 4 && <div className="bg-orange-500 rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-                {age === 5 && <div className="bg-red-500 rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-                {age === 6 && <div className="bg-black rounded-sm w-20 shadow text-center
-                absolute top-0 translate-y-[450%] translate-x-3 p-5">{ratedPt}</div>}
-            </div>
-        )
-    };
 
   return (
     <div>
@@ -84,11 +43,15 @@ export default function MovieCard(props: MoviesType) {
             {/* Showing the age rating based on US and  PT-BR */}
             {currentLanguage === "en" ? 
             <div className="hidden group-hover:block">
-                {ratedEnBackground(props.fk_rated_pg_en ?? 0)}
+                <div className="absolute top-[76%] ml-5 left-0 z-20 hidden group-hover:block transition-all duration-300">
+                    <RatedenBackground age={props.fk_rated_pg_en ?? 0}/>
+                </div>
             </div> 
             : 
             <div className="hidden group-hover:block">
-                {ratedPtBackground(props.fk_rated_pg_pt ?? 0)}
+                <div className="absolute top-[76%] ml-5 left-0 z-20 hidden group-hover:block transition-all duration-300">
+                    <RatedPtBackground age={props.fk_rated_pg_pt ?? 0}/>
+                </div>
             </div>}
 
             <div className="hidden group-hover:block

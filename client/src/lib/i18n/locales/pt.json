@@ -5,6 +5,9 @@
     "books": {
         "title": "Livros"
     },
+    "errors": {
+        "errorToFechtMovieData": "Erro ao buscar dados do filme"
+    },
     "footer": {
         "allRightsReserved": "Todos os direitos reservados",
         "developedBy": "Desenvolvido por",
@@ -88,9 +91,18 @@
         "title": "Início"
     },
     "movies": {
+        "actors": "Atores",
+        "boxOffice": "Bilheteria",
+        "budget": "Orçamento",
+        "directors": "Diretores",
+        "myReview": "Minha Resenha",
+        "noInformation": "Sem informações",
+        "producers": "Produtoras",
         "releaseDate": "Data de Lançamento",
         "runtime": "Duração",
-        "title": "Filmes"
+        "sinopse": "Sinopse",
+        "title": "Filmes",
+        "writers": "Roteiristas"
     },
     "series": {
         "title": "Séries"
@@ -115,5 +127,9 @@
         "selectSort": "Selecione a Ordem",
         "search": "Pesquisa",
         "releaseDate": "Data de Lançamento"
+    },
+    "utils": {
+        "billion": "Bilhão",
+        "million": "Milhão"
     }
 }
