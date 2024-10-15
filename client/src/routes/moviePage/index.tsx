@@ -14,6 +14,7 @@ import DirectorCard from "@/components/common/directorCard"
 import WriterCard from "@/components/common/writersCard"
 import ActorCard from "@/components/common/actorCard"
 import ProducerCard from "@/components/common/producerCard"
+import PictureCarousel from "@/components/common/pictureCarousel"
 
 export default function MoviePage() {
 
@@ -23,6 +24,7 @@ export default function MoviePage() {
   const [movieData, setMovieData] = useState<MoviesType | null>(null);
   const [genre] = useState<string[] | null>([]);
   const [pageTitle, setPageTitle] = useState<string>("");
+  const [moviePrints] = useState<string[]>([]);
   
   // Converts the genre to a string
   if (genre) {
@@ -35,6 +37,20 @@ export default function MoviePage() {
 
   // Converts the movieId to a number
   const movieId = Number(moviesId);
+
+  // Associating the image_movie_url to the moviePrints
+  if (movieData) {
+    moviePrints[0] = movieData.image_movie_url01 ?? "";
+    moviePrints[1] = movieData.image_movie_url02 ?? "";
+    moviePrints[2] = movieData.image_movie_url03 ?? "";
+    moviePrints[3] = movieData.image_movie_url04 ?? "";
+    moviePrints[4] = movieData.image_movie_url05 ?? "";
+    moviePrints[5] = movieData.image_movie_url06 ?? "";
+    moviePrints[6] = movieData.image_movie_url07 ?? "";
+    moviePrints[7] = movieData.image_movie_url08 ?? "";
+    moviePrints[8] = movieData.image_movie_url09 ?? "";
+    moviePrints[9] = movieData.image_movie_url10 ?? "";
+  }
 
   //Maping the directors
   const DirectorCards = () => {
@@ -201,6 +217,16 @@ export default function MoviePage() {
 
               <Separator className="my-4 h-0.5" orientation="horizontal" />
 
+              {/*Movie Prints */}
+              <div>
+                <h2 className="text-4xl text-center mb-4">{t('movies.movieScreenShots')}</h2>
+              </div>
+              <div>
+                  <PictureCarousel pictures={moviePrints ?? []} />
+              </div>
+
+              <Separator className="my-4 h-0.5" orientation="horizontal" />
+
               {/*Directors */}
               <div>
                 <h2 className="text-4xl text-center">{t('movies.directors')}</h2>
@@ -314,6 +340,16 @@ export default function MoviePage() {
             <div className="px-6">
               <h2 className="text-4xl text-center mb-4">{t('movies.myReview')}</h2>
               <p className="mb-4">{movieData?.my_review_pt}</p>
+            </div>
+
+            <Separator className="my-4 h-0.5" orientation="horizontal" />
+
+            {/*Movie Prints */}
+            <div>
+              <h2 className="text-4xl text-center mb-4">{t('movies.movieScreenShots')}</h2>
+            </div>
+            <div>
+                <PictureCarousel pictures={moviePrints ?? []} />
             </div>
 
             <Separator className="my-4 h-0.5" orientation="horizontal" />
