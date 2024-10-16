@@ -147,13 +147,13 @@ export default function Actors() {
             <label htmlFor="first_name">First Name *</label>
             <Field
             className='border'
-            autocomplete="off" id="first_name" name="first_name" placeholder="Abc" />
+            autoComplete="off" id="first_name" name="first_name" placeholder="Abc" />
             <ErrorMessage name="first_name" component="div" />
 
             <label htmlFor="last_name">Last Name *</label>
             <Field
             className='border'
-            autocomplete="off" id="last_name" name="last_name" placeholder="Abc" />
+            autoComplete="off" id="last_name" name="last_name" placeholder="Abc" />
             <ErrorMessage name="last_name" component="div" />
 
             <label htmlFor="height">Height ?</label>
@@ -177,13 +177,13 @@ export default function Actors() {
 
             <label htmlFor="date_of_birth">Date of Birth ?</label>
             <div className="flex flex-row items-center mb-2">
-              <input className="border h-10 rounded-sm mr-2" type="text" placeholder="Year" onChange={(e) => setYear(Number(e.target.value))}/>
+              <input name="inputBirth" className="border h-10 rounded-sm mr-2" type="text" placeholder="Year" onChange={(e) => setYear(Number(e.target.value))}/>
               <DatePickerForm year={year} onDateChange={(formattedDate) => setDateDateOfBirth(formattedDate)}/>
             </div>
             <Field
             as='select'
             className='border'
-            autocomplete="off" id="date_of_birth" name="date_of_birth" placeholder="00/00/0000">
+            autoComplete="off" id="date_of_birth" name="date_of_birth" placeholder="00/00/0000">
               <option value="00/00/0000">Select an Option</option>
               <option value={dateOfBirth}>{dateOfBirth}</option>
             </Field>
@@ -193,7 +193,7 @@ export default function Actors() {
             <Field
             as="select"
             className='border'
-            autocomplete="off" id="fk_actor_current_status_en" name="fk_actor_current_status_en">
+            autoComplete="off" id="fk_actor_current_status_en" name="fk_actor_current_status_en">
                 <option key={1} value={0}>Select Option</option>
               {statusEn.filter((value) => value.idcurrent_status_en == 1 || value.idcurrent_status_en == 2).map((status) => (
                 <option key={status.idcurrent_status_en} value={status.idcurrent_status_en}>{status.name_current_status_en}</option>
@@ -205,7 +205,7 @@ export default function Actors() {
             <Field
             as="select"
             className='border'
-            autocomplete="off" id="fk_actor_current_status_pt" name="fk_actor_current_status_pt">
+            autoComplete="off" id="fk_actor_current_status_pt" name="fk_actor_current_status_pt">
               <option key={1} value={0}>Select Option</option>
               {statusPt.filter((value) => value.idcurrent_status_pt == 1 || value.idcurrent_status_pt == 2).map((status) => (
                 <option key={status.idcurrent_status_pt} value={status.idcurrent_status_pt}>{status.name_current_status_pt}</option>
@@ -215,13 +215,13 @@ export default function Actors() {
 
             <label htmlFor="date_of_death">Date of Death ?</label>
             <div className="flex flex-row items-center mb-2">
-              <input className="border h-10 rounded-sm mr-2" type="text" placeholder="Year" onChange={(e) => setYear(Number(e.target.value))}/>
+              <input name="inputDeath" className="border h-10 rounded-sm mr-2" type="text" placeholder="Year" onChange={(e) => setYear(Number(e.target.value))}/>
               <DatePickerForm year={year} onDateChange={(formattedDate) => setDateOfDeath(formattedDate)}/>
             </div>
             <Field
             as='select'
             className='border'
-            autocomplete="off" id="date_of_death" name="date_of_death" placeholder="00/00/0000">
+            autoComplete="off" id="date_of_death" name="date_of_death" placeholder="00/00/0000">
               <option value="">Select an Option</option>
               <option value={dateOfDeath}>{dateOfDeath}</option>
 
@@ -231,55 +231,55 @@ export default function Actors() {
             <label htmlFor="city_of_birth_en">City of Birth En ?</label>
             <Field
             className='border'
-            autocomplete="off" id="city_of_birth_en" name="city_of_birth_en" placeholder="Abc"/>
+            autoComplete="off" id="city_of_birth_en" name="city_of_birth_en" placeholder="Abc"/>
             <ErrorMessage name="city_of_birth_en" component="div" />
 
             <label htmlFor="city_of_birth_pt">City of Birth Pt ?</label>
             <Field 
             className='border'
-            autocomplete="off" id="city_of_birth_pt" name="city_of_birth_pt" placeholder="Abc" />
+            autoComplete="off" id="city_of_birth_pt" name="city_of_birth_pt" placeholder="Abc" />
             <ErrorMessage name="city_of_birth_en" component="div" />
 
             <label htmlFor="state_of_birth_en">State of Birth En ?</label>
             <Field 
             className='border'
-            autocomplete="off" id="state_of_birth_en" name="state_of_birth_en" placeholder="Abc" />
+            autoComplete="off" id="state_of_birth_en" name="state_of_birth_en" placeholder="Abc" />
             <ErrorMessage name="state_of_birth_en" component="div" />
 
             <label htmlFor="state_of_birth_pt">State of Birth Pt?</label>
             <Field 
             className='border'
-            autocomplete="off" id="state_of_birth_pt" name="state_of_birth_pt" placeholder="Abc" />
+            autoComplete="off" id="state_of_birth_pt" name="state_of_birth_pt" placeholder="Abc" />
             <ErrorMessage name="state_of_birth_pt" component="div" />
 
             <label htmlFor="country_of_birth_en">Country of Birth En?</label>
             <Field 
             className='border'
-            autocomplete="off" id="country_of_birth_en" name="country_of_birth_en" placeholder="Abc" />
+            autoComplete="off" id="country_of_birth_en" name="country_of_birth_en" placeholder="Abc" />
             <ErrorMessage name="country_of_birth_en" component="div" />
 
             <label htmlFor="country_of_birth_pt">Country of Birth Pt?</label>
             <Field 
             className='border'
-            autocomplete="off" id="country_of_birth_pt" name="country_of_birth_pt" placeholder="Abc" />
+            autoComplete="off" id="country_of_birth_pt" name="country_of_birth_pt" placeholder="Abc" />
             <ErrorMessage name="country_of_birth_pt" component="div" />
 
             <label htmlFor="about_actor_en">About Actor En ?</label>
             <Field 
             className='border'
-            autocomplete="off" id="about_actor_en" name="about_actor_en" placeholder="Abc" />
+            autoComplete="off" id="about_actor_en" name="about_actor_en" placeholder="Abc" />
             <ErrorMessage name="about_actor_en" component="div" />
 
             <label htmlFor="about_actor_pt">About Actor Pt ?</label>
             <Field
             className='border'
-            autocomplete="off" id="about_actor_pt" name="about_actor_pt" placeholder="Abc" />
+            autoComplete="off" id="about_actor_pt" name="about_actor_pt" placeholder="Abc" />
             <ErrorMessage name="about_actor_pt" component="div" />
 
             <label htmlFor="actor_image_url">Actor Image URL * 400x600 PostImage</label>
             <Field
             className='border'
-            autocomplete="off" id="actor_image_url" name="actor_image_url" placeholder="https://exemple.com" />
+            autoComplete="off" id="actor_image_url" name="actor_image_url" placeholder="https://exemple.com" />
             <ErrorMessage name="actor_image_url" component="div" />
 
             <div className="flex justify-center mt-4">
