@@ -34,7 +34,7 @@ export default function ActorsList() {
 
   return (
     <div>
-      <ScrollArea className="h-[300px] w-[450px] rounded-md border p-4">
+      <ScrollArea className="h-[700px] w-[450px] rounded-md border p-4">
         <div className="p-4">
           <div className="flex items-center">
             <input

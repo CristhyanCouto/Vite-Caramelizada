@@ -291,9 +291,9 @@ export default function Actors() {
 
         </Formik>
       </div>
-      <div className="p-4 grid grid-cols-1 gap-4 justify-center">
-        <h1 className="text-4xl text-center flex justify-center items-center bold p-2">Helping Tools</h1>
-        <div className="flex justify-center">
+      <div className="flex flex-col p-2 justify-center">
+        <h1 className="text-4xl text-center bold mb-2">Helping Tools</h1>
+        <div className="flex justify-center h-full">
           <ActorsList />
         </div>
       </div>
