@@ -1,39 +1,39 @@
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ActorCardProps } from "@/lib/person";
+import { DirectorCardProps } from "@/lib/person";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
-interface ActorsListProps {
+interface DirectorsListProps {
   refreshComponentCounter?: number;
 }
 
-export default function ActorsList({ refreshComponentCounter }: ActorsListProps) {
+export default function DirectorsList({ refreshComponentCounter }: DirectorsListProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [actorsData, setActorsData] = useState<ActorCardProps[]>([]);
-  const [searchActors, setSearchActors] = useState("");
+  const [directorsData, setDirectorsData] = useState<DirectorCardProps[]>([]);
+  const [searchDirectors, setSearchDirectors] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/actors")
+      .get("http://localhost:3001/directors")
       .then((response) => {
-        setActorsData(response.data);
+        setDirectorsData(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [refreshComponentCounter]);
 
-  const handleSearchActors = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchActors(e.target.value);
+  const handleSearchDirectors = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchDirectors(e.target.value);
   };
 
   const clearInput = () => {
     if (inputRef.current) {
       inputRef.current.value = "";
     }
-    setSearchActors("");
+    setSearchDirectors("");
   };
 
   return (
@@ -42,12 +42,12 @@ export default function ActorsList({ refreshComponentCounter }: ActorsListProps)
         <div className="p-4">
           <div className="flex items-center">
             <input
-              name="searchActors"
+              name="searchDirectors"
               ref={inputRef}
               type="text"
-              placeholder="Search actors"
+              placeholder="Search directors"
               className="w-full p-2 rounded-md border"
-              onChange={handleSearchActors}
+              onChange={handleSearchDirectors}
             />
             <Button
               onClick={clearInput}
@@ -56,7 +56,7 @@ export default function ActorsList({ refreshComponentCounter }: ActorsListProps)
               x
             </Button>
           </div>
-          <h1 className="text-2xl font-bold text-center">Actors</h1>
+          <h1 className="text-2xl font-bold text-center">Directors</h1>
           <table className="border">
             <thead>
               <tr>
@@ -66,36 +66,36 @@ export default function ActorsList({ refreshComponentCounter }: ActorsListProps)
               </tr>
             </thead>
             <tbody className="border">
-              {actorsData
+              {directorsData
                 .filter((value) => {
                   return (
                     (value.first_name &&
                       value.first_name
                         .toLowerCase()
-                        .includes(searchActors.toLowerCase())) ||
+                        .includes(searchDirectors.toLowerCase())) ||
                     (value.last_name &&
                       value.last_name
                         .toLowerCase()
-                        .includes(searchActors.toLowerCase())) ||
+                        .includes(searchDirectors.toLowerCase())) ||
                     (value.first_name &&
                       value.last_name &&
                       `${value.first_name} ${value.last_name}`
                         .toLowerCase()
-                        .includes(searchActors.toLowerCase()))
+                        .includes(searchDirectors.toLowerCase()))
                   );
                 })
-                .filter((actor) => actor.first_name !== undefined)
+                .filter((director) => director.first_name !== undefined)
                 .sort((a, b) => a.first_name!.localeCompare(b.first_name!))
-                .map((actor: ActorCardProps) => (
-                  <tr key={actor.idactor} className="border odd:bg-zinc-200">
+                .map((director: DirectorCardProps) => (
+                  <tr key={director.iddirector} className="border odd:bg-zinc-200">
                     <td className="border border-black text-center">
-                      {actor.idactor}
+                      {director.iddirector}
                     </td>
                     <td className="border border-black pl-2">
-                      {actor.first_name}
+                      {director.first_name}
                     </td>
                     <td className="border border-black pl-2">
-                      {actor.last_name}
+                      {director.last_name}
                     </td>
                   </tr>
                 ))}
