@@ -388,7 +388,7 @@ export default function MoviePage() {
             {/*Producers */}
             <div>
               <h2 className="text-4xl text-center">{t('movies.producers')}</h2>
-              <div className="grid sm:grid-cols-5 justify-center gap-4 mt-6 px-10">
+              <div className="grid grid-cols-5 justify-center items-center gap-4 mt-6 px-10">
                 {ProducerCards()}
               </div>
             </div>

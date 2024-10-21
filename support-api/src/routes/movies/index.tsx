@@ -1,6 +1,9 @@
+import PostMovies from "@/components/common/postMovies";
 
 export default function Movies() {
   return (
-    <div>Movies</div>
+    <div>
+      <PostMovies />
+    </div>
   )
 }
