@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { DatePickerForm } from "./datePickerForm";
 import { GenreEnCardProps, GenrePtCardProps, ProducersCardProps, RatedPGEnCardProps, RatedPGPtCardProps } from "@/lib/nonPersonInterfaces";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
 import PostProducers from "./postProducers";
 import PostDirectors from "./postDirectors";
 import {
@@ -402,6 +402,7 @@ export default function PostMovies({
                       onChange={handleSearch}
                     />
                     <Dialog>
+                      <DialogTitle>Add Producer</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent>
                         <PostProducers
@@ -465,6 +466,7 @@ export default function PostMovies({
                       onChange={handleSearch}
                     />
                     <Dialog>
+                      <DialogTitle>Add Director</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
                         <PostDirectors
@@ -537,6 +539,7 @@ export default function PostMovies({
                       onChange={handleSearch}
                     />
                     <Dialog>
+                      <DialogTitle>Add Writer</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
                         <PostWriters
@@ -606,6 +609,7 @@ export default function PostMovies({
                       onChange={handleSearch}
                     />
                     <Dialog>
+                      <DialogTitle>Add Actor</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
                         <PostActors
