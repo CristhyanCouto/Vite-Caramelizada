@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { DatePickerForm } from "./datePickerForm";
 import { GenreEnCardProps, GenrePtCardProps, ProducersCardProps, RatedPGEnCardProps, RatedPGPtCardProps } from "@/lib/nonPersonInterfaces";
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../ui/dialog";
 import PostProducers from "./postProducers";
 import PostDirectors from "./postDirectors";
 import {
@@ -400,11 +400,14 @@ export default function PostMovies({
                       className="border"
                       placeholder="Filter Producer"
                       onChange={handleSearch}
+                      name={`fk_producer_input${producerIndex}`}
+                      id={`fk_producer_input${producerIndex}`}
                     />
                     <Dialog>
-                      <DialogTitle>Add Producer</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent>
+                      <DialogTitle>Add Producer</DialogTitle>
+                      <DialogDescription></DialogDescription>
                         <PostProducers
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -464,11 +467,14 @@ export default function PostMovies({
                       className="border"
                       placeholder="Filter director"
                       onChange={handleSearch}
+                      name={`fk_director_input${directorIndex}`}
+                      id={`fk_director_input${directorIndex}`}
                     />
                     <Dialog>
-                      <DialogTitle>Add Director</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
+                      <DialogTitle>Add Director</DialogTitle>
+                      <DialogDescription></DialogDescription>
                         <PostDirectors
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -537,11 +543,14 @@ export default function PostMovies({
                       className="border"
                       placeholder="Filter writer"
                       onChange={handleSearch}
+                      name={`fk_writer_input${writerIndex}`}
+                      id={`fk_writer_input${writerIndex}`}
                     />
                     <Dialog>
-                      <DialogTitle>Add Writer</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
+                      <DialogTitle>Add Writer</DialogTitle>
+                      <DialogDescription></DialogDescription>
                         <PostWriters
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -607,11 +616,14 @@ export default function PostMovies({
                       className="border"
                       placeholder="Filter actor"
                       onChange={handleSearch}
+                      name={`fk_actor_input${actorIndex}`}
+                      id={`fk_actor_input${actorIndex}`}
                     />
                     <Dialog>
-                      <DialogTitle>Add Actor</DialogTitle>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
+                      <DialogTitle>Add Actor</DialogTitle>
+                      <DialogDescription></DialogDescription>
                         <PostActors
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -672,7 +684,9 @@ export default function PostMovies({
                     Genre EN {genreIndex}
                   </label>
                   <input className="border w-[20%]" type="text" placeholder="Filter Genre EN"
-                  onChange={handleSearch} />
+                  onChange={handleSearch}
+                  name={`fk_genre_en_input${genreIndex}`}
+                  id={`fk_genre_en_input${genreIndex}`} />
                   <Field
                     as="select"
                     className="border w-[40%]"
@@ -719,7 +733,9 @@ export default function PostMovies({
                     Genre PT {genreIndex}
                   </label>
                   <input className='border w-[20%]' type="text" placeholder="Filter Genre PT"
-                  onChange={handleSearch} />
+                  onChange={handleSearch}
+                  name={`fk_genre_pt_input${genreIndex}`}
+                  id={`fk_genre_pt_input${genreIndex}`} />
                   <Field
                     as="select"
                     className="border w-[40%]"
