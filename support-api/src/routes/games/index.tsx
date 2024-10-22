@@ -1,6 +1,9 @@
+import PostGames from "@/components/common/postGames";
 
 export default function Games() {
   return (
-    <div>Games</div>
+    <div>
+      <PostGames />
+    </div>
   )
 }
