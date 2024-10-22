@@ -310,13 +310,13 @@ export default function PostGames({
 
             {/*--------------------------- Creators ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Producers</h2>
+            <h2 className="text-4xl font-bold">Creator</h2>
             {[...Array(5)].map((_, index) => {
               const creatorIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_creator${creatorIndex}`}>
                   <label htmlFor={`fk_creator${creatorIndex}`}>
-                    Producer {creatorIndex}
+                    Creator {creatorIndex}
                   </label>
                   <div className="flex">
                     <input
@@ -329,7 +329,7 @@ export default function PostGames({
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
-                      <DialogContent>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto">
                       <DialogTitle>Add Creator</DialogTitle>
                       <DialogDescription></DialogDescription>
                         <PostCreators

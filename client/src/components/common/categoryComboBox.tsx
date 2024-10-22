@@ -18,6 +18,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useTranslation } from "react-i18next";
+import { PlataformsType } from "@/lib/games";
+import axios from "axios";
 
 function CategoryComboBoxMovies({
   sortValue,
@@ -113,9 +115,11 @@ function CategoryComboBoxMovies({
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full p-2 text-sm border-b outline-none"
             />
-            <Button className="w-2 h-6 shrink-0 opacity-50
+            <Button
+              className="w-2 h-6 shrink-0 opacity-50
             fixed top-[2%] left-[80%] right-0"
-            onClick={()=> setSortValue([])}>
+              onClick={() => setSortValue([])}
+            >
               x
             </Button>
           </div>
@@ -123,24 +127,24 @@ function CategoryComboBoxMovies({
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>
               {filteredSorts
-              .sort((a, b) => a.label.localeCompare(b.label))
-              .map((sort) => (
-                <CommandItem
-                  key={sort.value}
-                  value={sort.value}
-                  onSelect={() => handleSelect(sort.value)}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      sortValue.includes(sort.value)
-                        ? "opacity-100"
-                        : "opacity-0"
-                    )}
-                  />
-                  {sort.label}
-                </CommandItem>
-              ))}
+                .sort((a, b) => a.label.localeCompare(b.label))
+                .map((sort) => (
+                  <CommandItem
+                    key={sort.value}
+                    value={sort.value}
+                    onSelect={() => handleSelect(sort.value)}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        sortValue.includes(sort.value)
+                          ? "opacity-100"
+                          : "opacity-0"
+                      )}
+                    />
+                    {sort.label}
+                  </CommandItem>
+                ))}
             </CommandGroup>
           </CommandList>
         </Command>
@@ -439,9 +443,8 @@ function CategoryComboBoxGames({
     {
       value: "69",
       label: `${t("genre.zombie")}`,
-    }
+    },
   ];
-  
 
   const filteredSorts = sorts.filter((sort) =>
     sort.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -453,11 +456,9 @@ function CategoryComboBoxGames({
       : sortValue.length < 5
       ? [...sortValue, currentValue]
       : sortValue;
-  
+
     setSortValue(newSortValue);
   };
-  
-  
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -467,7 +468,9 @@ function CategoryComboBoxGames({
           role="combobox"
           aria-expanded={open}
           className="w-[200px] justify-between"
-        > {t("sortComboBox.selectGenre")}
+        >
+          {" "}
+          {t("sortComboBox.selectGenre")}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -505,4 +508,184 @@ function CategoryComboBoxGames({
   );
 }
 
-export { CategoryComboBoxMovies, CategoryComboBoxGames };
+function MultiplayerComboBoxGames({
+  sortValue,
+  setSortValue,
+}: {
+  sortValue: string[];
+  setSortValue: (value: string[]) => void;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  //Genre list
+
+  const { t } = useTranslation();
+
+  const sorts = [
+    { value: "0", label: `${t("games.singlePlayer")}` },
+    {
+      value: "1",
+      label: `${t("games.multiPlayer")}`,
+    },
+    {
+      value: "2",
+      label: `${t("games.multiplayerLocal")}`,
+    },
+  ];
+
+  const filteredSorts = sorts.filter((sort) =>
+    sort.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSelect = (currentValue: string) => {
+    const newSortValue = sortValue.includes(currentValue)
+      ? sortValue.filter((value) => value !== currentValue)
+      : sortValue.length < 3
+      ? [...sortValue, currentValue]
+      : sortValue;
+
+    setSortValue(newSortValue);
+  };
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="w-[200px] justify-between"
+        >
+          {" "}
+          {t("sortComboBox.selectMultiplayer")}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[200px] p-0">
+        <Command>
+          <CommandInput
+            placeholder={`${t("sortComboBox.search")}...`}
+            onValueChange={(value) => setSearchQuery(value)}
+          />
+          <CommandList>
+            <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
+            <CommandGroup>
+              {filteredSorts.map((sort) => (
+                <CommandItem
+                  key={sort.value}
+                  value={sort.value}
+                  onSelect={() => handleSelect(sort.value)}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      sortValue.includes(sort.value)
+                        ? "opacity-100"
+                        : "opacity-0"
+                    )}
+                  />
+                  {sort.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+function PlataformsComboBoxGames({
+  sortValue,
+  setSortValue,
+}: {
+  sortValue: string[];
+  setSortValue: (value: string[]) => void;
+}) {
+  const [plataform, setPlataform] = React.useState<PlataformsType[]>([]);
+  const [open, setOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  React.useEffect(() => {
+    axios.get("http://localhost:3001/plataforms").then((response) => {
+      setPlataform(response.data);
+    });
+  });
+
+  //Genre list
+
+  const { t } = useTranslation();
+
+  // Mapear plataformas dinamicamente para a lista de sorts
+  const sorts = plataform
+  .sort(
+    (a, b) =>
+      a.name_plataform.localeCompare(b.name_plataform)
+  ).map((plat) => ({
+    value: String(plat.idplataform), // Assumindo que "id" é o identificador da plataforma
+    label: plat.name_plataform, // Assumindo que "name" é o nome da plataforma
+  }));
+
+  const filteredSorts = sorts.filter((sort) =>
+    sort.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSelect = (currentValue: string) => {
+    const newSortValue = sortValue.includes(currentValue)
+      ? sortValue.filter((value) => value !== currentValue)
+      : sortValue.length < 5
+      ? [...sortValue, currentValue]
+      : sortValue;
+
+    setSortValue(newSortValue);
+  };
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button variant="outline" role="combobox" aria-expanded={open}>
+          {t("sortComboBox.selectPlatform")}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[200px] p-0">
+        <Command>
+          <CommandInput
+            placeholder={t("sortComboBox.search")}
+            onValueChange={(value) => setSearchQuery(value)}
+          />
+          <CommandList>
+            <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
+            <CommandGroup>
+              {filteredSorts.map((sort) => (
+                <CommandItem
+                  key={sort.value}
+                  value={sort.value}
+                  onSelect={() => handleSelect(sort.value)}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      sortValue.includes(sort.value)
+                        ? "opacity-100"
+                        : "opacity-0"
+                    )}
+                  />
+                  {sort.label}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
+export {
+  CategoryComboBoxMovies,
+  CategoryComboBoxGames,
+  MultiplayerComboBoxGames,
+  PlataformsComboBoxGames,
+};

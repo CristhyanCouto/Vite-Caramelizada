@@ -1,3 +1,4 @@
+import GameCardList from "@/components/common/gameCardList";
 import Page from "@/components/common/page";
 import { useTranslation } from "react-i18next";
 
@@ -7,7 +8,7 @@ export default function Games() {
   return (
     <div>
       <Page title={t('games.title')}>
-        <h1>Games</h1>
+        <GameCardList />
       </Page>
     </div>
   )

@@ -14,7 +14,10 @@
         "myOpinion": "My opinion"
     },
     "games": {
-        "title": "Games"
+        "title": "Games",
+        "singlePlayer": "Single Player",
+        "multiPlayer": "Multi Player",
+        "multiplayerLocal": "Multiplayer Local"
     },
     "genre":{
         "2.5d": "2.5D",
@@ -124,10 +127,12 @@
         "genres": "Genres",
         "myRating": "My Rating",
         "noSearchResults": "No search results",
-        "selectGenre": "Select Genre",
-        "selectSort": "Select Sort",
+        "selectGenre": "Genre",
+        "selectSort": "Sort",
         "search": "Search",
-        "releaseDate": "Release Date"
+        "releaseDate": "Release Date",
+        "selectMultiplayer": "Multiplayer",
+        "selectPlatform": "Platform"
     },
     "utils": {
         "billion": "Billion",

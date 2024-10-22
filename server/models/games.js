@@ -317,6 +317,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
             allowNull: true
         },
+        singleplayer: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
         multiplayer: {
             type: DataTypes.BOOLEAN,
             allowNull: true

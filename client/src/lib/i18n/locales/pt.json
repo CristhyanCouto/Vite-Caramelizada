@@ -14,7 +14,10 @@
         "myOpinion": "Minha opinião"
     },
     "games": {
-        "title": "Jogos"
+        "title": "Jogos",
+        "singlePlayer": "Um Jogador",
+        "multiPlayer": "Multi Jogador",
+        "multiplayerLocal": "Multi Jogador Local"
     },
     "genre":{
         "2.5d": "2.5D",
@@ -124,10 +127,12 @@
         "genres": "Gêneros",
         "myRating": "Minha Nota",
         "noSearchResults": "Nenhum resultado encontrado",
-        "selectGenre": "Selecione o Gênero",
-        "selectSort": "Selecione a Ordem",
+        "selectGenre": "Gênero",
+        "selectSort": "Ordem",
         "search": "Pesquisa",
-        "releaseDate": "Data de Lançamento"
+        "releaseDate": "Data de Lançamento",
+        "selectMultiplayer": "Multiplayer",
+        "selectPlatform": "Plataforma"
     },
     "utils": {
         "billion": "Bilhão",

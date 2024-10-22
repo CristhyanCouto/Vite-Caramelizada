@@ -79,7 +79,7 @@ export default function PostPlataforms({
             />
             <ErrorMessage name="name_plataform" component="div" />
 
-            <label htmlFor="date_of_birth">Release Date ?</label>
+            <label htmlFor="release_date">Release Date ?</label>
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputBirth"
@@ -99,14 +99,14 @@ export default function PostPlataforms({
               as="select"
               className="border"
               autoComplete="off"
-              id="date_of_birth"
-              name="date_of_birth"
+              id="release_date"
+              name="release_date"
               placeholder="00/00/0000"
             >
               <option value="00/00/0000">Select an Option</option>
               <option value={releaseDate}>{releaseDate}</option>
             </Field>
-            <ErrorMessage name="date_of_birth" component="div" />
+            <ErrorMessage name="release_date" component="div" />
 
             <div className="flex justify-center mt-4">
               <button

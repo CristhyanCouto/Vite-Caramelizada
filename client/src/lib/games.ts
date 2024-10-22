@@ -1,0 +1,63 @@
+export type GamesType = {
+    map(arg0: (game: GamesType) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode | Iterable<import("react").ReactNode>;
+    idgame: number;
+    title_en: string;
+    title_pt: string;
+    release_date?: string;
+    fk_creator01?: number; 
+    fk_creator02?: number; 
+    fk_creator03?: number; 
+    fk_creator04?: number; 
+    fk_creator05?: number; 
+    fk_publisher_games01?: number; 
+    fk_publisher_games02?: number; 
+    fk_publisher_games03?: number; 
+    fk_publisher_games04?: number; 
+    fk_publisher_games05?: number; 
+    fk_plataform01?: number;
+    fk_plataform02?: number;
+    fk_plataform03?: number;
+    fk_plataform04?: number;
+    fk_plataform05?: number;
+    fk_plataform06?: number;
+    fk_plataform07?: number;
+    fk_plataform08?: number;
+    fk_plataform09?: number;
+    fk_plataform10?: number;
+    fk_genre_en01?: number; 
+    fk_genre_en02?: number; 
+    fk_genre_en03?: number; 
+    fk_genre_en04?: number; 
+    fk_genre_en05?: number; 
+    fk_genre_pt01?: number; 
+    fk_genre_pt02?: number; 
+    fk_genre_pt03?: number; 
+    fk_genre_pt04?: number; 
+    fk_genre_pt05?: number;
+    about_game_en?: string;
+    about_game_pt?: string;
+    cover_game_url: string;
+    trailer_game_url?: string;
+    image_game_url01?: string; 
+    image_game_url02?: string; 
+    image_game_url03?: string; 
+    image_game_url04?: string; 
+    image_game_url05?: string; 
+    image_game_url06?: string; 
+    image_game_url07?: string; 
+    image_game_url08?: string; 
+    image_game_url09?: string; 
+    image_game_url10?: string;
+    my_rating?: number;
+    singleplayer?: boolean;
+    multiplayer?: boolean;
+    multiplayer_local?: boolean;
+    my_review_en?: string;
+    my_review_pt?: string;
+}
+
+export type PlataformsType ={
+    idplataform: number;
+    name_plataform: string;
+    release_date: string;
+}
