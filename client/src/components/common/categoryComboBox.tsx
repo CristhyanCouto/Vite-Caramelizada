@@ -8,7 +8,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
@@ -476,10 +475,22 @@ function CategoryComboBoxGames({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput
-            placeholder={`${t("sortComboBox.search")}...`}
-            onValueChange={(value) => setSearchQuery(value)}
-          />
+          <div className="relative">
+            <input
+              type="text"
+              placeholder={`${t("sortComboBox.search")}...`}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 text-sm border-b outline-none"
+            />
+            <Button
+              className="w-2 h-6 shrink-0 opacity-50
+            fixed top-[2%] left-[80%] right-0"
+              onClick={() => setSortValue([])}
+            >
+              x
+            </Button>
+          </div>
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>
@@ -564,10 +575,22 @@ function MultiplayerComboBoxGames({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput
-            placeholder={`${t("sortComboBox.search")}...`}
-            onValueChange={(value) => setSearchQuery(value)}
-          />
+        <div className="relative">
+            <input
+              type="text"
+              placeholder={`${t("sortComboBox.search")}...`}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 text-sm border-b outline-none"
+            />
+            <Button
+              className="w-2 h-6 shrink-0 opacity-50
+            fixed top-[2%] left-[80%] right-0"
+              onClick={() => setSortValue([])}
+            >
+              x
+            </Button>
+          </div>
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>
@@ -619,13 +642,11 @@ function PlataformsComboBoxGames({
 
   // Mapear plataformas dinamicamente para a lista de sorts
   const sorts = plataform
-  .sort(
-    (a, b) =>
-      a.name_plataform.localeCompare(b.name_plataform)
-  ).map((plat) => ({
-    value: String(plat.idplataform), // Assumindo que "id" é o identificador da plataforma
-    label: plat.name_plataform, // Assumindo que "name" é o nome da plataforma
-  }));
+    .sort((a, b) => a.name_plataform.localeCompare(b.name_plataform))
+    .map((plat) => ({
+      value: String(plat.idplataform), // Assumindo que "id" é o identificador da plataforma
+      label: plat.name_plataform, // Assumindo que "name" é o nome da plataforma
+    }));
 
   const filteredSorts = sorts.filter((sort) =>
     sort.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -651,10 +672,22 @@ function PlataformsComboBoxGames({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput
-            placeholder={t("sortComboBox.search")}
-            onValueChange={(value) => setSearchQuery(value)}
-          />
+          <div className="relative">
+            <input
+              type="text"
+              placeholder={`${t("sortComboBox.search")}...`}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 text-sm border-b outline-none"
+            />
+            <Button
+              className="w-2 h-6 shrink-0 opacity-50
+            fixed top-[2%] left-[80%] right-0"
+              onClick={() => setSortValue([])}
+            >
+              x
+            </Button>
+          </div>
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>
