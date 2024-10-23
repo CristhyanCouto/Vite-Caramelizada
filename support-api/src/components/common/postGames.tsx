@@ -103,6 +103,7 @@ export default function PostGames({
     image_game_url09: Yup.string().nullable(),
     image_game_url10: Yup.string().nullable(),
     my_rating: Yup.number().nullable(),
+    singleplayer: Yup.number().nullable(),
     multiplayer_local: Yup.number().nullable(),
     multiplayer: Yup.number().nullable(),
     my_review_en: Yup.string().nullable(),
@@ -143,25 +144,26 @@ export default function PostGames({
     fk_genre_pt03: null,
     fk_genre_pt04: null,
     fk_genre_pt05: null,
-    about_game_en: null,
-    about_game_pt: null,
+    about_game_en: '',
+    about_game_pt: '',
     cover_game_url: '',
     trailer_game_url: '',
-    image_game_url01: null,
-    image_game_url02: null,
-    image_game_url03: null,
-    image_game_url04: null,
-    image_game_url05: null,
-    image_game_url06: null,
-    image_game_url07: null,
-    image_game_url08: null,
-    image_game_url09: null,
-    image_game_url10: null,
+    image_game_url01: '',
+    image_game_url02: '',
+    image_game_url03: '',
+    image_game_url04: '',
+    image_game_url05: '',
+    image_game_url06: '',
+    image_game_url07: '',
+    image_game_url08: '',
+    image_game_url09: '',
+    image_game_url10: '',
     my_rating: null,
+    singleplayer: null,
     multiplayer_local: null,
     multiplayer: null,
-    my_review_en: null,
-    my_review_pt: null,
+    my_review_en: '',
+    my_review_pt: '',
   };
 
   interface FormValues {
@@ -198,8 +200,8 @@ export default function PostGames({
     fk_genre_pt03: number | null;
     fk_genre_pt04: number | null;
     fk_genre_pt05: number | null;
-    about_game_en: number | null;
-    about_game_pt: number | null;
+    about_game_en: string | null;
+    about_game_pt: string | null;
     cover_game_url: string | null;
     trailer_game_url: string | null;
     image_game_url01: string | null;
@@ -213,6 +215,7 @@ export default function PostGames({
     image_game_url09: string | null;
     image_game_url10: string | null;
     my_rating: number | null;
+    singleplayer: number | null;
     multiplayer_local: number | null;
     multiplayer: number | null;
     my_review_en: string | null;
@@ -625,22 +628,24 @@ export default function PostGames({
               id="about_game_en"
               name="about_game_en"
               placeholder="Abc"
-            />
+            >
+            </Field>
             <ErrorMessage name="about_game_en" component="div" />
 
-            {/*--------------------------- About Movie PT ----------------------------------- */}
+            {/*--------------------------- About Game PT ----------------------------------- */}
 
-            <label htmlFor="about_movie_pt">About Game PT</label>
+            <label htmlFor="about_game_pt">About Game PT</label>
             <Field
               className="border"
               autoComplete="off"
               id="about_game_pt"
               name="about_game_pt"
               placeholder="Abc"
-            />
-            <ErrorMessage name="about_movie_pt" component="div" />
+            >
+            </Field>
+            <ErrorMessage name="about_game_pt" component="div" />
 
-            {/*--------------------------- Cover Movie URL ----------------------------------- */}
+            {/*--------------------------- Cover Game URL ----------------------------------- */}
 
             <h2 className="text-4xl font-bold">Game Cover URL</h2>
             <label htmlFor="cover_game_url">Cover Game URL *</label>
@@ -650,10 +655,11 @@ export default function PostGames({
               id="cover_game_url"
               name="cover_game_url"
               placeholder="https://exemple.com"
-            />
+            >
+            </Field>
             <ErrorMessage name="cover_game_url" component="div" />
 
-            {/*--------------------------- Trailer Movie URL ----------------------------------- */}
+            {/*--------------------------- Trailer Game URL ----------------------------------- */}
 
             <h2 className="text-4xl font-bold">Game Trailer URL</h2>
             <label htmlFor="trailer_game_url">Trailer Game URL *</label>
@@ -663,10 +669,11 @@ export default function PostGames({
               id="trailer_game_url"
               name="trailer_game_url"
               placeholder="https://exemple.com"
-            />
+            >
+            </Field>
             <ErrorMessage name="trailer_game_url" component="div" />
 
-            {/*--------------------------- Image Movie URL ----------------------------------- */}
+            {/*--------------------------- Image Game URL ----------------------------------- */}
             <h2 className="text-4xl font-bold">Game Prints</h2>
             {[...Array(10)].map((_, index) => {
               const imageIndex = (index + 1).toString().padStart(2, "0");
@@ -681,7 +688,8 @@ export default function PostGames({
                     id={`image_game_url${imageIndex}`}
                     name={`image_game_url${imageIndex}`}
                     placeholder="https://exemple.com"
-                  />
+                  >
+                  </Field>
                   <ErrorMessage
                     name={`image_game_url${imageIndex}`}
                     component="div"
@@ -699,10 +707,26 @@ export default function PostGames({
               id="my_rating"
               name="my_rating"
               placeholder="0.0"
-            />
+            >
+            </Field>
             <ErrorMessage name="my_rating" component="div" />
 
             {/*--------------------------- Multiplayer ----------------------------------- */}
+            <h2 className="text-4xl font-bold">Singleplayer</h2>
+            <label htmlFor="singleplayer">Has Singleplayer</label>
+            <Field
+                as="select"
+              className="border"
+              autoComplete="off"
+              id="singleplayer"
+              name="singleplayer"
+              placeholder="0"
+            >
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </Field>
+            <ErrorMessage name="singleplayer" component="div" />
+
             <h2 className="text-4xl font-bold">Multiplayer</h2>
             <label htmlFor="multiplayer">Has Multiplayer</label>
             <Field
@@ -716,6 +740,7 @@ export default function PostGames({
                 <option value="0">No</option>
                 <option value="1">Yes</option>
             </Field>
+            <ErrorMessage name="multiplayer" component="div" />
 
             <label htmlFor="multiplayer_local">Has Multiplayer Local</label>
             <Field
@@ -730,6 +755,7 @@ export default function PostGames({
                 <option value="1">Yes</option>
 
             </Field>
+            <ErrorMessage name="multiplayer_local" component="div" />
 
             {/*--------------------------- My Review EN ----------------------------------- */}
             <h2 className="text-4xl font-bold">My Review</h2>
@@ -740,7 +766,8 @@ export default function PostGames({
               id="my_review_en"
               name="my_review_en"
               placeholder="Abc"
-            />
+            >
+            </Field>
             <ErrorMessage name="my_review_en" component="div" />
 
             {/*--------------------------- My Review PT ----------------------------------- */}
@@ -751,7 +778,8 @@ export default function PostGames({
               id="my_review_pt"
               name="my_review_pt"
               placeholder="Abc"
-            />
+            >
+            </Field>
             <ErrorMessage name="my_review_pt" component="div" />
               
               {/*--------------------------- Submit Button ----------------------------------- */}

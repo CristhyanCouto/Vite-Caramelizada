@@ -7,7 +7,6 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { Button } from "../ui/button";
 import { IoIosMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 
@@ -24,24 +23,26 @@ export default function DrawerMenu() {
     <div>
       <Drawer>
         <DrawerTrigger>
-            <Button className="gap-1 bg-zinc-900 hover:bg-zinc-800">
+            <div className="w-28 flex items-center justify-center h-11 rounded-lg text-white gap-1 bg-zinc-900 hover:bg-zinc-800">
                 <IoIosMenu className="text-3xl"/> Menu
-            </Button>
+            </div>
         </DrawerTrigger>
         <DrawerContent className="h-full bg-zinc-900 border-none">
           <DrawerHeader>
             <DrawerTitle className="flex justify-between px-12">
                 <Link to="/">
-                    <Button className="w-36 h-16 bg-red-500 hover:bg-red-400">Caramelizada</Button>
+                    <div className="w-36 flex items-center justify-center rounded-xl h-16 bg-red-500 hover:bg-red-400">
+                        <div className="text-white text-center">Caramelizada</div>
+                    </div>
                 </Link>
                 <DrawerClose>
-                    <Button className="w-16 h-16 rounded-full bg-red-500 hover:bg-red-400">X</Button>
+                    <div className="flex items-center justify-center text-center text-white w-16 h-16 rounded-full bg-red-500 hover:bg-red-400">X</div>
                 </DrawerClose>
             </DrawerTitle>
             <DrawerDescription>
                 <div className="flex gap-6 justify-center text-white mt-6">
                     <div className="flex flex-col text-center gap-2">
-                        <Link to="/" className="flex text-center items-center text-3xl">
+                        <Link to="/movies" className="flex text-center items-center text-3xl">
                             <BiCameraMovie /> {t('navbar02.movies')}
                         </Link>
                         <Link to="/" className="text-2xl">
@@ -49,7 +50,7 @@ export default function DrawerMenu() {
                         </Link>
                     </div>
                     <div className="flex flex-col text-center gap-2">
-                        <Link to="/" className="flex text-center items-center text-3xl">
+                        <Link to="/series" className="flex text-center items-center text-3xl">
                             <BiMoviePlay /> {t('navbar02.series')}
                         </Link>
                         <Link to="/" className="text-2xl">
@@ -57,7 +58,7 @@ export default function DrawerMenu() {
                         </Link>
                     </div>
                     <div className="flex flex-col text-center gap-2">
-                        <Link to="/" className="flex text-center items-center text-3xl">
+                        <Link to="/animes" className="flex text-center items-center text-3xl">
                             <RiMovieLine /> {t('navbar02.animes')}
                         </Link>
                         <Link to="/" className="text-2xl">
@@ -65,7 +66,7 @@ export default function DrawerMenu() {
                         </Link>
                     </div>
                     <div className="flex flex-col text-center gap-2">
-                        <Link to="/" className="flex text-center items-center text-3xl">
+                        <Link to="/games" className="flex text-center items-center text-3xl">
                             <IoGameControllerOutline /> {t('navbar02.games')}
                         </Link>
                         <Link to="/" className="text-2xl">
@@ -76,7 +77,7 @@ export default function DrawerMenu() {
                         </Link>
                     </div>
                     <div className="flex flex-col text-center gap-2">
-                        <Link to="/" className="flex text-center items-center text-3xl">
+                        <Link to="/books" className="flex text-center items-center text-3xl">
                             <FiBook /> {t('navbar02.books')}
                         </Link>
                         <Link to="/" className="text-2xl">

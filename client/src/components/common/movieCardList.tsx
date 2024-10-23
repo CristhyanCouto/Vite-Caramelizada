@@ -65,12 +65,12 @@ export default function MovieCardList() {
     return (
         <div>
             <div className="pt-4 px-16 flex gap-2">
+                <SortComboBoxMovies sortValue={sortValue} setSortValue={setSortValue} />
                 <input type="text"
                     className="bg-white text-black p-2 w-full h-10 rounded-lg pr-10 text-center border"
                     placeholder={t('navbar01.search')}
                     onChange={(e) => setQuery(e.target.value)} 
                 />
-                <SortComboBoxMovies sortValue={sortValue} setSortValue={setSortValue} />
                 <CategoryComboBoxMovies sortValue={sortGenre} setSortValue={setSortGenre} />
             </div>
             <div className="flex justify-center items-center">

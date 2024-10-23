@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfCreators);
 });
 
+//Get request to get a record by id in the creators table
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const creator = await creators.findByPk(id);
+    res.json(creator);
+});
+
 //Post request to create a new record in the creators table
 router.post('/', async (req, res) => {
     const creator = req.body;

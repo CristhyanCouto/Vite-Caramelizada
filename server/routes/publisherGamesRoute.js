@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfPublisherGames);
 });
 
+//Get request to get a record by id in the publisher_games table
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const publisherGame = await publisher_games.findByPk(id);
+    res.json(publisherGame);
+});
+
 //Post request to create a new record in the publisher_games table
 router.post('/', async (req, res) => {
     const publisherGame = req.body;

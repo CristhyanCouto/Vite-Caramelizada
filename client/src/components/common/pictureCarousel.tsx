@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "../ui/dialog";
 
 type PictureCarouselProps = {
   pictures: string[]; // Array of image URLs
@@ -35,6 +35,7 @@ export default function PictureCarousel(props: PictureCarouselProps) {
                             className="rounded-sm"/>
                             </DialogTrigger>
                             <DialogContent className="max-w-4xl">
+                              <DialogTitle></DialogTitle>
                                 <img src={picture} alt={`Picture ${index}`} 
                                 className=""/>
                             </DialogContent>

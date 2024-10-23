@@ -1,3 +1,23 @@
+export type CreatorCardProps = {
+    idcreator : number;
+    first_name?: string;
+    last_name?: string;
+    height?: number;
+    date_of_birth?: string;
+    fk_creator_current_status_en?: number;
+    fk_creator_current_status_pt?: number;
+    date_of_death?: string;
+    city_of_birth_en?: string;
+    city_of_birth_pt?: string;
+    state_of_birth_en?: string;
+    state_of_birth_pt?: string;
+    country_of_birth_en?: string;
+    country_of_birth_pt?: string;
+    about_creator_en?: string;
+    about_creator_pt?: string;
+    creator_image_url?: string;
+}
+
 export type DirectorCardProps = {
     iddirector : number;
     first_name?: string;
@@ -66,4 +86,14 @@ export type ProducerCardProps = {
     about_producer_en?: string;
     about_producer_pt?: string;
     producer_image_url?: string;
+}
+
+export type PublisherCardProps = {
+    idpublisher_games : number;
+    name_publisher_games?: string;
+    headquarters_en?: string;
+    headquarters_pt?: string;
+    about_publisher_games_en?: string;
+    about_publisher_games_pt?: string;
+    publisher_games_image_url?: string;
 }

@@ -17,7 +17,10 @@
         "title": "Jogos",
         "singlePlayer": "Um Jogador",
         "multiPlayer": "Multi Jogador",
-        "multiplayerLocal": "Multi Jogador Local"
+        "multiplayerLocal": "Multi Jogador Local",
+        "gamesScreenShots": "Capturas de tela do jogo",
+        "creators": "Criadores",
+        "publishers": "Publicadoras"
     },
     "genre":{
         "2.5d": "2.5D",
