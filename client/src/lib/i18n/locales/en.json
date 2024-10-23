@@ -20,7 +20,8 @@
         "multiplayerLocal": "Multiplayer Local",
         "gamesScreenShots": "Game Screen Shots",
         "creators": "Creators",
-        "publishers": "Publishers"
+        "publishers": "Publishers",
+        "platforms": "Platforms"
     },
     "genre":{
         "2.5d": "2.5D",

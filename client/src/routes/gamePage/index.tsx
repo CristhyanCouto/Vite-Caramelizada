@@ -12,6 +12,10 @@ import { Separator } from "@/components/ui/separator";
 import PictureCarousel from "@/components/common/pictureCarousel";
 import CreatorCard from "@/components/common/creatorCard";
 import PublisherGamesCard from "@/components/common/publisherGamesCard";
+import { PlataformBackground } from "@/components/common/plataformBackground";
+import { IoLogoGameControllerB } from "react-icons/io";
+import { MdLanguage } from "react-icons/md";
+import { FaPeopleLine } from "react-icons/fa6";
 
 export default function GamePage() {
   const { gamesId } = useParams();
@@ -153,7 +157,20 @@ export default function GamePage() {
               </div>
 
               {/*Genres */}
-              <div className="grid grid-cols-1">
+              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
+                {/*Games Infos */}
+                <div className="flex justify-center items-center">
+                  {gameData?.release_date ? (
+                    <p className="text-center">
+                      {t("movies.releaseDate")}:{" "}
+                      {formatDateTime(gameData.release_date)}
+                    </p>
+                  ) : (
+                    <p className="text-center">
+                      {t("movies.releaseDate")}: {t("movies.noInformation")}
+                    </p>
+                  )}
+                </div>
                 <div className="flex gap-12 justify-center items-center">
                   {genre
                     ?.filter((genre) => genre !== "0")
@@ -166,20 +183,45 @@ export default function GamePage() {
                       </p>
                     ))}
                 </div>
+                <div className="flex items-center text-center justify-center text-3xl gap-1">{gameData?.singleplayer ? (
+                    <p className="text-center"><IoLogoGameControllerB /></p>
+                    ) : null}
+                    {gameData?.multiplayer ? (
+                    <p className="text-center"><MdLanguage /></p>
+                    ) : null}
+                    {gameData?.multiplayer_local ? (
+                    <p className="text-center"><FaPeopleLine /></p>
+                    ) : null}
+                </div>
               </div>
 
-              {/*Movie Infos */}
-              <div className="grid grid-cols-4 mt-4">
-                {gameData?.release_date ? (
-                  <p className="text-center">
-                    {t("movies.releaseDate")}:{" "}
-                    {formatDateTime(gameData.release_date)}
-                  </p>
-                ) : (
-                  <p className="text-center">
-                    {t("movies.releaseDate")}: {t("movies.noInformation")}
-                  </p>
-                )}
+              <Separator className="my-4 h-0.5" orientation="horizontal" />
+
+              {/*Plataforms*/}
+              <h2 className="text-4xl text-center mt-4">
+                {t("games.platforms")}
+              </h2>
+              <div className="grid grid-cols-5 justify-center gap-4 mt-6 px-10">
+                {Array.from({ length: 10 }, (_, i) => {
+                  const plataformKey = `fk_plataform0${
+                    i + 1
+                  }` as keyof GamesType;
+                  const plataformValue = gameData?.[plataformKey];
+
+                  if (plataformValue === null) {
+                    return null; // Stop rendering further items
+                  }
+
+                  return (
+                    <div
+                      key={i}
+                      className="grid justify-center text-center align-center items-center"
+                    >
+                      <PlataformBackground plataform={Number(plataformValue)} />
+                    </div>
+                  );
+                }).filter(Boolean)}{" "}
+                {/* Filter out null values */}
               </div>
 
               <Separator className="my-4 h-0.5" orientation="horizontal" />
@@ -275,7 +317,20 @@ export default function GamePage() {
               </div>
 
               {/*Genres */}
-              <div className="grid grid-cols-1">
+              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
+                {/*Movie Infos */}
+                <div className="flex justify-center items-center">
+                  {gameData?.release_date ? (
+                    <p className="text-center">
+                      {t("movies.releaseDate")}:{" "}
+                      {formatDateTime(gameData.release_date)}
+                    </p>
+                  ) : (
+                    <p className="text-center">
+                      {t("movies.releaseDate")}: {t("movies.noInformation")}
+                    </p>
+                  )}
+                </div>
                 <div className="flex gap-12 justify-center items-center">
                   {genre
                     ?.filter((genre) => genre !== "0")
@@ -288,20 +343,45 @@ export default function GamePage() {
                       </p>
                     ))}
                 </div>
+                <div className="flex items-center text-center justify-center text-3xl gap-1">{gameData?.singleplayer ? (
+                    <p className="text-center"><IoLogoGameControllerB /></p>
+                    ) : null}
+                    {gameData?.multiplayer ? (
+                    <p className="text-center"><MdLanguage /></p>
+                    ) : null}
+                    {gameData?.multiplayer_local ? (
+                    <p className="text-center"><FaPeopleLine /></p>
+                    ) : null}
+                </div>
               </div>
 
-              {/*Movie Infos */}
-              <div className="grid grid-cols-4 mt-4">
-                {gameData?.release_date ? (
-                  <p className="text-center">
-                    {t("movies.releaseDate")}:{" "}
-                    {formatDateTime(gameData.release_date)}
-                  </p>
-                ) : (
-                  <p className="text-center">
-                    {t("movies.releaseDate")}: {t("movies.noInformation")}
-                  </p>
-                )}
+              <Separator className="my-4 h-0.5" orientation="horizontal" />
+
+              {/*Plataforms*/}
+              <h2 className="text-4xl text-center mt-4">
+                {t("games.platforms")}
+              </h2>
+              <div className="grid grid-cols-5 justify-center gap-4 mt-6 px-10">
+                {Array.from({ length: 10 }, (_, i) => {
+                  const plataformKey = `fk_plataform0${
+                    i + 1
+                  }` as keyof GamesType;
+                  const plataformValue = gameData?.[plataformKey];
+
+                  if (plataformValue === null) {
+                    return null; // Stop rendering further items
+                  }
+
+                  return (
+                    <div
+                      key={i}
+                      className="grid justify-center text-center align-center items-center"
+                    >
+                      <PlataformBackground plataform={Number(plataformValue)} />
+                    </div>
+                  );
+                }).filter(Boolean)}{" "}
+                {/* Filter out null values */}
               </div>
 
               <Separator className="my-4 h-0.5" orientation="horizontal" />
@@ -348,8 +428,6 @@ export default function GamePage() {
                   <Separator className="my-4 h-0.5" orientation="horizontal" />
                 </div>
               )}
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
 
               {/*Producers */}
               <div>
