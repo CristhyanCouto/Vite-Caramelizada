@@ -114,13 +114,13 @@ export default function GamePage() {
   document.title = `Caramelizada - ${pageTitle}`;
 
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-zinc-300">
       <Page title={t("home.title")}>
         <div>
           {i18n.language === "en" ? (
             <div>
               {/*Trailer, rating and about */}
-              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-zinc-200 pb-6 mt-2">
+              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-black text-white pb-6 mt-2">
                 <h1 className="text-4xl text-left p-3 ml-2">
                   {gameData?.title_en}
                 </h1>
@@ -207,7 +207,7 @@ export default function GamePage() {
               {/*Plataforms*/}
               <div
                 className="
-              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4"
+              max-w-5xl flex flex-col items-center justify-center m-auto bg-black text-white"
               >
                 <h2 className="text-4xl text-center mt-4">
                   {t("games.platforms")}
@@ -238,19 +238,19 @@ export default function GamePage() {
               </div>
 
               {/*Movie Prints */}
-              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-black text-white">
                 <div className="mt-4">
                   <h2 className="text-4xl text-center mb-4">
                     {t("games.gamesScreenShots")}
                   </h2>
                 </div>
-                <div className="mb-6">
+                <div className="mb-6 text-black">
                   <PictureCarousel pictures={gamesPrints ?? []} />
                 </div>
               </div>
 
               {/*My review */}
-              <div className="px-6 max-w-5xl bg-zinc-300 m-auto p-4 my-4">
+              <div className="px-6 max-w-5xl bg-black m-auto p-4 text-white">
                 <h2 className="text-4xl text-center mb-4">
                   {t("movies.myReview")}
                 </h2>
@@ -259,7 +259,7 @@ export default function GamePage() {
 
               {/*Creators */}
               {CreatorCards().props.children.length > 0 && (
-                <div className="max-w-5xl bg-zinc-300 m-auto my-4">
+                <div className="max-w-5xl bg-black text-white m-auto">
                   <h2 className="text-4xl text-center">
                     {t("games.creators")}
                   </h2>
@@ -270,7 +270,7 @@ export default function GamePage() {
               )}
 
               {/*Producers */}
-              <div className="max-w-5xl bg-zinc-300 mx-auto p-6 my-4">
+              <div className="max-w-5xl bg-black text-white mx-auto p-6">
                 <h2 className="text-4xl text-center">
                   {t("games.publishers")}
                 </h2>
@@ -278,11 +278,12 @@ export default function GamePage() {
                   {PublisherGamesCards()}
                 </div>
               </div>
+              <div className="h-2"></div>
             </div>
           ) : (
             <div>
               {/*Trailer, rating and about */}
-              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-zinc-200 pb-6 mt-2">
+              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-black text-white pb-6 mt-2">
                 <h1 className="text-4xl text-left p-3 ml-2">
                   {gameData?.title_pt}
                 </h1>
@@ -369,7 +370,7 @@ export default function GamePage() {
               {/*Plataforms*/}
               <div
                 className="
-              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4"
+              max-w-5xl flex flex-col items-center justify-center m-auto bg-black text-white"
               >
                 <h2 className="text-4xl text-center mt-4">
                   {t("games.platforms")}
@@ -400,19 +401,19 @@ export default function GamePage() {
               </div>
 
               {/*Movie Prints */}
-              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-black text-white">
                 <div className="mt-4">
                   <h2 className="text-4xl text-center mb-4">
                     {t("games.gamesScreenShots")}
                   </h2>
                 </div>
-                <div className="mb-6">
+                <div className="mb-6 text-black">
                   <PictureCarousel pictures={gamesPrints ?? []} />
                 </div>
               </div>
 
               {/*My review */}
-              <div className="px-6 max-w-5xl bg-zinc-300 m-auto p-4 my-4">
+              <div className="px-6 max-w-5xl bg-black text-white m-auto p-4">
                 <h2 className="text-4xl text-center mb-4">
                   {t("movies.myReview")}
                 </h2>
@@ -421,7 +422,7 @@ export default function GamePage() {
 
               {/*Creators */}
               {CreatorCards().props.children.length > 0 && (
-                <div className="max-w-5xl bg-zinc-300 m-auto my-4">
+                <div className="max-w-5xl bg-black text-white m-auto">
                   <h2 className="text-4xl text-center">
                     {t("games.creators")}
                   </h2>
@@ -432,7 +433,7 @@ export default function GamePage() {
               )}
 
               {/*Producers */}
-              <div className="max-w-5xl bg-zinc-300 mx-auto p-6 my-4">
+              <div className="max-w-5xl bg-black mx-auto p-6 text-white">
                 <h2 className="text-4xl text-center">
                   {t("games.publishers")}
                 </h2>
@@ -440,6 +441,7 @@ export default function GamePage() {
                   {PublisherGamesCards()}
                 </div>
               </div>
+              <div className="h-2"></div>
             </div>
           )}
         </div>
