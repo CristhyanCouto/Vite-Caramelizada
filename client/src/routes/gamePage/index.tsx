@@ -114,24 +114,34 @@ export default function GamePage() {
   document.title = `Caramelizada - ${pageTitle}`;
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Page title={t("home.title")}>
         <div>
           {i18n.language === "en" ? (
             <div>
               {/*Trailer, rating and about */}
               <div className="max-w-5xl flex flex-col justify-center mx-auto bg-zinc-200 pb-6 mt-2">
-                  <h1 className="text-4xl text-left p-3 ml-2">
-                    {gameData?.title_en}
-                  </h1>
-                  <div className="flex justify-center">
+                <h1 className="text-4xl text-left p-3 ml-2">
+                  {gameData?.title_en}
+                </h1>
+                <div className="flex flex-col md:flex-row justify-center">
+                  <div className="block sm:hidden">
+                    <YoutubeVideos
+                      width="100%"
+                      height="450"
+                      src={gameData?.trailer_game_url ?? ""}
+                      title={gameData?.title_en ?? ""}
+                    />
+                  </div>
+                  <div className="hidden sm:block">
                     <YoutubeVideos
                       width="600"
                       height="450"
                       src={gameData?.trailer_game_url ?? ""}
                       title={gameData?.title_en ?? ""}
                     />
-                    <div className="w-96 flex flex-col ml-4">
+                  </div>
+                  <div className="w-full sm:w-96 flex flex-col sm:ml-4">
                     <div className="w-full h-32 bg-red-500">
                       <h2 className="text-8xl text-white text-center">
                         {gameData?.my_rating}
@@ -178,7 +188,7 @@ export default function GamePage() {
                         </div>
                       ) : null}
                     </div>
-                    <div className="flex gap-1 justify-end mt-auto">
+                    <div className="flex gap-1 justify-center sm:justify-end mt-auto">
                       {genre
                         ?.filter((genre) => genre !== "0")
                         .map((genre, index) => (
@@ -195,8 +205,10 @@ export default function GamePage() {
               </div>
 
               {/*Plataforms*/}
-              <div className="
-              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+              <div
+                className="
+              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4"
+              >
                 <h2 className="text-4xl text-center mt-4">
                   {t("games.platforms")}
                 </h2>
@@ -274,14 +286,24 @@ export default function GamePage() {
                 <h1 className="text-4xl text-left p-3 ml-2">
                   {gameData?.title_pt}
                 </h1>
-                <div className="flex justify-center">
-                  <YoutubeVideos
-                    width="600"
-                    height="450"
-                    src={gameData?.trailer_game_url ?? ""}
-                    title={gameData?.title_pt ?? ""}
-                  />
-                  <div className="w-96 flex flex-col ml-4">
+                <div className="flex flex-col md:flex-row justify-center">
+                  <div className="block sm:hidden">
+                    <YoutubeVideos
+                      width="100%"
+                      height="450"
+                      src={gameData?.trailer_game_url ?? ""}
+                      title={gameData?.title_pt ?? ""}
+                    />
+                  </div>
+                  <div className="hidden sm:block">
+                    <YoutubeVideos
+                      width="600"
+                      height="450"
+                      src={gameData?.trailer_game_url ?? ""}
+                      title={gameData?.title_pt ?? ""}
+                    />
+                  </div>
+                  <div className="w-full sm:w-96 flex flex-col sm:ml-4">
                     <div className="w-full h-32 bg-red-500">
                       <h2 className="text-8xl text-white text-center">
                         {gameData?.my_rating}
@@ -328,7 +350,7 @@ export default function GamePage() {
                         </div>
                       ) : null}
                     </div>
-                    <div className="flex gap-1 justify-end mt-auto">
+                    <div className="flex gap-1 justify-center sm:justify-end mt-auto">
                       {genre
                         ?.filter((genre) => genre !== "0")
                         .map((genre, index) => (
@@ -345,11 +367,14 @@ export default function GamePage() {
               </div>
 
               {/*Plataforms*/}
-              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+              <div
+                className="
+              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4"
+              >
                 <h2 className="text-4xl text-center mt-4">
                   {t("games.platforms")}
                 </h2>
-                <div className="flex justify-center gap-4 mt-6 px-10 mb-6">
+                <div className="flex flex-wrap justify-center gap-4 mt-6 px-10 mb-6">
                   {Array.from({ length: 10 }, (_, i) => {
                     const plataformKey = `fk_plataform0${
                       i + 1

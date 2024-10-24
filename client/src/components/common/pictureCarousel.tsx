@@ -17,7 +17,7 @@ export default function PictureCarousel(props: PictureCarouselProps) {
     <div className="max-w-5xl">
       <Carousel
         opts={{
-          align: "center",
+          align: "start",
         }}
         className="w-[25%] sm:w-[80%] mx-auto" 
       >
