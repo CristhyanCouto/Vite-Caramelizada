@@ -14,18 +14,18 @@ type PictureCarouselProps = {
 
 export default function PictureCarousel(props: PictureCarouselProps) {
   return (
-    <div className="">
+    <div className="max-w-5xl">
       <Carousel
         opts={{
-          align: "start",
+          align: "center",
         }}
-        className="w-[60%] mx-auto"
+        className="w-[25%] sm:w-[80%] mx-auto" 
       >
-        <CarouselContent>
+        <CarouselContent className="flex">
           {props.pictures
             .filter((picture) => picture !== "") // Filter out empty strings
             .map((picture, index) => (
-              <CarouselItem key={index} className="basis-1/3">
+              <CarouselItem key={index} className="basis-1/10 sm:basis-1/3">
                 <div className="p-1">
                   <Card className="h-[150px] w-64 bg-zinc-400">
                     <CardContent className="flex h-full w-full aspect-square items-center justify-center p-1">

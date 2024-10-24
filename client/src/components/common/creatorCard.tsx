@@ -18,7 +18,7 @@ export default function CreatorCard(props: CreatorCardProps) {
     }, [props.idcreator]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-center">
+    <div className="flex flex-col justify-center items-center text-center p-4">
         <div className="bg-zinc-400 rounded-full w-36">
           <div className="bg-zinc-400 rounded-full p-1">
             <img src={creators?.creator_image_url} alt={creators?.first_name} className="rounded-full"/>

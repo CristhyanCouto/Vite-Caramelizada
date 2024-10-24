@@ -1,5 +1,5 @@
 import Page from "@/components/common/page";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GamesType } from "@/lib/games";
 import { useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import axios from "axios";
 import YoutubeVideos from "@/components/common/youtubeVideos";
 import { genreConverter } from "@/lib/genre";
 import { formatDateTime } from "@/lib/utils";
-import { Separator } from "@/components/ui/separator";
 import PictureCarousel from "@/components/common/pictureCarousel";
 import CreatorCard from "@/components/common/creatorCard";
 import PublisherGamesCard from "@/components/common/publisherGamesCard";
@@ -16,6 +15,7 @@ import { PlataformBackground } from "@/components/common/plataformBackground";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { MdLanguage } from "react-icons/md";
 import { FaPeopleLine } from "react-icons/fa6";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function GamePage() {
   const { gamesId } = useParams();
@@ -85,7 +85,7 @@ export default function GamePage() {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     if (!isNaN(gameId)) {
       // Only calls the api if the movieId is a valid number
       axios
@@ -119,322 +119,299 @@ export default function GamePage() {
         <div>
           {i18n.language === "en" ? (
             <div>
-              <div className="flex justify-center">
-                <h1 className=" flex text-4xl p-3">{gameData?.title_en}</h1>
-              </div>
-              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
-                {/*Cover and Title */}
-                <div className="flex justify-center items-center h-full">
-                  <div className="bg-zinc-200 shadow p-2 m-5 w-72 rounded-sm bg-zinc-400">
-                    <img
-                      className="rounded-sm"
-                      src={gameData?.cover_game_url}
-                      alt={gameData?.title_en}
+              {/*Trailer, rating and about */}
+              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-zinc-200 pb-6 mt-2">
+                  <h1 className="text-4xl text-left p-3 ml-2">
+                    {gameData?.title_en}
+                  </h1>
+                  <div className="flex justify-center">
+                    <YoutubeVideos
+                      width="600"
+                      height="450"
+                      src={gameData?.trailer_game_url ?? ""}
+                      title={gameData?.title_en ?? ""}
                     />
-                  </div>
-                </div>
-
-                {/* Trailer */}
-                <div className="flex justify-center items-center h-full">
-                  <div className="grid grid-cols-1 justify-center text-center">
-                    <Suspense fallback={<div>Loading Video...</div>}>
-                      <YoutubeVideos
-                        width="600"
-                        height="420"
-                        src={gameData?.trailer_game_url ?? ""}
-                        title={gameData?.title_en ?? ""}
-                      />
-                    </Suspense>
-                  </div>
-                </div>
-
-                {/*My Rating */}
-                <div className="flex justify-center items-center">
-                  <div className="p-5 bg-red-500 rounded-full h-52 flex items-center justify-center">
-                    <p className="text-white text-9xl">{gameData?.my_rating}</p>
+                    <div className="w-96 flex flex-col ml-4">
+                    <div className="w-full h-32 bg-red-500">
+                      <h2 className="text-8xl text-white text-center">
+                        {gameData?.my_rating}
+                      </h2>
+                    </div>
+                    <div className="p-2 flex-grow">
+                      <ScrollArea className="h-[100px] w-full rounded-sm border border-zinc-400 p-4">
+                        <p>{gameData?.about_game_en}</p>
+                      </ScrollArea>
+                      {gameData?.release_date ? (
+                        <div className="flex mt-3">
+                          <p className="">{t("movies.releaseDate")}: </p>
+                          <p>{formatDateTime(gameData.release_date)}</p>
+                        </div>
+                      ) : (
+                        <p className="text-center">
+                          {t("movies.releaseDate")}: {t("movies.noInformation")}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1 p-2">
+                      {gameData?.singleplayer ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <IoLogoGameControllerB />
+                          </p>
+                          <p>{t("games.singlePlayer")}</p>
+                        </div>
+                      ) : null}
+                      {gameData?.multiplayer ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <MdLanguage />
+                          </p>
+                          <p>{t("games.multiPlayer")}</p>
+                        </div>
+                      ) : null}
+                      {gameData?.multiplayer_local ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <FaPeopleLine />
+                          </p>
+                          <p>{t("games.multiplayerLocal")}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="flex gap-1 justify-end mt-auto">
+                      {genre
+                        ?.filter((genre) => genre !== "0")
+                        .map((genre, index) => (
+                          <p
+                            key={index}
+                            className="grid text-sm bg-red-500 rounded-sm w-24 h-12 shadow text-center align-center items-center text-white"
+                          >
+                            {t(`genre.${genre}`)}
+                          </p>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/*Genres */}
-              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
-                {/*Games Infos */}
-                <div className="flex justify-center items-center">
-                  {gameData?.release_date ? (
-                    <p className="text-center">
-                      {t("movies.releaseDate")}:{" "}
-                      {formatDateTime(gameData.release_date)}
-                    </p>
-                  ) : (
-                    <p className="text-center">
-                      {t("movies.releaseDate")}: {t("movies.noInformation")}
-                    </p>
-                  )}
-                </div>
-                <div className="flex gap-12 justify-center items-center">
-                  {genre
-                    ?.filter((genre) => genre !== "0")
-                    .map((genre, index) => (
-                      <p
-                        key={index}
-                        className="grid bg-zinc-400 rounded-sm w-24 h-12 shadow text-center align-center items-center"
-                      >
-                        {t(`genre.${genre}`)}
-                      </p>
-                    ))}
-                </div>
-                <div className="flex items-center text-center justify-center text-3xl gap-1">{gameData?.singleplayer ? (
-                    <p className="text-center"><IoLogoGameControllerB /></p>
-                    ) : null}
-                    {gameData?.multiplayer ? (
-                    <p className="text-center"><MdLanguage /></p>
-                    ) : null}
-                    {gameData?.multiplayer_local ? (
-                    <p className="text-center"><FaPeopleLine /></p>
-                    ) : null}
-                </div>
-              </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
 
               {/*Plataforms*/}
-              <h2 className="text-4xl text-center mt-4">
-                {t("games.platforms")}
-              </h2>
-              <div className="grid grid-cols-5 justify-center gap-4 mt-6 px-10">
-                {Array.from({ length: 10 }, (_, i) => {
-                  const plataformKey = `fk_plataform0${
-                    i + 1
-                  }` as keyof GamesType;
-                  const plataformValue = gameData?.[plataformKey];
+              <div className="
+              max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+                <h2 className="text-4xl text-center mt-4">
+                  {t("games.platforms")}
+                </h2>
+                <div className="flex flex-wrap justify-center gap-4 mt-6 px-10 mb-6">
+                  {Array.from({ length: 10 }, (_, i) => {
+                    const plataformKey = `fk_plataform0${
+                      i + 1
+                    }` as keyof GamesType;
+                    const plataformValue = gameData?.[plataformKey];
 
-                  if (plataformValue === null) {
-                    return null; // Stop rendering further items
-                  }
-
-                  return (
-                    <div
-                      key={i}
-                      className="grid justify-center text-center align-center items-center"
-                    >
-                      <PlataformBackground plataform={Number(plataformValue)} />
-                    </div>
-                  );
-                }).filter(Boolean)}{" "}
-                {/* Filter out null values */}
+                    if (plataformValue === null) {
+                      return null; // Stop rendering further items
+                    }
+                    return (
+                      <div
+                        key={i}
+                        className="grid justify-center text-center align-center items-center"
+                      >
+                        <PlataformBackground
+                          plataform={Number(plataformValue)}
+                        />
+                      </div>
+                    );
+                  }).filter(Boolean)}{" "}
+                  {/* Filter out null values */}
+                </div>
               </div>
 
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-              {/*Sinopse */}
-              <div className="px-6 flex flex-col justify-center items-center align-center">
-                <h2 className="text-4xl">{t("movies.sinopse")}</h2>
-                <p className="mt-4">{gameData?.about_game_en}</p>
+              {/*Movie Prints */}
+              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+                <div className="mt-4">
+                  <h2 className="text-4xl text-center mb-4">
+                    {t("games.gamesScreenShots")}
+                  </h2>
+                </div>
+                <div className="mb-6">
+                  <PictureCarousel pictures={gamesPrints ?? []} />
+                </div>
               </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
 
               {/*My review */}
-              <div className="px-6">
+              <div className="px-6 max-w-5xl bg-zinc-300 m-auto p-4 my-4">
                 <h2 className="text-4xl text-center mb-4">
                   {t("movies.myReview")}
                 </h2>
                 <p className="mb-4">{gameData?.my_review_en}</p>
               </div>
 
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-              {/*Movie Prints */}
-              <div>
-                <h2 className="text-4xl text-center mb-4">
-                  {t("games.gamesScreenShots")}
-                </h2>
-              </div>
-              <div>
-                <PictureCarousel pictures={gamesPrints ?? []} />
-              </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
               {/*Creators */}
               {CreatorCards().props.children.length > 0 && (
-                <div>
+                <div className="max-w-5xl bg-zinc-300 m-auto my-4">
                   <h2 className="text-4xl text-center">
                     {t("games.creators")}
                   </h2>
-                  <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
+                  <div className="flex justify-center gap-4 px-10">
                     {CreatorCards()}
                   </div>
-                  <Separator className="my-4 h-0.5" orientation="horizontal" />
                 </div>
               )}
 
               {/*Producers */}
-              <div>
+              <div className="max-w-5xl bg-zinc-300 mx-auto p-6 my-4">
                 <h2 className="text-4xl text-center">
                   {t("games.publishers")}
                 </h2>
-                <div className="grid sm:grid-cols-5 justify-center gap-4 mt-6 px-10">
+                <div className="flex justify-center gap-4 mt-4 px-10">
                   {PublisherGamesCards()}
                 </div>
               </div>
             </div>
           ) : (
             <div>
-              <div className="flex justify-center">
-                <h1 className=" flex text-4xl p-3">{gameData?.title_pt}</h1>
-              </div>
-              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
-                {/*Cover and Title */}
-                <div className="flex justify-center items-center h-full">
-                  <div className="bg-zinc-200 shadow p-2 m-5 w-72 rounded-sm bg-zinc-400">
-                    <img
-                      className="rounded-sm"
-                      src={gameData?.cover_game_url}
-                      alt={gameData?.title_pt}
-                    />
+              {/*Trailer, rating and about */}
+              <div className="max-w-5xl flex flex-col justify-center mx-auto bg-zinc-200 pb-6 mt-2">
+                <h1 className="text-4xl text-left p-3 ml-2">
+                  {gameData?.title_pt}
+                </h1>
+                <div className="flex justify-center">
+                  <YoutubeVideos
+                    width="600"
+                    height="450"
+                    src={gameData?.trailer_game_url ?? ""}
+                    title={gameData?.title_pt ?? ""}
+                  />
+                  <div className="w-96 flex flex-col ml-4">
+                    <div className="w-full h-32 bg-red-500">
+                      <h2 className="text-8xl text-white text-center">
+                        {gameData?.my_rating}
+                      </h2>
+                    </div>
+                    <div className="p-2 flex-grow">
+                      <ScrollArea className="h-[100px] w-full rounded-sm border border-zinc-400 p-4">
+                        <p>{gameData?.about_game_pt}</p>
+                      </ScrollArea>
+                      {gameData?.release_date ? (
+                        <div className="flex mt-3">
+                          <p className="">{t("movies.releaseDate")}: </p>
+                          <p>{formatDateTime(gameData.release_date)}</p>
+                        </div>
+                      ) : (
+                        <p className="text-center">
+                          {t("movies.releaseDate")}: {t("movies.noInformation")}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1 p-2">
+                      {gameData?.singleplayer ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <IoLogoGameControllerB />
+                          </p>
+                          <p>{t("games.singlePlayer")}</p>
+                        </div>
+                      ) : null}
+                      {gameData?.multiplayer ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <MdLanguage />
+                          </p>
+                          <p>{t("games.multiPlayer")}</p>
+                        </div>
+                      ) : null}
+                      {gameData?.multiplayer_local ? (
+                        <div className="flex items-center">
+                          <p className="text-center text-2xl">
+                            <FaPeopleLine />
+                          </p>
+                          <p>{t("games.multiplayerLocal")}</p>
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="flex gap-1 justify-end mt-auto">
+                      {genre
+                        ?.filter((genre) => genre !== "0")
+                        .map((genre, index) => (
+                          <p
+                            key={index}
+                            className="grid text-sm bg-red-500 rounded-sm w-24 h-12 shadow text-center align-center items-center text-white"
+                          >
+                            {t(`genre.${genre}`)}
+                          </p>
+                        ))}
+                    </div>
                   </div>
                 </div>
-                {/* Trailer */}
-                <div className="flex justify-center items-center h-full">
-                  <div className="grid grid-cols-1 justify-center text-center">
-                    <Suspense fallback={<div>Loading Video...</div>}>
-                      <YoutubeVideos
-                        width="600"
-                        height="420"
-                        src={gameData?.trailer_game_url ?? ""}
-                        title={gameData?.title_pt ?? ""}
-                      />
-                    </Suspense>
-                  </div>
-                </div>
-                {/*My Rating */}
-                <div className="flex justify-center items-center">
-                  <div className="p-5 bg-red-500 rounded-full h-52 flex items-center justify-center">
-                    <p className="text-white text-9xl">{gameData?.my_rating}</p>
-                  </div>
-                </div>
               </div>
-
-              {/*Genres */}
-              <div className="grid grid-cols-[0.5fr,1fr,0.5fr]">
-                {/*Movie Infos */}
-                <div className="flex justify-center items-center">
-                  {gameData?.release_date ? (
-                    <p className="text-center">
-                      {t("movies.releaseDate")}:{" "}
-                      {formatDateTime(gameData.release_date)}
-                    </p>
-                  ) : (
-                    <p className="text-center">
-                      {t("movies.releaseDate")}: {t("movies.noInformation")}
-                    </p>
-                  )}
-                </div>
-                <div className="flex gap-12 justify-center items-center">
-                  {genre
-                    ?.filter((genre) => genre !== "0")
-                    .map((genre, index) => (
-                      <p
-                        key={index}
-                        className="grid bg-zinc-400 rounded-sm w-24 h-12 shadow text-center align-center items-center"
-                      >
-                        {t(`genre.${genre}`)}
-                      </p>
-                    ))}
-                </div>
-                <div className="flex items-center text-center justify-center text-3xl gap-1">{gameData?.singleplayer ? (
-                    <p className="text-center"><IoLogoGameControllerB /></p>
-                    ) : null}
-                    {gameData?.multiplayer ? (
-                    <p className="text-center"><MdLanguage /></p>
-                    ) : null}
-                    {gameData?.multiplayer_local ? (
-                    <p className="text-center"><FaPeopleLine /></p>
-                    ) : null}
-                </div>
-              </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
 
               {/*Plataforms*/}
-              <h2 className="text-4xl text-center mt-4">
-                {t("games.platforms")}
-              </h2>
-              <div className="grid grid-cols-5 justify-center gap-4 mt-6 px-10">
-                {Array.from({ length: 10 }, (_, i) => {
-                  const plataformKey = `fk_plataform0${
-                    i + 1
-                  }` as keyof GamesType;
-                  const plataformValue = gameData?.[plataformKey];
+              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+                <h2 className="text-4xl text-center mt-4">
+                  {t("games.platforms")}
+                </h2>
+                <div className="flex justify-center gap-4 mt-6 px-10 mb-6">
+                  {Array.from({ length: 10 }, (_, i) => {
+                    const plataformKey = `fk_plataform0${
+                      i + 1
+                    }` as keyof GamesType;
+                    const plataformValue = gameData?.[plataformKey];
 
-                  if (plataformValue === null) {
-                    return null; // Stop rendering further items
-                  }
-
-                  return (
-                    <div
-                      key={i}
-                      className="grid justify-center text-center align-center items-center"
-                    >
-                      <PlataformBackground plataform={Number(plataformValue)} />
-                    </div>
-                  );
-                }).filter(Boolean)}{" "}
-                {/* Filter out null values */}
+                    if (plataformValue === null) {
+                      return null; // Stop rendering further items
+                    }
+                    return (
+                      <div
+                        key={i}
+                        className="grid justify-center text-center align-center items-center"
+                      >
+                        <PlataformBackground
+                          plataform={Number(plataformValue)}
+                        />
+                      </div>
+                    );
+                  }).filter(Boolean)}{" "}
+                  {/* Filter out null values */}
+                </div>
               </div>
 
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-              {/*Sinopse */}
-              <div className="px-6 flex flex-col justify-center items-center align-center">
-                <h2 className="text-4xl">{t("movies.sinopse")}</h2>
-                <p className="mt-4">{gameData?.about_game_pt}</p>
+              {/*Movie Prints */}
+              <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-zinc-300 my-4">
+                <div className="mt-4">
+                  <h2 className="text-4xl text-center mb-4">
+                    {t("games.gamesScreenShots")}
+                  </h2>
+                </div>
+                <div className="mb-6">
+                  <PictureCarousel pictures={gamesPrints ?? []} />
+                </div>
               </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
 
               {/*My review */}
-              <div className="px-6">
+              <div className="px-6 max-w-5xl bg-zinc-300 m-auto p-4 my-4">
                 <h2 className="text-4xl text-center mb-4">
                   {t("movies.myReview")}
                 </h2>
                 <p className="mb-4">{gameData?.my_review_pt}</p>
               </div>
 
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
-              {/*Movie Prints */}
-              <div>
-                <h2 className="text-4xl text-center mb-4">
-                  {t("movies.movieScreenShots")}
-                </h2>
-              </div>
-              <div>
-                <PictureCarousel pictures={gamesPrints ?? []} />
-              </div>
-
-              <Separator className="my-4 h-0.5" orientation="horizontal" />
-
               {/*Creators */}
               {CreatorCards().props.children.length > 0 && (
-                <div>
+                <div className="max-w-5xl bg-zinc-300 m-auto my-4">
                   <h2 className="text-4xl text-center">
                     {t("games.creators")}
                   </h2>
-                  <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
+                  <div className="flex justify-center gap-4 px-10">
                     {CreatorCards()}
                   </div>
-                  <Separator className="my-4 h-0.5" orientation="horizontal" />
                 </div>
               )}
 
               {/*Producers */}
-              <div>
+              <div className="max-w-5xl bg-zinc-300 mx-auto p-6 my-4">
                 <h2 className="text-4xl text-center">
                   {t("games.publishers")}
                 </h2>
-                <div className="grid grid-cols-5 justify-center items-center gap-4 mt-6 px-10">
+                <div className="flex justify-center gap-4 mt-4 px-10">
                   {PublisherGamesCards()}
                 </div>
               </div>
