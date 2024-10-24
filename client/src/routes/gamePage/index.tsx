@@ -85,7 +85,7 @@ export default function GamePage() {
   };
 
   useEffect(() => {
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     if (!isNaN(gameId)) {
       // Only calls the api if the movieId is a valid number
       axios
