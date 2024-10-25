@@ -141,6 +141,10 @@ export const genreConverter = (genre: number) => {
             return "turns";
         case 69:
             return "zombie";
+        case 70:
+            return "steamPunk";
+        case 71:
+            return "postApocalypticFiction";
         default:
             return "unknownGenre";
     }

@@ -92,7 +92,9 @@
         "towerDefense": "Tower Defense",
         "tps": "TPS",
         "turns": "Turnos",
-        "zombie": "Zumbi"
+        "zombie": "Zumbi",
+        "postApocalypticFiction": "Ficção Pós-Apocalíptica",
+        "steamPunk": "Steam Punk"
     },
     "home": {
         "title": "Início"

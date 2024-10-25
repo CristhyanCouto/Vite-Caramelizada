@@ -75,6 +75,8 @@ function CategoryComboBoxMovies({
     { value: "64", label: `${t("genre.terror")}` },
     { value: "65", label: `${t("genre.thriller")}` },
     { value: "69", label: `${t("genre.zombie")}` },
+    { value: "70", label: `${t("genre.steamPunk")}` },
+    { value: "71", label: `${t("genre.postApocalypticFiction")}` },
   ];
 
   const filteredSorts = sorts.filter((sort) =>
