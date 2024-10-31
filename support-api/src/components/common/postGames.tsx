@@ -4,8 +4,19 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { DatePickerForm } from "./datePickerForm";
-import { GenreEnCardProps, GenrePtCardProps, PlataformsCardProps, PublishersGamesCardProps } from "@/lib/nonPersonInterfaces";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../ui/dialog";
+import {
+  GenreEnCardProps,
+  GenrePtCardProps,
+  PlataformsCardProps,
+  PublishersGamesCardProps,
+} from "@/lib/nonPersonInterfaces";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 import { CreatorCardProps } from "@/lib/person";
 import PostCreators from "./postCreators";
 import PostPublishersGames from "./postPublishersGames";
@@ -22,11 +33,58 @@ export default function PostGames({
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [dateOfRelease, setDateOfRelease] = useState<string>("");
   const [creators, setCreators] = useState<CreatorCardProps[]>([]);
-  const [publisherGames, setPublisherGames] = useState<PublishersGamesCardProps[]>([]);
+  const [publisherGames, setPublisherGames] = useState<
+    PublishersGamesCardProps[]
+  >([]);
   const [plataforms, setPlataforms] = useState<PlataformsCardProps[]>([]);
   const [genreEn, setGenreEn] = useState<GenreEnCardProps[]>([]);
   const [genrePt, setGenrePt] = useState<GenrePtCardProps[]>([]);
-  const [search, setSearch] = useState<string>("");
+  // const [search, setSearch] = useState<string>("");
+
+  //Searchs by Creator
+  const [searchCreator, setSearchCreator] = useState<string[]>([]);
+  const handleSearchCreator =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchCreator = [...searchCreator];
+      newSearchCreator[index] = e.target.value;
+      setSearchCreator(newSearchCreator);
+    };
+
+  //Searchs by Publisher
+  const [searchPublisher, setSearchPublisher] = useState<string[]>([]);
+  const handleSearchPublisher =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchPublisher = [...searchPublisher];
+      newSearchPublisher[index] = e.target.value;
+      setSearchPublisher(newSearchPublisher);
+    };
+
+  //Searchs by Plataform
+  const [searchPlataform, setSearchPlataform] = useState<string[]>([]);
+  const handleSearchPlataform =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchPlataform = [...searchPlataform];
+      newSearchPlataform[index] = e.target.value;
+      setSearchPlataform(newSearchPlataform);
+    };
+
+  //Searchs by genreEn
+  const [searchGenreEn, setSearchGenreEn] = useState<string[]>([]);
+  const handleSearchGenreEn =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchGenreEn = [...searchGenreEn];
+      newSearchGenreEn[index] = e.target.value;
+      setSearchGenreEn(newSearchGenreEn);
+    };
+
+  //Searchs by genrePt
+  const [searchGenrePt, setSearchGenrePt] = useState<string[]>([]);
+  const handleSearchGenrePt =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchGenrePt = [...searchGenrePt];
+      newSearchGenrePt[index] = e.target.value;
+      setSearchGenrePt(newSearchGenrePt);
+    };
 
   useEffect(() => {
     axios.get("http://localhost:3001/genreEns").then((response) => {
@@ -46,9 +104,9 @@ export default function PostGames({
     });
   }, [counter]);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(e.target.value);
+  // };
 
   const handleRefresh = () => {
     setCounter((prevCounter) => prevCounter + 1); // Incrementa o contador para forçar o refresh
@@ -111,9 +169,9 @@ export default function PostGames({
   });
 
   const initialValues: FormValues = {
-    title_en: '',
-    title_pt: '',
-    release_date: '',
+    title_en: "",
+    title_pt: "",
+    release_date: "",
     fk_creator01: null,
     fk_creator02: null,
     fk_creator03: null,
@@ -144,26 +202,26 @@ export default function PostGames({
     fk_genre_pt03: null,
     fk_genre_pt04: null,
     fk_genre_pt05: null,
-    about_game_en: '',
-    about_game_pt: '',
-    cover_game_url: '',
-    trailer_game_url: '',
-    image_game_url01: '',
-    image_game_url02: '',
-    image_game_url03: '',
-    image_game_url04: '',
-    image_game_url05: '',
-    image_game_url06: '',
-    image_game_url07: '',
-    image_game_url08: '',
-    image_game_url09: '',
-    image_game_url10: '',
+    about_game_en: "",
+    about_game_pt: "",
+    cover_game_url: "",
+    trailer_game_url: "",
+    image_game_url01: "",
+    image_game_url02: "",
+    image_game_url03: "",
+    image_game_url04: "",
+    image_game_url05: "",
+    image_game_url06: "",
+    image_game_url07: "",
+    image_game_url08: "",
+    image_game_url09: "",
+    image_game_url10: "",
     my_rating: null,
     singleplayer: null,
     multiplayer_local: null,
     multiplayer: null,
-    my_review_en: '',
-    my_review_pt: '',
+    my_review_en: "",
+    my_review_pt: "",
   };
 
   interface FormValues {
@@ -326,15 +384,15 @@ export default function PostGames({
                       type="text"
                       className="border"
                       placeholder="Filter Creator"
-                      onChange={handleSearch}
+                      onChange={handleSearchCreator(index)}
                       name={`fk_creator_input${creatorIndex}`}
                       id={`fk_creator_input${creatorIndex}`}
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Creator</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Creator</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostCreators
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -352,21 +410,19 @@ export default function PostGames({
                     {creators
                       .filter((value) => {
                         return (
-                          value.first_name &&
-                          value.first_name
-                            .toLowerCase()
-                            .includes(search.toLowerCase())
-                            ||
-                            value.last_name &&
+                          (value.first_name &&
+                            value.first_name
+                              .toLowerCase()
+                              .includes(searchCreator[index]?.toLowerCase() || "")) ||
+                          (value.last_name &&
                             value.last_name
-                            .toLowerCase()
-                            .includes(search.toLowerCase())
-                            ||
-                            value.first_name &&
+                              .toLowerCase()
+                              .includes(searchCreator[index]?.toLowerCase() || "")) ||
+                          (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
-                            .toLowerCase()
-                            .includes(search.toLowerCase())
+                              .toLowerCase()
+                              .includes(searchCreator[index]?.toLowerCase() || ""))
                         );
                       })
                       .sort((a, b) =>
@@ -404,15 +460,15 @@ export default function PostGames({
                       type="text"
                       className="border"
                       placeholder="Filter Publisher"
-                      onChange={handleSearch}
+                      onChange={handleSearchPublisher(index)}
                       name={`fk_publisher_games_input${publisherIndex}`}
                       id={`fk_publisher_games_input${publisherIndex}`}
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Publisher</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Publisher</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostPublishersGames
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -430,14 +486,18 @@ export default function PostGames({
                     {publisherGames
                       .filter((value) => {
                         return (
-                          (value.name_publisher_games &&
-                            value.name_publisher_games
-                              .toLowerCase()
-                              .includes(search.toLowerCase()))
+                          value.name_publisher_games &&
+                          value.name_publisher_games
+                            .toLowerCase()
+                            .includes(
+                              searchPublisher[index]?.toLowerCase() || ""
+                            )
                         );
                       })
                       .sort((a, b) =>
-                        a.name_publisher_games!.localeCompare(b.name_publisher_games!)
+                        a.name_publisher_games!.localeCompare(
+                          b.name_publisher_games!
+                        )
                       )
                       .map((publisher) => (
                         <option
@@ -471,15 +531,15 @@ export default function PostGames({
                       type="text"
                       className="border"
                       placeholder="Filter Plataform"
-                      onChange={handleSearch}
+                      onChange={handleSearchPlataform(index)}
                       name={`fk_plataform_input${plataformIndex}`}
                       id={`fk_plataform_input${plataformIndex}`}
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Plataform</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Plataform</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostPlataforms
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -497,17 +557,22 @@ export default function PostGames({
                     {plataforms
                       .filter((value) => {
                         return (
-                          (value.name_plataform &&
-                            value.name_plataform
-                              .toLowerCase()
-                              .includes(search.toLowerCase()))
+                          value.name_plataform &&
+                          value.name_plataform
+                            .toLowerCase()
+                            .includes(
+                              searchPlataform[index]?.toLowerCase() || ""
+                            )
                         );
                       })
                       .sort((a, b) =>
                         a.name_plataform!.localeCompare(b.name_plataform!)
                       )
                       .map((plataform) => (
-                        <option key={plataform.idplataform} value={plataform.idplataform}>
+                        <option
+                          key={plataform.idplataform}
+                          value={plataform.idplataform}
+                        >
                           {plataform.name_plataform}
                         </option>
                       ))}
@@ -530,35 +595,39 @@ export default function PostGames({
                   <label htmlFor={`fk_genre_en${genreIndex}`}>
                     Genre EN {genreIndex}
                   </label>
-                  <input className="border w-[20%]" type="text" placeholder="Filter Genre EN"
-                  onChange={handleSearch}
-                  name={`fk_genre_en_input${genreIndex}`}
-                  id={`fk_genre_en_input${genreIndex}`} />
+                  <input
+                    className="border w-[20%]"
+                    type="text"
+                    placeholder="Filter Genre EN"
+                    onChange={handleSearchGenreEn(index)}
+                    name={`fk_genre_en_input${genreIndex}`}
+                    id={`fk_genre_en_input${genreIndex}`}
+                  />
                   <Field
                     as="select"
                     className="border w-[40%]"
                     autoComplete="off"
                     id={`fk_genre_en${genreIndex}`}
                     name={`fk_genre_en${genreIndex}`}
-
                   >
                     <option value="">Select an Option</option>
-                    {genreEn.filter((value) =>{
-                      return (
-                        value.name_genre_en &&
-                        value.name_genre_en
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
-                      );
-                    }).sort(
-                      (a, b) =>
+                    {genreEn
+                      .filter((value) => {
+                        return (
+                          value.name_genre_en &&
+                          value.name_genre_en
+                            .toLowerCase()
+                            .includes(searchGenreEn[index]?.toLowerCase() || "")
+                        );
+                      })
+                      .sort((a, b) =>
                         a.name_genre_en!.localeCompare(b.name_genre_en!)
-                    )
-                    .map((genre) => (
-                      <option key={genre.idgenre_en} value={genre.idgenre_en}>
-                        {genre.name_genre_en}
-                      </option>
-                    ))}
+                      )
+                      .map((genre) => (
+                        <option key={genre.idgenre_en} value={genre.idgenre_en}>
+                          {genre.name_genre_en}
+                        </option>
+                      ))}
                   </Field>
                   <ErrorMessage
                     name={`fk_genre_en${genreIndex}`}
@@ -566,11 +635,10 @@ export default function PostGames({
                   />
                 </div>
               );
-            }
-            )}
+            })}
 
             {/*--------------------------- Genre PT ----------------------------------- */}
-  
+
             <h2 className="text-4xl font-bold">Genre PT</h2>
             {[...Array(5)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
@@ -579,35 +647,39 @@ export default function PostGames({
                   <label htmlFor={`fk_genre_pt${genreIndex}`}>
                     Genre PT {genreIndex}
                   </label>
-                  <input className='border w-[20%]' type="text" placeholder="Filter Genre PT"
-                  onChange={handleSearch}
-                  name={`fk_genre_pt_input${genreIndex}`}
-                  id={`fk_genre_pt_input${genreIndex}`} />
+                  <input
+                    className="border w-[20%]"
+                    type="text"
+                    placeholder="Filter Genre PT"
+                    onChange={handleSearchGenrePt(index)}
+                    name={`fk_genre_pt_input${genreIndex}`}
+                    id={`fk_genre_pt_input${genreIndex}`}
+                  />
                   <Field
                     as="select"
                     className="border w-[40%]"
                     autoComplete="off"
                     id={`fk_genre_pt${genreIndex}`}
                     name={`fk_genre_pt${genreIndex}`}
-
                   >
                     <option value="">Select an Option</option>
-                    {genrePt.filter((value) =>{
-                      return (
-                        value.name_genre_pt &&
-                        value.name_genre_pt
-                          .toLowerCase()
-                          .includes(search.toLowerCase())
-                      );
-                    }).sort(
-                      (a, b) =>
+                    {genrePt
+                      .filter((value) => {
+                        return (
+                          value.name_genre_pt &&
+                          value.name_genre_pt
+                            .toLowerCase()
+                            .includes(searchGenrePt[index]?.toLowerCase() || "")
+                        );
+                      })
+                      .sort((a, b) =>
                         a.name_genre_pt!.localeCompare(b.name_genre_pt!)
-                    )
-                    .map((genre) => (
-                      <option key={genre.idgenre_pt} value={genre.idgenre_pt}>
-                        {genre.name_genre_pt}
-                      </option>
-                    ))}
+                      )
+                      .map((genre) => (
+                        <option key={genre.idgenre_pt} value={genre.idgenre_pt}>
+                          {genre.name_genre_pt}
+                        </option>
+                      ))}
                   </Field>
                   <ErrorMessage
                     name={`fk_genre_pt${genreIndex}`}
@@ -615,8 +687,7 @@ export default function PostGames({
                   />
                 </div>
               );
-            }
-            )}
+            })}
 
             {/*--------------------------- About Gane EN ----------------------------------- */}
 
@@ -628,8 +699,7 @@ export default function PostGames({
               id="about_game_en"
               name="about_game_en"
               placeholder="Abc"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="about_game_en" component="div" />
 
             {/*--------------------------- About Game PT ----------------------------------- */}
@@ -641,8 +711,7 @@ export default function PostGames({
               id="about_game_pt"
               name="about_game_pt"
               placeholder="Abc"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="about_game_pt" component="div" />
 
             {/*--------------------------- Cover Game URL ----------------------------------- */}
@@ -655,8 +724,7 @@ export default function PostGames({
               id="cover_game_url"
               name="cover_game_url"
               placeholder="https://exemple.com"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="cover_game_url" component="div" />
 
             {/*--------------------------- Trailer Game URL ----------------------------------- */}
@@ -669,8 +737,7 @@ export default function PostGames({
               id="trailer_game_url"
               name="trailer_game_url"
               placeholder="https://exemple.com"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="trailer_game_url" component="div" />
 
             {/*--------------------------- Image Game URL ----------------------------------- */}
@@ -688,8 +755,7 @@ export default function PostGames({
                     id={`image_game_url${imageIndex}`}
                     name={`image_game_url${imageIndex}`}
                     placeholder="https://exemple.com"
-                  >
-                  </Field>
+                  ></Field>
                   <ErrorMessage
                     name={`image_game_url${imageIndex}`}
                     component="div"
@@ -707,38 +773,37 @@ export default function PostGames({
               id="my_rating"
               name="my_rating"
               placeholder="0.0"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="my_rating" component="div" />
 
             {/*--------------------------- Multiplayer ----------------------------------- */}
             <h2 className="text-4xl font-bold">Singleplayer</h2>
             <label htmlFor="singleplayer">Has Singleplayer</label>
             <Field
-                as="select"
+              as="select"
               className="border"
               autoComplete="off"
               id="singleplayer"
               name="singleplayer"
               placeholder="0"
             >
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </Field>
             <ErrorMessage name="singleplayer" component="div" />
 
             <h2 className="text-4xl font-bold">Multiplayer</h2>
             <label htmlFor="multiplayer">Has Multiplayer</label>
             <Field
-                as="select"
+              as="select"
               className="border"
               autoComplete="off"
               id="multiplayer"
               name="multiplayer"
               placeholder="0"
             >
-                <option value="0">No</option>
-                <option value="1">Yes</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </Field>
             <ErrorMessage name="multiplayer" component="div" />
 
@@ -751,9 +816,8 @@ export default function PostGames({
               name="multiplayer_local"
               placeholder="0"
             >
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </Field>
             <ErrorMessage name="multiplayer_local" component="div" />
 
@@ -766,8 +830,7 @@ export default function PostGames({
               id="my_review_en"
               name="my_review_en"
               placeholder="Abc"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="my_review_en" component="div" />
 
             {/*--------------------------- My Review PT ----------------------------------- */}
@@ -778,11 +841,10 @@ export default function PostGames({
               id="my_review_pt"
               name="my_review_pt"
               placeholder="Abc"
-            >
-            </Field>
+            ></Field>
             <ErrorMessage name="my_review_pt" component="div" />
-              
-              {/*--------------------------- Submit Button ----------------------------------- */}
+
+            {/*--------------------------- Submit Button ----------------------------------- */}
 
             <div className="flex justify-center mt-4">
               <button
