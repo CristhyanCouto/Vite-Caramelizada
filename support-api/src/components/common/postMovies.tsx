@@ -34,7 +34,55 @@ export default function PostMovies({
   const [genrePt, setGenrePt] = useState<GenrePtCardProps[]>([]);
   const [ratedPgEn, setRatedPgEn] = useState<RatedPGEnCardProps[]>([]);
   const [ratedPgPt, setRatedPgPt] = useState<RatedPGPtCardProps[]>([]);
-  const [search, setSearch] = useState<string>("");
+  // const [search, setSearch] = useState<string>("");
+
+  //Searchs by producers
+  const [searchProducer, setSearchProducer] = useState<string[]>([]);
+  const handleSearchProducer = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchProducer = [...searchProducer];
+    newSearchProducer[index] = e.target.value;
+    setSearchProducer(newSearchProducer);
+  };
+
+  //Searchs by directors
+  const [searchDirector, setSearchDirector] = useState<string[]>([]);
+  const handleSearchDirector = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchDirector = [...searchDirector];
+    newSearchDirector[index] = e.target.value;
+    setSearchDirector(newSearchDirector);
+  };
+
+  //Searchs by writers
+  const [searchWriter, setSearchWriter] = useState<string[]>([]);
+  const handleSearchWriter = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchWriter = [...searchWriter];
+    newSearchWriter[index] = e.target.value;
+    setSearchWriter(newSearchWriter);
+  };
+
+  //Searchs by actors
+  const [searchActor, setSearchActor] = useState<string[]>([]);
+  const handleSearchActor = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchActor = [...searchActor];
+    newSearchActor[index] = e.target.value;
+    setSearchActor(newSearchActor);
+  };
+
+  //Searchs by genreEn
+  const [searchGenreEn, setSearchGenreEn] = useState<string[]>([]);
+  const handleSearchGenreEn = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchGenreEn = [...searchGenreEn];
+    newSearchGenreEn[index] = e.target.value;
+    setSearchGenreEn(newSearchGenreEn);
+  };
+
+  //Searchs by genrePt
+  const [searchGenrePt, setSearchGenrePt] = useState<string[]>([]);
+  const handleSearchGenrePt = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchGenrePt = [...searchGenrePt];
+    newSearchGenrePt[index] = e.target.value;
+    setSearchGenrePt(newSearchGenrePt);
+  };
 
   useEffect(() => {
     axios.get("http://localhost:3001/producers").then((response) => {
@@ -63,9 +111,9 @@ export default function PostMovies({
     });
   }, [counter]);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSearch(e.target.value);
+  // };
 
   const handleRefresh = () => {
     setCounter((prevCounter) => prevCounter + 1); // Incrementa o contador para forçar o refresh
@@ -399,7 +447,7 @@ export default function PostMovies({
                       type="text"
                       className="border"
                       placeholder="Filter Producer"
-                      onChange={handleSearch}
+                      onChange={handleSearchProducer(index)}
                       name={`fk_producer_input${producerIndex}`}
                       id={`fk_producer_input${producerIndex}`}
                     />
@@ -428,7 +476,7 @@ export default function PostMovies({
                           value.name_producer &&
                           value.name_producer
                             .toLowerCase()
-                            .includes(search.toLowerCase())
+                            .includes(searchProducer[index]?.toLowerCase() || "")
                         );
                       })
                       .sort((a, b) =>
@@ -466,7 +514,7 @@ export default function PostMovies({
                       type="text"
                       className="border"
                       placeholder="Filter director"
-                      onChange={handleSearch}
+                      onChange={handleSearchDirector(index)}
                       name={`fk_director_input${directorIndex}`}
                       id={`fk_director_input${directorIndex}`}
                     />
@@ -495,16 +543,16 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchDirector[index]?.toLowerCase() || "")) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchDirector[index]?.toLowerCase() || "")) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(search.toLowerCase()))
+                              .includes(searchDirector[index]?.toLowerCase() || ""))
                         );
                       })
                       .sort((a, b) =>
@@ -542,7 +590,7 @@ export default function PostMovies({
                       type="text"
                       className="border"
                       placeholder="Filter writer"
-                      onChange={handleSearch}
+                      onChange={handleSearchWriter(index)}
                       name={`fk_writer_input${writerIndex}`}
                       id={`fk_writer_input${writerIndex}`}
                     />
@@ -571,16 +619,16 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchWriter[index]?.toLowerCase() || "")) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchWriter[index]?.toLowerCase() || "")) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(search.toLowerCase()))
+                              .includes(searchWriter[index]?.toLowerCase() || ""))
                         );
                       })
                       .sort((a, b) =>
@@ -615,7 +663,7 @@ export default function PostMovies({
                       type="text"
                       className="border"
                       placeholder="Filter actor"
-                      onChange={handleSearch}
+                      onChange={handleSearchActor(index)}
                       name={`fk_actor_input${actorIndex}`}
                       id={`fk_actor_input${actorIndex}`}
                     />
@@ -644,16 +692,16 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchActor[index]?.toLowerCase() || "")) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(search.toLowerCase())) ||
+                              .includes(searchActor[index]?.toLowerCase() || "")) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(search.toLowerCase()))
+                              .includes(searchActor[index]?.toLowerCase() || ""))
                         );
                       })
                       .sort((a, b) =>
@@ -684,7 +732,7 @@ export default function PostMovies({
                     Genre EN {genreIndex}
                   </label>
                   <input className="border w-[20%]" type="text" placeholder="Filter Genre EN"
-                  onChange={handleSearch}
+                  onChange={handleSearchGenreEn(index)}
                   name={`fk_genre_en_input${genreIndex}`}
                   id={`fk_genre_en_input${genreIndex}`} />
                   <Field
@@ -701,7 +749,7 @@ export default function PostMovies({
                         value.name_genre_en &&
                         value.name_genre_en
                           .toLowerCase()
-                          .includes(search.toLowerCase())
+                          .includes(searchGenreEn[index]?.toLowerCase() || "")
                       );
                     }).sort(
                       (a, b) =>
@@ -733,7 +781,7 @@ export default function PostMovies({
                     Genre PT {genreIndex}
                   </label>
                   <input className='border w-[20%]' type="text" placeholder="Filter Genre PT"
-                  onChange={handleSearch}
+                  onChange={handleSearchGenrePt(index)}
                   name={`fk_genre_pt_input${genreIndex}`}
                   id={`fk_genre_pt_input${genreIndex}`} />
                   <Field
@@ -750,7 +798,7 @@ export default function PostMovies({
                         value.name_genre_pt &&
                         value.name_genre_pt
                           .toLowerCase()
-                          .includes(search.toLowerCase())
+                          .includes(searchGenrePt[index]?.toLowerCase() || "")
                       );
                     }).sort(
                       (a, b) =>
