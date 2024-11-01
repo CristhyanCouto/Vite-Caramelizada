@@ -18,10 +18,10 @@ export default function DirectorCard(props: DirectorCardProps) {
     }, [props.iddirector]);
 
   return (
-    <div className="flex flex-col justify-center items-center text-center">
-        <div className="bg-zinc-400 rounded-full w-36">
-          <div className="bg-zinc-400 rounded-full p-1">
-            <img src={directors?.director_image_url} alt={directors?.first_name} className="rounded-full"/>
+    <div className="flex flex-col justify-center items-center text-center gap-3">
+        <div className="bg-zinc-400 rounded-xl w-36 h-56">
+          <div className="bg-zinc-400 rounded-xl p-1">
+            <img src={directors?.director_image_url} alt={directors?.first_name} className="rounded-xl object-cover w-36 h-56"/>
           </div>
         </div>
         <h1 className="text-2xl">{directors?.first_name} {directors?.last_name}</h1>

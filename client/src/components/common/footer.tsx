@@ -13,7 +13,7 @@ export default function Footer() {
     const { t } = useTranslation()
 
   return (
-    <div className='bg-zinc-900 flex justify-center'>
+    <div className='bg-black flex justify-center'>
         <div className='grid grid-cols-3 justify-between items-center gap-20 p-5
         text-white'>
             <div>

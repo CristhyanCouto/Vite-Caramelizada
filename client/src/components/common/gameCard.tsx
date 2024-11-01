@@ -16,7 +16,7 @@ export default function GameCard(props: GamesType) {
 
   return (
     <div>
-        <div className="bg-zinc-200 shadow p-2 m-5 w-72 rounded-sm
+        <div className="bg-zinc-200 shadow p-2 m-5 h-[450px] w-72 rounded-sm
         transition ease-in-out delay-150 bg-zinc-400
         duration-200
         group relative">
@@ -28,13 +28,13 @@ export default function GameCard(props: GamesType) {
           >
             <img
               className="group-hover:opacity-30 transition-opacity duration-200
-              rounded-sm"
+              rounded-sm w-full h-[435px] object-cover"
               src={props.cover_game_url}
               alt={props.title_en}
             />
 
             {/*Showing my rating review in absolute position over the movie cover */}
-            <div className="absolute top-0 translate-y-[450%] translate-x-48 p-5 bg-red-500
+            <div className="absolute top-0 translate-y-[485%] translate-x-48 p-5 bg-red-500
             rounded-full">
                 <p className="text-white text-2xl">{props.my_rating}</p>
             </div>

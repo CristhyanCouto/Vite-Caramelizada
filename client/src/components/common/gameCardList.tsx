@@ -125,7 +125,7 @@ export default function GameCardList() {
   }
 
   return (
-    <div>
+    <div className="bg-zinc-900">
       <div className="pt-4 px-16 flex gap-2">
         <SortComboBoxMovies sortValue={sortValue} setSortValue={setSortValue} />
         <PlataformsComboBoxGames

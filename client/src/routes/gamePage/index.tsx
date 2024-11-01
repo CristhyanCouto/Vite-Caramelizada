@@ -114,7 +114,7 @@ export default function GamePage() {
   document.title = `Caramelizada - ${pageTitle}`;
 
   return (
-    <div className="overflow-x-hidden bg-zinc-300">
+    <div className="overflow-x-hidden bg-zinc-900">
       <Page title={t("home.title")}>
         <div>
           {i18n.language === "en" ? (

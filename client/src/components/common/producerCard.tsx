@@ -18,10 +18,10 @@ export default function ProducerCard(props: ProducerCardProps) {
     }, [props.idproducer]);
 
   return (
-    <div className="grid justify-center items-center text-center">
-        <div className=" grid grid-rows-2 rounded-full w-36">
-            <div className="bg-zinc-400 rounded-full p-1">
-                <img src={producers?.producer_image_url} alt={producers?.name_producer} className="rounded-full"/>
+    <div className="flex justify-center items-center align-center text-center">
+        <div className=" grid grid-cols-1 md:grid-rows-2 items-center justify-center align-center w-40">
+            <div className="bg-zinc-400 rounded-full w-40 h-40 flex items-center justify-center align-center">
+                <img src={producers?.producer_image_url} alt={producers?.name_producer} className="rounded-full w-36 h-36 object-cover"/>
             </div>
             <h1 className="text-2xl">{producers?.name_producer}</h1>
         </div>

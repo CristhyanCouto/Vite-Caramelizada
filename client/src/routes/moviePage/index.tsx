@@ -143,7 +143,7 @@ export default function MoviePage() {
   document.title = `Caramelizada - ${pageTitle}`;
 
   return (
-    <div className="bg-zinc-300 overflow-x-hidden">
+    <div className="bg-zinc-900 overflow-x-hidden">
       <Page title={t("home.title")}>
         <div>
           {i18n.language === "en" ? (
@@ -169,7 +169,7 @@ export default function MoviePage() {
                     <div className="flex flex-col md:flex-row justify-center">
                       <div className="bg-zinc-200 shadow w-72 rounded-sm bg-zinc-400 mx-auto md:mx-0">
                         <img
-                          className="rounded-sm"
+                          className="rounded-sm w-full h-[435px] object-cover"
                           src={movieData?.cover_movie_url}
                           alt={movieData?.title_en}
                         />
@@ -200,7 +200,7 @@ export default function MoviePage() {
                     {/*Age Rating and genres */}
                     {/*Normal Screen */}
                     <div className="hidden md:grid grid-cols-[0.5fr,1fr]">
-                      <div className="flex justify-center">
+                      <div className="flex justify-center md:ml-16">
                         <RatedenBackground
                           age={movieData?.fk_rated_pg_en ?? 0}
                         />
@@ -385,7 +385,7 @@ export default function MoviePage() {
                     <div className="flex flex-col md:flex-row justify-center">
                       <div className="bg-zinc-200 shadow w-72 rounded-sm bg-zinc-400 mx-auto md:mx-0">
                         <img
-                          className="rounded-sm"
+                          className="rounded-sm w-full h-[435px] object-cover"
                           src={movieData?.cover_movie_url}
                           alt={movieData?.title_en}
                         />
@@ -416,7 +416,7 @@ export default function MoviePage() {
                     {/*Age Rating and genres */}
                     {/*Normal Screen */}
                     <div className="hidden md:grid grid-cols-[0.5fr,1fr]">
-                      <div className="flex justify-center">
+                      <div className="flex justify-center md:ml-16">
                         <RatedPtBackground
                           age={movieData?.fk_rated_pg_pt ?? 0}
                         />

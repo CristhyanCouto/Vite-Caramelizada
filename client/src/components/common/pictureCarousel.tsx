@@ -37,7 +37,7 @@ export default function PictureCarousel(props: PictureCarouselProps) {
                             <DialogContent className="max-w-4xl">
                               <DialogTitle></DialogTitle>
                                 <img src={picture} alt={`Picture ${index}`} 
-                                className=""/>
+                                className="w-full object-cover"/>
                             </DialogContent>
                         </Dialog>
                     </CardContent>
