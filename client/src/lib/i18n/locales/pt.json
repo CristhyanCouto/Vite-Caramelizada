@@ -142,6 +142,7 @@
     },
     "utils": {
         "billion": "Bilhão",
-        "million": "Milhão"
+        "million": "Milhão",
+        "loadMore": "Carregar Mais"
     }
 }

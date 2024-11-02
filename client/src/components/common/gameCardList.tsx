@@ -21,6 +21,7 @@ export default function GameCardList() {
   const [sortGenre, setSortGenre] = useState<string[]>([]);
   const [sortModes, setSortModes] = useState<string[]>([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
+  const [visibleCount, setVisibleCount] = useState(3); // Estado para controle da quantidade visível
 
   useEffect(() => {
     axios.get("http://localhost:3001/games").then((res) => {
@@ -28,34 +29,33 @@ export default function GameCardList() {
     });
   }, []);
 
-  // Função para selecionar ou desmarcar uma plataforma
   const handlePlatformSelect = (value: string[]) => {
     setSelectedPlatforms(value);
   };
 
   function getSortFunction(sortValue: string) {
     switch (sortValue) {
-      case "myRatingPlus": //My Rating > 0
+      case "myRatingPlus":
         return (a: GamesType, b: GamesType) =>
           (b.my_rating ?? 0) - (a.my_rating ?? 0);
-      case "myRatingMinus": //My Rating < 0
+      case "myRatingMinus":
         return (a: GamesType, b: GamesType) =>
           (a.my_rating ?? 0) - (b.my_rating ?? 0);
-      case "alphabeticalPlus": //Alphabetical order
+      case "alphabeticalPlus":
         return i18n.language === "en"
           ? (a: GamesType, b: GamesType) => a.title_en.localeCompare(b.title_en)
           : (a: GamesType, b: GamesType) =>
               a.title_pt.localeCompare(b.title_pt);
-      case "alphabeticalMinus": //Reverse alphabetical order
+      case "alphabeticalMinus":
         return i18n.language === "en"
           ? (a: GamesType, b: GamesType) => b.title_en.localeCompare(a.title_en)
           : (a: GamesType, b: GamesType) =>
               b.title_pt.localeCompare(a.title_pt);
-      case "releaseDatePlus": //Release date + recent
+      case "releaseDatePlus":
         return (a: GamesType, b: GamesType) =>
           new Date(b.release_date ?? 0).getTime() -
           new Date(a.release_date ?? 0).getTime();
-      case "releaseDateMinus": //Release date - recent
+      case "releaseDateMinus":
         return (a: GamesType, b: GamesType) =>
           new Date(a.release_date ?? 0).getTime() -
           new Date(b.release_date ?? 0).getTime();
@@ -66,45 +66,31 @@ export default function GameCardList() {
   }
 
   function filterByGenres(game: GamesType) {
-    if (sortGenre.length === 0) return true; // Se nenhum gênero for selecionado, mostrar todos os filmes
-
-    // Verificar se todos os gêneros selecionados estão entre os gêneros do filme
+    if (sortGenre.length === 0) return true;
     const gameGenres = [
       game.fk_genre_en01,
       game.fk_genre_en02,
       game.fk_genre_en03,
       game.fk_genre_en04,
       game.fk_genre_en05,
-    ].filter(Boolean); // Filtrar para remover valores "falsos" (null ou undefined)
-
-    // Verificar se todos os gêneros selecionados estão presentes no array de gêneros do filme
+    ].filter(Boolean);
     return sortGenre.every((genre) => gameGenres.includes(Number(genre)));
   }
 
   function filterByModes(game: GamesType) {
-    // Se nenhum modo for selecionado, mostrar todos os jogos
     if (sortModes.length === 0) return true;
-
-    const singlePlayer = game.singleplayer;
-    const multiplayer = game.multiplayer;
-    const multiplayerLocal = game.multiplayer_local;
-
     const modeMapping = {
-      "0": singlePlayer,
-      "1": multiplayer,
-      "2": multiplayerLocal,
+      "0": game.singleplayer,
+      "1": game.multiplayer,
+      "2": game.multiplayer_local,
     };
-
-    // Verificar se todos os modos selecionados estão presentes no jogo
     return sortModes.every(
       (mode) => modeMapping[mode as keyof typeof modeMapping]
     );
   }
 
   function filterByPlatforms(game: GamesType) {
-    // Se nenhuma plataforma for selecionada, mostrar todos os jogos
     if (selectedPlatforms.length === 0) return true;
-
     const gamePlatforms = [
       game.fk_plataform01,
       game.fk_plataform02,
@@ -116,13 +102,15 @@ export default function GameCardList() {
       game.fk_plataform08,
       game.fk_plataform09,
       game.fk_plataform10,
-    ].filter(Boolean); // Filtrar para remover valores "falsos" (null ou undefined)
-
-    // Verificar se a plataforma do jogo está entre as plataformas selecionadas
+    ].filter(Boolean);
     return selectedPlatforms.every((platform) =>
       gamePlatforms.includes(Number(platform))
     );
   }
+
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 3); // Carregar mais 6 games ao clicar
+  };
 
   return (
     <div className="bg-zinc-900">
@@ -132,7 +120,6 @@ export default function GameCardList() {
           sortValue={selectedPlatforms}
           setSortValue={handlePlatformSelect}
         />
-
         <input
           type="text"
           className="bg-white text-black p-2 w-full h-10 rounded-lg pr-10 text-center border"
@@ -157,18 +144,28 @@ export default function GameCardList() {
                 const matchesQuery =
                   game.title_en.toLowerCase().includes(query.toLowerCase()) ||
                   game.title_pt.toLowerCase().includes(query.toLowerCase());
-
                 return (
                   matchesQuery &&
                   filterByGenres(game) &&
                   filterByModes(game) &&
-                  filterByPlatforms(game) // Aplicando o filtro de plataformas
+                  filterByPlatforms(game)
                 );
               })
+              .slice(0, visibleCount) // Limitar o número de games visíveis
               .map((game: GamesType) => (
                 <GameCard key={game.idgame} {...game} />
               ))}
         </div>
+      </div>
+      <div className="flex items-center justify-center">
+        {visibleCount < (gameData?.length ?? 0) && (
+          <button
+            onClick={handleLoadMore}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded mb-8"
+          >
+            {t("utils.loadMore")}
+          </button>
+        )}
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ export default function MovieCardList() {
     const [query, setQuery] = useState<string>("")
     const [sortValue, setSortValue] = useState<string>("myRatingPlus")
     const [sortGenre, setSortGenre] = useState<string[]>([])
+    const [visibleMovies, setVisibleMovies] = useState<number>(3) // Número inicial de filmes visíveis
 
     useEffect(() => {
         axios.get("http://localhost:3001/movies")
@@ -22,6 +23,10 @@ export default function MovieCardList() {
                 setMovieData(res.data)
             })
     }, [])
+
+    const loadMoreMovies = () => {
+        setVisibleMovies((prev) => prev + 3)
+    }
 
     function getSortFunction(sortValue: string) {
         switch (sortValue) {
@@ -83,12 +88,20 @@ export default function MovieCardList() {
 
                             return matchesQuery && filterByGenres(movie)
                         })
+                        .slice(0, visibleMovies) // Mostra apenas os filmes visíveis
                         .map((movie: MoviesType) => (
                             <MovieCard key={movie.idmovie} {...movie} />
                         ))
                     }
                 </div>
             </div>
+            {movieData && visibleMovies < movieData.length && (
+                <div className="flex justify-center mt-4">
+                    <button onClick={loadMoreMovies} className="bg-red-500 text-white py-2 px-4 rounded mb-8">
+                        {t("utils.loadMore")} {/* Texto do botão traduzido */}
+                    </button>
+                </div>
+            )}
         </div>
     )
 }

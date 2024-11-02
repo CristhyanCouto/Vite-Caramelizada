@@ -156,9 +156,13 @@ export default function MoviePage() {
                 </div>
                 {/*My Rating */}
                 <div className="w-16 rounded-sm sm:h-10 bg-red-500">
-                  <p className="text-3xl text-white text-center">
-                    {movieData?.my_rating}
-                  </p>
+                  <p className="text-white text-2xl text-center">
+                    {movieData &&
+                    typeof movieData.my_rating === "number" &&
+                    movieData.my_rating % 1 === 0
+                      ? `${movieData.my_rating}.0`
+                      : movieData?.my_rating}
+                  </p>{" "}
                 </div>
               </div>
 
@@ -371,9 +375,13 @@ export default function MoviePage() {
                 </div>
                 {/*My Rating */}
                 <div className="w-16 rounded-sm sm:h-10 bg-red-500">
-                  <p className="text-3xl text-white text-center">
-                    {movieData?.my_rating}
-                  </p>
+                <p className="text-white text-2xl text-center">
+                    {movieData &&
+                    typeof movieData.my_rating === "number" &&
+                    movieData.my_rating % 1 === 0
+                      ? `${movieData.my_rating}.0`
+                      : movieData?.my_rating}
+                  </p>{" "}
                 </div>
               </div>
 
