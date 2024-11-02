@@ -4,8 +4,20 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { DatePickerForm } from "./datePickerForm";
-import { GenreEnCardProps, GenrePtCardProps, ProducersCardProps, RatedPGEnCardProps, RatedPGPtCardProps } from "@/lib/nonPersonInterfaces";
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../ui/dialog";
+import {
+  GenreEnCardProps,
+  GenrePtCardProps,
+  ProducersCardProps,
+  RatedPGEnCardProps,
+  RatedPGPtCardProps,
+} from "@/lib/nonPersonInterfaces";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 import PostProducers from "./postProducers";
 import PostDirectors from "./postDirectors";
 import {
@@ -38,51 +50,57 @@ export default function PostMovies({
 
   //Searchs by producers
   const [searchProducer, setSearchProducer] = useState<string[]>([]);
-  const handleSearchProducer = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchProducer = [...searchProducer];
-    newSearchProducer[index] = e.target.value;
-    setSearchProducer(newSearchProducer);
-  };
+  const handleSearchProducer =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchProducer = [...searchProducer];
+      newSearchProducer[index] = e.target.value;
+      setSearchProducer(newSearchProducer);
+    };
 
   //Searchs by directors
   const [searchDirector, setSearchDirector] = useState<string[]>([]);
-  const handleSearchDirector = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchDirector = [...searchDirector];
-    newSearchDirector[index] = e.target.value;
-    setSearchDirector(newSearchDirector);
-  };
+  const handleSearchDirector =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchDirector = [...searchDirector];
+      newSearchDirector[index] = e.target.value;
+      setSearchDirector(newSearchDirector);
+    };
 
   //Searchs by writers
   const [searchWriter, setSearchWriter] = useState<string[]>([]);
-  const handleSearchWriter = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchWriter = [...searchWriter];
-    newSearchWriter[index] = e.target.value;
-    setSearchWriter(newSearchWriter);
-  };
+  const handleSearchWriter =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchWriter = [...searchWriter];
+      newSearchWriter[index] = e.target.value;
+      setSearchWriter(newSearchWriter);
+    };
 
   //Searchs by actors
   const [searchActor, setSearchActor] = useState<string[]>([]);
-  const handleSearchActor = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchActor = [...searchActor];
-    newSearchActor[index] = e.target.value;
-    setSearchActor(newSearchActor);
-  };
+  const handleSearchActor =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchActor = [...searchActor];
+      newSearchActor[index] = e.target.value;
+      setSearchActor(newSearchActor);
+    };
 
   //Searchs by genreEn
   const [searchGenreEn, setSearchGenreEn] = useState<string[]>([]);
-  const handleSearchGenreEn = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchGenreEn = [...searchGenreEn];
-    newSearchGenreEn[index] = e.target.value;
-    setSearchGenreEn(newSearchGenreEn);
-  };
+  const handleSearchGenreEn =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchGenreEn = [...searchGenreEn];
+      newSearchGenreEn[index] = e.target.value;
+      setSearchGenreEn(newSearchGenreEn);
+    };
 
   //Searchs by genrePt
   const [searchGenrePt, setSearchGenrePt] = useState<string[]>([]);
-  const handleSearchGenrePt = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchGenrePt = [...searchGenrePt];
-    newSearchGenrePt[index] = e.target.value;
-    setSearchGenrePt(newSearchGenrePt);
-  };
+  const handleSearchGenrePt =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newSearchGenrePt = [...searchGenrePt];
+      newSearchGenrePt[index] = e.target.value;
+      setSearchGenrePt(newSearchGenrePt);
+    };
 
   useEffect(() => {
     axios.get("http://localhost:3001/producers").then((response) => {
@@ -445,7 +463,7 @@ export default function PostMovies({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter Producer"
                       onChange={handleSearchProducer(index)}
                       name={`fk_producer_input${producerIndex}`}
@@ -454,8 +472,8 @@ export default function PostMovies({
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent>
-                      <DialogTitle>Add Producer</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Producer</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostProducers
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -476,7 +494,9 @@ export default function PostMovies({
                           value.name_producer &&
                           value.name_producer
                             .toLowerCase()
-                            .includes(searchProducer[index]?.toLowerCase() || "")
+                            .includes(
+                              searchProducer[index]?.toLowerCase() || ""
+                            )
                         );
                       })
                       .sort((a, b) =>
@@ -512,7 +532,7 @@ export default function PostMovies({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter director"
                       onChange={handleSearchDirector(index)}
                       name={`fk_director_input${directorIndex}`}
@@ -521,8 +541,8 @@ export default function PostMovies({
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Director</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Director</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostDirectors
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -543,16 +563,22 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(searchDirector[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchDirector[index]?.toLowerCase() || ""
+                              )) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(searchDirector[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchDirector[index]?.toLowerCase() || ""
+                              )) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(searchDirector[index]?.toLowerCase() || ""))
+                              .includes(
+                                searchDirector[index]?.toLowerCase() || ""
+                              ))
                         );
                       })
                       .sort((a, b) =>
@@ -588,7 +614,7 @@ export default function PostMovies({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter writer"
                       onChange={handleSearchWriter(index)}
                       name={`fk_writer_input${writerIndex}`}
@@ -597,8 +623,8 @@ export default function PostMovies({
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Writer</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Writer</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostWriters
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -619,16 +645,22 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(searchWriter[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchWriter[index]?.toLowerCase() || ""
+                              )) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(searchWriter[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchWriter[index]?.toLowerCase() || ""
+                              )) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(searchWriter[index]?.toLowerCase() || ""))
+                              .includes(
+                                searchWriter[index]?.toLowerCase() || ""
+                              ))
                         );
                       })
                       .sort((a, b) =>
@@ -661,7 +693,7 @@ export default function PostMovies({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter actor"
                       onChange={handleSearchActor(index)}
                       name={`fk_actor_input${actorIndex}`}
@@ -670,8 +702,8 @@ export default function PostMovies({
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
                       <DialogContent className="max-h-[80vh] overflow-y-auto">
-                      <DialogTitle>Add Actor</DialogTitle>
-                      <DialogDescription></DialogDescription>
+                        <DialogTitle>Add Actor</DialogTitle>
+                        <DialogDescription></DialogDescription>
                         <PostActors
                           setRefreshComponentCounter={handleRefresh}
                         />
@@ -692,16 +724,22 @@ export default function PostMovies({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(searchActor[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchActor[index]?.toLowerCase() || ""
+                              )) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(searchActor[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchActor[index]?.toLowerCase() || ""
+                              )) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(searchActor[index]?.toLowerCase() || ""))
+                              .includes(
+                                searchActor[index]?.toLowerCase() || ""
+                              ))
                         );
                       })
                       .sort((a, b) =>
@@ -731,35 +769,39 @@ export default function PostMovies({
                   <label htmlFor={`fk_genre_en${genreIndex}`}>
                     Genre EN {genreIndex}
                   </label>
-                  <input className="border w-[20%]" type="text" placeholder="Filter Genre EN"
-                  onChange={handleSearchGenreEn(index)}
-                  name={`fk_genre_en_input${genreIndex}`}
-                  id={`fk_genre_en_input${genreIndex}`} />
+                  <input
+                    className="border w-[20%] text-green-500"
+                    type="text"
+                    placeholder="Filter Genre EN"
+                    onChange={handleSearchGenreEn(index)}
+                    name={`fk_genre_en_input${genreIndex}`}
+                    id={`fk_genre_en_input${genreIndex}`}
+                  />
                   <Field
                     as="select"
                     className="border w-[40%]"
                     autoComplete="off"
                     id={`fk_genre_en${genreIndex}`}
                     name={`fk_genre_en${genreIndex}`}
-
                   >
                     <option value="">Select an Option</option>
-                    {genreEn.filter((value) =>{
-                      return (
-                        value.name_genre_en &&
-                        value.name_genre_en
-                          .toLowerCase()
-                          .includes(searchGenreEn[index]?.toLowerCase() || "")
-                      );
-                    }).sort(
-                      (a, b) =>
+                    {genreEn
+                      .filter((value) => {
+                        return (
+                          value.name_genre_en &&
+                          value.name_genre_en
+                            .toLowerCase()
+                            .includes(searchGenreEn[index]?.toLowerCase() || "")
+                        );
+                      })
+                      .sort((a, b) =>
                         a.name_genre_en!.localeCompare(b.name_genre_en!)
-                    )
-                    .map((genre) => (
-                      <option key={genre.idgenre_en} value={genre.idgenre_en}>
-                        {genre.name_genre_en}
-                      </option>
-                    ))}
+                      )
+                      .map((genre) => (
+                        <option key={genre.idgenre_en} value={genre.idgenre_en}>
+                          {genre.name_genre_en}
+                        </option>
+                      ))}
                   </Field>
                   <ErrorMessage
                     name={`fk_genre_en${genreIndex}`}
@@ -767,11 +809,10 @@ export default function PostMovies({
                   />
                 </div>
               );
-            }
-            )}
+            })}
 
             {/*--------------------------- Genre PT ----------------------------------- */}
-  
+
             <h2 className="text-4xl font-bold">Genre PT</h2>
             {[...Array(5)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
@@ -780,35 +821,39 @@ export default function PostMovies({
                   <label htmlFor={`fk_genre_pt${genreIndex}`}>
                     Genre PT {genreIndex}
                   </label>
-                  <input className='border w-[20%]' type="text" placeholder="Filter Genre PT"
-                  onChange={handleSearchGenrePt(index)}
-                  name={`fk_genre_pt_input${genreIndex}`}
-                  id={`fk_genre_pt_input${genreIndex}`} />
+                  <input
+                    className="border w-[20%] text-green-500"
+                    type="text"
+                    placeholder="Filter Genre PT"
+                    onChange={handleSearchGenrePt(index)}
+                    name={`fk_genre_pt_input${genreIndex}`}
+                    id={`fk_genre_pt_input${genreIndex}`}
+                  />
                   <Field
                     as="select"
                     className="border w-[40%]"
                     autoComplete="off"
                     id={`fk_genre_pt${genreIndex}`}
                     name={`fk_genre_pt${genreIndex}`}
-
                   >
                     <option value="">Select an Option</option>
-                    {genrePt.filter((value) =>{
-                      return (
-                        value.name_genre_pt &&
-                        value.name_genre_pt
-                          .toLowerCase()
-                          .includes(searchGenrePt[index]?.toLowerCase() || "")
-                      );
-                    }).sort(
-                      (a, b) =>
+                    {genrePt
+                      .filter((value) => {
+                        return (
+                          value.name_genre_pt &&
+                          value.name_genre_pt
+                            .toLowerCase()
+                            .includes(searchGenrePt[index]?.toLowerCase() || "")
+                        );
+                      })
+                      .sort((a, b) =>
                         a.name_genre_pt!.localeCompare(b.name_genre_pt!)
-                    )
-                    .map((genre) => (
-                      <option key={genre.idgenre_pt} value={genre.idgenre_pt}>
-                        {genre.name_genre_pt}
-                      </option>
-                    ))}
+                      )
+                      .map((genre) => (
+                        <option key={genre.idgenre_pt} value={genre.idgenre_pt}>
+                          {genre.name_genre_pt}
+                        </option>
+                      ))}
                   </Field>
                   <ErrorMessage
                     name={`fk_genre_pt${genreIndex}`}
@@ -816,28 +861,30 @@ export default function PostMovies({
                   />
                 </div>
               );
-            }
-            )}
+            })}
 
             {/*--------------------------- Rated PG EN ----------------------------------- */}
 
-              <h2 className="text-4xl font-bold">Rated PG USA - BR</h2>
-              <label htmlFor="fk_rated_pg_en">Rated PG EN</label>
-              <Field
-                as="select"
-                className="border"
-                autoComplete="off"
-                id="fk_rated_pg_en"
-                name="fk_rated_pg_en"
-              >
-                <option value="">Select an Option</option>
-                {ratedPgEn.map((ratedPg) => (
-                  <option key={ratedPg.idrated_pg_en} value={ratedPg.idrated_pg_en}>
-                    {ratedPg.rating_pg_en}
-                  </option>
-                ))}
-              </Field>
-              <ErrorMessage name="fk_rated_pg_en" component="div" />
+            <h2 className="text-4xl font-bold">Rated PG USA - BR</h2>
+            <label htmlFor="fk_rated_pg_en">Rated PG EN</label>
+            <Field
+              as="select"
+              className="border"
+              autoComplete="off"
+              id="fk_rated_pg_en"
+              name="fk_rated_pg_en"
+            >
+              <option value="">Select an Option</option>
+              {ratedPgEn.map((ratedPg) => (
+                <option
+                  key={ratedPg.idrated_pg_en}
+                  value={ratedPg.idrated_pg_en}
+                >
+                  {ratedPg.rating_pg_en}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="fk_rated_pg_en" component="div" />
 
             {/*--------------------------- Rated PG PT ----------------------------------- */}
 
@@ -851,7 +898,10 @@ export default function PostMovies({
             >
               <option value="">Select an Option</option>
               {ratedPgPt.map((ratedPg) => (
-                <option key={ratedPg.idrated_pg_pt} value={ratedPg.idrated_pg_pt}>
+                <option
+                  key={ratedPg.idrated_pg_pt}
+                  value={ratedPg.idrated_pg_pt}
+                >
                   {ratedPg.rating_pg_pt}
                 </option>
               ))}
@@ -1006,8 +1056,8 @@ export default function PostMovies({
               placeholder="Abc"
             />
             <ErrorMessage name="my_review_pt" component="div" />
-              
-              {/*--------------------------- Submit Button ----------------------------------- */}
+
+            {/*--------------------------- Submit Button ----------------------------------- */}
 
             <div className="flex justify-center mt-4">
               <button
