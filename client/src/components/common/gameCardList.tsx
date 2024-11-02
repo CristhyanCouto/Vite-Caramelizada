@@ -161,7 +161,7 @@ export default function GameCardList() {
         {visibleCount < (gameData?.length ?? 0) && (
           <button
             onClick={handleLoadMore}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded mb-8"
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded mb-8"
           >
             {t("utils.loadMore")}
           </button>
