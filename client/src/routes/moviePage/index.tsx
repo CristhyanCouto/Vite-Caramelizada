@@ -195,10 +195,9 @@ export default function MoviePage() {
                       </div>
                     </div>
                   </div>
-
+                  {/*Age Rating and genres */}
+                  {/*Normal Screen */}
                   <div className="max-5xl bg-black p-2">
-                    {/*Age Rating and genres */}
-                    {/*Normal Screen */}
                     <div className="hidden md:grid grid-cols-[0.5fr,1fr]">
                       <div className="flex justify-center md:ml-16">
                         <RatedenBackground

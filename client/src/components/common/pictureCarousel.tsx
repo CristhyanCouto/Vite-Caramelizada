@@ -27,12 +27,12 @@ export default function PictureCarousel(props: PictureCarouselProps) {
             .map((picture, index) => (
               <CarouselItem key={index} className="basis-1/10 sm:basis-1/3">
                 <div className="p-1">
-                  <Card className="h-[150px] w-64 bg-zinc-400">
+                  <Card className="h-[150px] w-64 bg-black">
                     <CardContent className="flex h-full w-full aspect-square items-center justify-center p-1">
                         <Dialog>
-                            <DialogTrigger className="object-cover">
+                            <DialogTrigger className="h-[110%] object-fit">
                             <img src={picture} alt={`Picture ${index}`} 
-                            className="rounded-sm"/>
+                            className="rounded-sm object-cover h-[90%]"/>
                             </DialogTrigger>
                             <DialogContent className="max-w-4xl">
                               <DialogTitle></DialogTitle>
