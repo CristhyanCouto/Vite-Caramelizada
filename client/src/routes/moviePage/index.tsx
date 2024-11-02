@@ -333,7 +333,7 @@ export default function MoviePage() {
                       <h2 className="text-4xl text-center">
                         {t("movies.writers")}
                       </h2>
-                      <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
+                      <div className="grid sm:grid-cols-5 justify-center gap-4 px-10 mt-4">
                         {WriterCards()}
                       </div>
                     </div>
@@ -553,7 +553,7 @@ export default function MoviePage() {
                       <h2 className="text-4xl text-center">
                         {t("movies.writers")}
                       </h2>
-                      <div className="grid sm:grid-cols-5 justify-center gap-4 px-10">
+                      <div className="grid sm:grid-cols-5 justify-center gap-4 px-10 mt-4">
                         {WriterCards()}
                       </div>
                     </div>
