@@ -18,10 +18,10 @@ export default function PublisherGamesCard(props: PublisherCardProps) {
     }, [props.idpublisher_games]);
 
   return (
-    <div className="grid justify-center items-center text-center">
-        <div className=" grid grid-rows-[1fr,0.2fr] rounded-full w-36">
-            <div className="bg-zinc-400 rounded-full p-1">
-                <img src={publishers?.publisher_games_image_url} alt={publishers?.name_publisher_games} className="rounded-full"/>
+    <div className="flex justify-center items-center align-center text-center">
+        <div className=" grid grid-cols-1 md:grid-rows-2 items-center justify-center align-center w-40">
+            <div className="bg-zinc-400 rounded-full w-40 h-40 flex items-center justify-center align-center">
+                <img src={publishers?.publisher_games_image_url} alt={publishers?.name_publisher_games} className="rounded-full w-36 h-36 object-cover"/>
             </div>
             <h1 className="text-2xl">{publishers?.name_publisher_games}</h1>
         </div>
