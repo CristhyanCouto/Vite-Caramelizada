@@ -15,7 +15,7 @@ export default function MovieCardList() {
     const [query, setQuery] = useState<string>("")
     const [sortValue, setSortValue] = useState<string>("myRatingPlus")
     const [sortGenre, setSortGenre] = useState<string[]>([])
-    const [visibleMovies, setVisibleMovies] = useState<number>(3) // Número inicial de filmes visíveis
+    const [visibleMovies, setVisibleMovies] = useState<number>(8) // Número inicial de filmes visíveis
 
     useEffect(() => {
         axios.get("http://localhost:3001/movies")
@@ -25,7 +25,7 @@ export default function MovieCardList() {
     }, [])
 
     const loadMoreMovies = () => {
-        setVisibleMovies((prev) => prev + 3)
+        setVisibleMovies((prev) => prev + 8)
     }
 
     function getSortFunction(sortValue: string) {

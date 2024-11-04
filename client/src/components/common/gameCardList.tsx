@@ -21,7 +21,7 @@ export default function GameCardList() {
   const [sortGenre, setSortGenre] = useState<string[]>([]);
   const [sortModes, setSortModes] = useState<string[]>([]);
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([]);
-  const [visibleCount, setVisibleCount] = useState(3); // Estado para controle da quantidade visível
+  const [visibleCount, setVisibleCount] = useState(8); // Estado para controle da quantidade visível
 
   useEffect(() => {
     axios.get("http://localhost:3001/games").then((res) => {
@@ -109,7 +109,7 @@ export default function GameCardList() {
   }
 
   const handleLoadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 3); // Carregar mais 6 games ao clicar
+    setVisibleCount((prevCount) => prevCount + 8); // Carregar mais 6 games ao clicar
   };
 
   return (
