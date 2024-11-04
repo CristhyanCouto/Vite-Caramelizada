@@ -133,12 +133,12 @@ function CategoryComboBoxMovies({
                   <CommandItem
                     key={sort.value}
                     value={sort.value}
-                    onSelect={() => handleSelect(sort.value)}
+                    onSelect={() => sort.value && handleSelect(sort.value)}
                   >
                     <Check
                       className={cn(
                         "mr-2 h-4 w-4",
-                        sortValue.includes(sort.value)
+                        sort.value && sortValue.includes(sort.value)
                           ? "opacity-100"
                           : "opacity-0"
                       )}
@@ -445,6 +445,7 @@ function CategoryComboBoxGames({
       value: "69",
       label: `${t("genre.zombie")}`,
     },
+    { value: "72", label: `${t("genre.realTimeStrategy")}` },
   ];
 
   const filteredSorts = sorts.filter((sort) =>
@@ -500,12 +501,12 @@ function CategoryComboBoxGames({
                 <CommandItem
                   key={sort.value}
                   value={sort.value}
-                  onSelect={() => handleSelect(sort.value)}
+                  onSelect={() => sort.value && handleSelect(sort.value)}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      sortValue.includes(sort.value)
+                      sort.value && sortValue.includes(sort.value)
                         ? "opacity-100"
                         : "opacity-0"
                     )}
@@ -577,7 +578,7 @@ function MultiplayerComboBoxGames({
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-        <div className="relative">
+          <div className="relative">
             <input
               type="text"
               placeholder={`${t("sortComboBox.search")}...`}
@@ -636,7 +637,7 @@ function PlataformsComboBoxGames({
     axios.get("http://localhost:3001/plataforms").then((response) => {
       setPlataform(response.data);
     });
-  });
+  }, []);
 
   //Genre list
 

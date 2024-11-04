@@ -21,6 +21,8 @@ import { CreatorCardProps } from "@/lib/person";
 import PostCreators from "./postCreators";
 import PostPublishersGames from "./postPublishersGames";
 import PostPlataforms from "./postPlataforms";
+import PostGenreEn from "./postGenreEn";
+import PostGenrePt from "./postGenrePt";
 
 interface PostGamesProps {
   setRefreshComponentCounter?: () => void;
@@ -319,7 +321,7 @@ export default function PostGames({
             <h2 className="text-4xl font-bold">Title</h2>
             <label htmlFor="title_en">Title EN *</label>
             <Field
-              className="border"
+              className="border text-green-500"
               autoComplete="off"
               id="title_en"
               name="title_en"
@@ -329,7 +331,7 @@ export default function PostGames({
 
             <label htmlFor="title_pt">Title PT *</label>
             <Field
-              className="border"
+              className="border text-green-500"
               autoComplete="off"
               id="title_pt"
               name="title_pt"
@@ -344,7 +346,7 @@ export default function PostGames({
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputReleaseDate"
-                className="border h-10 rounded-sm mr-2"
+                className="border h-10 rounded-sm mr-2 text-green-500"
                 type="text"
                 placeholder="Year"
                 onChange={(e) => setYear(Number(e.target.value))}
@@ -382,7 +384,7 @@ export default function PostGames({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter Creator"
                       onChange={handleSearchCreator(index)}
                       name={`fk_creator_input${creatorIndex}`}
@@ -413,16 +415,22 @@ export default function PostGames({
                           (value.first_name &&
                             value.first_name
                               .toLowerCase()
-                              .includes(searchCreator[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchCreator[index]?.toLowerCase() || ""
+                              )) ||
                           (value.last_name &&
                             value.last_name
                               .toLowerCase()
-                              .includes(searchCreator[index]?.toLowerCase() || "")) ||
+                              .includes(
+                                searchCreator[index]?.toLowerCase() || ""
+                              )) ||
                           (value.first_name &&
                             value.last_name &&
                             `${value.first_name} ${value.last_name}`
                               .toLowerCase()
-                              .includes(searchCreator[index]?.toLowerCase() || ""))
+                              .includes(
+                                searchCreator[index]?.toLowerCase() || ""
+                              ))
                         );
                       })
                       .sort((a, b) =>
@@ -458,7 +466,7 @@ export default function PostGames({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter Publisher"
                       onChange={handleSearchPublisher(index)}
                       name={`fk_publisher_games_input${publisherIndex}`}
@@ -529,7 +537,7 @@ export default function PostGames({
                   <div className="flex">
                     <input
                       type="text"
-                      className="border"
+                      className="border text-green-500"
                       placeholder="Filter Plataform"
                       onChange={handleSearchPlataform(index)}
                       name={`fk_plataform_input${plataformIndex}`}
@@ -595,14 +603,26 @@ export default function PostGames({
                   <label htmlFor={`fk_genre_en${genreIndex}`}>
                     Genre EN {genreIndex}
                   </label>
-                  <input
-                    className="border w-[20%]"
-                    type="text"
-                    placeholder="Filter Genre EN"
-                    onChange={handleSearchGenreEn(index)}
-                    name={`fk_genre_en_input${genreIndex}`}
-                    id={`fk_genre_en_input${genreIndex}`}
-                  />
+                  <div className="flex">
+                    <input
+                      className="border w-[20%] text-green-500"
+                      type="text"
+                      placeholder="Filter Genre EN"
+                      onChange={handleSearchGenreEn(index)}
+                      name={`fk_genre_en_input${genreIndex}`}
+                      id={`fk_genre_en_input${genreIndex}`}
+                    />
+                    <Dialog>
+                      <DialogTrigger>+</DialogTrigger>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto">
+                        <DialogTitle>Add Genre En</DialogTitle>
+                        <DialogDescription></DialogDescription>
+                        <PostGenreEn
+                          setRefreshComponentCounter={handleRefresh}
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                   <Field
                     as="select"
                     className="border w-[40%]"
@@ -647,14 +667,26 @@ export default function PostGames({
                   <label htmlFor={`fk_genre_pt${genreIndex}`}>
                     Genre PT {genreIndex}
                   </label>
-                  <input
-                    className="border w-[20%]"
-                    type="text"
-                    placeholder="Filter Genre PT"
-                    onChange={handleSearchGenrePt(index)}
-                    name={`fk_genre_pt_input${genreIndex}`}
-                    id={`fk_genre_pt_input${genreIndex}`}
-                  />
+                  <div className="flex">
+                    <input
+                      className="border w-[20%] text-green-500"
+                      type="text"
+                      placeholder="Filter Genre PT"
+                      onChange={handleSearchGenrePt(index)}
+                      name={`fk_genre_pt_input${genreIndex}`}
+                      id={`fk_genre_pt_input${genreIndex}`}
+                    />
+                    <Dialog>
+                      <DialogTrigger>+</DialogTrigger>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto">
+                        <DialogTitle>Add Genre PT</DialogTitle>
+                        <DialogDescription></DialogDescription>
+                        <PostGenrePt
+                          setRefreshComponentCounter={handleRefresh}
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                   <Field
                     as="select"
                     className="border w-[40%]"
