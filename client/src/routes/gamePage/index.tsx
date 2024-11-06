@@ -144,7 +144,11 @@ export default function GamePage() {
                   <div className="w-full sm:w-96 flex flex-col sm:ml-4">
                     <div className="w-full h-32 bg-red-500">
                       <h2 className="text-8xl text-white text-center">
-                        {gameData?.my_rating}
+                        {typeof gameData?.my_rating === "number"
+                          ? gameData.my_rating.toString().includes(".")
+                            ? gameData.my_rating
+                            : `${gameData.my_rating}.0`
+                          : gameData?.my_rating}
                       </h2>
                     </div>
                     <div className="p-2 flex-grow">
@@ -307,7 +311,11 @@ export default function GamePage() {
                   <div className="w-full sm:w-96 flex flex-col sm:ml-4">
                     <div className="w-full h-32 bg-red-500">
                       <h2 className="text-8xl text-white text-center">
-                        {gameData?.my_rating}
+                        {typeof gameData?.my_rating === "number"
+                          ? gameData.my_rating.toString().includes(".")
+                            ? gameData.my_rating
+                            : `${gameData.my_rating}.0`
+                          : gameData?.my_rating}
                       </h2>
                     </div>
                     <div className="p-2 flex-grow">
