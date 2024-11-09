@@ -38,7 +38,7 @@ export default function WritersList({ refreshComponentCounter }: WritersListProp
 
   return (
     <div>
-      <ScrollArea className="h-[700px] w-[450px] rounded-md border p-4">
+      <ScrollArea className="h-[700px] w-[450px] rounded-md border p-4 bg-white">
         <div className="p-4">
           <div className="flex items-center">
             <input
@@ -56,7 +56,7 @@ export default function WritersList({ refreshComponentCounter }: WritersListProp
               x
             </Button>
           </div>
-          <h1 className="text-2xl font-bold text-center">Writers</h1>
+          <h1 className="text-2xl font-bold text-center my-4">Writers</h1>
           <table className="border">
             <thead>
               <tr>

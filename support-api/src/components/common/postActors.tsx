@@ -148,8 +148,8 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
 
   return (
     <div className="grid">
-      <div className="grid grid-cols-1 justify-center px-6">
-        <h1 className="text-4xl text-center flex justify-center items-center bold p-2">
+      <div className="grid grid-cols-1 justify-center px-6 py-8">
+        <h1 className="text-4xl text-center flex justify-center items-center bold p-2 text-white mb-2 font-bold">
           Post Actor
         </h1>
         <Formik
@@ -157,33 +157,33 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Form className="grid grid-cols-1 p-10 border">
-            <label htmlFor="first_name">First Name *</label>
+          <Form className="grid grid-cols-1 p-10 border bg-white rounded-sm">
+            <label htmlFor="first_name" className="font-bold">First Name *</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="first_name"
               name="first_name"
               placeholder="Abc"
             />
-            <ErrorMessage name="first_name" component="div" />
+            <ErrorMessage name="first_name" className="text-red-500" component="div" />
 
-            <label htmlFor="last_name">Last Name *</label>
+            <label htmlFor="last_name" className="font-bold">Last Name *</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="last_name"
               name="last_name"
               placeholder="Abc"
             />
-            <ErrorMessage name="last_name" component="div" />
+            <ErrorMessage name="last_name" className="text-red-500" component="div" />
 
-            <label htmlFor="height">Height ?</label>
+            <label htmlFor="height" className="font-bold">Height ?</label>
             <Field name="height">
               {({ field }: MyFormProps) => (
                 <input
                   {...field}
-                  className="border"
+                  className="border w-full my-2 text-green-500"
                   id="height"
                   autoComplete="off"
                   placeholder="0.00"
@@ -197,11 +197,11 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             </Field>
             <ErrorMessage name="height" component="div" />
 
-            <label htmlFor="date_of_birth">Date of Birth ?</label>
+            <label htmlFor="date_of_birth" className="font-bold mb-2">Date of Birth ?</label>
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputBirth"
-                className="border h-10 rounded-sm mr-2"
+                className="border h-10 rounded-sm mr-2 text-green-500"
                 type="text"
                 placeholder="Year"
                 onChange={(e) => setYear(Number(e.target.value))}
@@ -226,12 +226,12 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             </Field>
             <ErrorMessage name="date_of_birth" component="div" />
 
-            <label htmlFor="fk_actor_current_status_en">
+            <label className="font-bold my-2" htmlFor="fk_actor_current_status_en">
               Current Status En *
             </label>
             <Field
               as="select"
-              className="border"
+              className="border w-full"
               autoComplete="off"
               id="fk_actor_current_status_en"
               name="fk_actor_current_status_en"
@@ -256,12 +256,12 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             </Field>
             <ErrorMessage name="fk_actor_current_status_en" component="div" />
 
-            <label htmlFor="fk_actor_current_status_en">
+            <label className="font-bold my-2" htmlFor="fk_actor_current_status_en">
               Current Status Pt *
             </label>
             <Field
               as="select"
-              className="border"
+              className="border w-full"
               autoComplete="off"
               id="fk_actor_current_status_pt"
               name="fk_actor_current_status_pt"
@@ -286,11 +286,11 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             </Field>
             <ErrorMessage name="fk_actor_current_status_en" component="div" />
 
-            <label htmlFor="date_of_death">Date of Death ?</label>
+            <label htmlFor="date_of_death" className="font-bold my-2">Date of Death ?</label>
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputDeath"
-                className="border h-10 rounded-sm mr-2"
+                className="border h-10 rounded-sm mr-2 text-green-500"
                 type="text"
                 placeholder="Year"
                 onChange={(e) => setYear(Number(e.target.value))}
@@ -313,9 +313,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             </Field>
             <ErrorMessage name="date_of_death" component="div" />
 
-            <label htmlFor="city_of_birth_en">City of Birth En ?</label>
+            <label htmlFor="city_of_birth_en" className="font-bold mt-2">City of Birth En ?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="city_of_birth_en"
               name="city_of_birth_en"
@@ -323,9 +323,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="city_of_birth_en" component="div" />
 
-            <label htmlFor="city_of_birth_pt">City of Birth Pt ?</label>
+            <label htmlFor="city_of_birth_pt" className="font-bold">City of Birth Pt ?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="city_of_birth_pt"
               name="city_of_birth_pt"
@@ -333,9 +333,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="city_of_birth_en" component="div" />
 
-            <label htmlFor="state_of_birth_en">State of Birth En ?</label>
+            <label htmlFor="state_of_birth_en" className="font-bold">State of Birth En ?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="state_of_birth_en"
               name="state_of_birth_en"
@@ -343,9 +343,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="state_of_birth_en" component="div" />
 
-            <label htmlFor="state_of_birth_pt">State of Birth Pt?</label>
+            <label htmlFor="state_of_birth_pt" className="font-bold">State of Birth Pt?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="state_of_birth_pt"
               name="state_of_birth_pt"
@@ -353,9 +353,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="state_of_birth_pt" component="div" />
 
-            <label htmlFor="country_of_birth_en">Country of Birth En?</label>
+            <label htmlFor="country_of_birth_en" className="font-bold">Country of Birth En?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="country_of_birth_en"
               name="country_of_birth_en"
@@ -363,9 +363,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="country_of_birth_en" component="div" />
 
-            <label htmlFor="country_of_birth_pt">Country of Birth Pt?</label>
+            <label htmlFor="country_of_birth_pt" className="font-bold">Country of Birth Pt?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="country_of_birth_pt"
               name="country_of_birth_pt"
@@ -373,9 +373,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="country_of_birth_pt" component="div" />
 
-            <label htmlFor="about_actor_en">About Actor En ?</label>
+            <label htmlFor="about_actor_en" className="font-bold">About Actor En ?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="about_actor_en"
               name="about_actor_en"
@@ -383,9 +383,9 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="about_actor_en" component="div" />
 
-            <label htmlFor="about_actor_pt">About Actor Pt ?</label>
+            <label htmlFor="about_actor_pt" className="font-bold">About Actor Pt ?</label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="about_actor_pt"
               name="about_actor_pt"
@@ -393,21 +393,21 @@ export default function PostActors({ setRefreshComponentCounter }: PostActorsPro
             />
             <ErrorMessage name="about_actor_pt" component="div" />
 
-            <label htmlFor="actor_image_url">
-              Actor Image URL * 400x600 PostImage
+            <label htmlFor="actor_image_url" className="font-bold">
+              Actor Image URL *
             </label>
             <Field
-              className="border"
+              className="border w-full my-2 text-green-500"
               autoComplete="off"
               id="actor_image_url"
               name="actor_image_url"
               placeholder="https://exemple.com"
             />
-            <ErrorMessage name="actor_image_url" component="div" />
+            <ErrorMessage name="actor_image_url" className="text-red-500" component="div" />
 
             <div className="flex justify-center mt-4">
               <button
-                className="border w-[20%] rounded-sm bg-zinc-300 hover:bg-zinc-200"
+                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200 text-white"
                 type="submit"
               >
                 Submit

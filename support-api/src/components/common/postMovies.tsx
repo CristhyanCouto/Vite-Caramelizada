@@ -492,8 +492,8 @@ export default function PostMovies({
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
-                      <DialogContent>
-                        <DialogTitle>Add Producer</DialogTitle>
+                      <DialogContent className="bg-black max-h-[80vh] overflow-y-auto">
+                        <DialogTitle className="text-white">Add Producer</DialogTitle>
                         <DialogDescription></DialogDescription>
                         <PostProducers
                           setRefreshComponentCounter={handleRefresh}
@@ -565,8 +565,8 @@ export default function PostMovies({
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
-                      <DialogContent className="max-h-[80vh] overflow-y-auto">
-                        <DialogTitle>Add Director</DialogTitle>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto bg-black">
+                        <DialogTitle className="text-white">Add Director</DialogTitle>
                         <DialogDescription></DialogDescription>
                         <PostDirectors
                           setRefreshComponentCounter={handleRefresh}
@@ -651,8 +651,8 @@ export default function PostMovies({
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
-                      <DialogContent className="max-h-[80vh] overflow-y-auto">
-                        <DialogTitle>Add Writer</DialogTitle>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto bg-black">
+                        <DialogTitle className="text-white">Add Writer</DialogTitle>
                         <DialogDescription></DialogDescription>
                         <PostWriters
                           setRefreshComponentCounter={handleRefresh}
@@ -734,8 +734,8 @@ export default function PostMovies({
                     />
                     <Dialog>
                       <DialogTrigger>+</DialogTrigger>
-                      <DialogContent className="max-h-[80vh] overflow-y-auto">
-                        <DialogTitle>Add Actor</DialogTitle>
+                      <DialogContent className="max-h-[80vh] overflow-y-auto bg-black">
+                        <DialogTitle className="text-white">Add Actor</DialogTitle>
                         <DialogDescription></DialogDescription>
                         <PostActors
                           setRefreshComponentCounter={handleRefresh}
@@ -1161,7 +1161,7 @@ export default function PostMovies({
 
             <div className="flex justify-center mt-4">
               <button
-                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200"
+                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200 text-white"
                 type="submit"
               >
                 Submit

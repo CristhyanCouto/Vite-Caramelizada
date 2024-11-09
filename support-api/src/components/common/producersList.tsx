@@ -8,7 +8,9 @@ interface ProducersListProps {
   refreshComponentCounter?: number;
 }
 
-export default function ProducersList({ refreshComponentCounter }: ProducersListProps) {
+export default function ProducersList({
+  refreshComponentCounter,
+}: ProducersListProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [producersData, setProducersData] = useState<ProducersCardProps[]>([]);
@@ -37,8 +39,8 @@ export default function ProducersList({ refreshComponentCounter }: ProducersList
   };
 
   return (
-    <div>
-      <ScrollArea className="h-[700px] w-[450px] rounded-md border p-4">
+    <div className="">
+      <ScrollArea className="h-[700px] w-[450px] rounded-md border p-4 bg-white">
         <div className="p-4">
           <div className="flex items-center">
             <input
@@ -56,38 +58,45 @@ export default function ProducersList({ refreshComponentCounter }: ProducersList
               x
             </Button>
           </div>
-          <h1 className="text-2xl font-bold text-center">Producers</h1>
-          <table className="border">
-            <thead>
-              <tr>
-                <th className="border border-black p-2 text-center">ID</th>
-                <th className="border border-black w-64">Producer Name</th>
-              </tr>
-            </thead>
-            <tbody className="border">
-              {producersData
-                .filter((value) => {
-                  return (
-                    (value.name_producer &&
+          <h1 className="text-2xl font-bold text-center my-4">Producers</h1>
+          <div className="flex justify-center">
+            <table className="border">
+              <thead>
+                <tr>
+                  <th className="border border-black p-2 text-center">ID</th>
+                  <th className="border border-black w-64">Producer Name</th>
+                </tr>
+              </thead>
+              <tbody className="border">
+                {producersData
+                  .filter((value) => {
+                    return (
+                      value.name_producer &&
                       value.name_producer
                         .toLowerCase()
-                        .includes(searchProducers.toLowerCase()))
-                  );
-                })
-                .filter((producer) => producer.name_producer !== undefined)
-                .sort((a, b) => a.name_producer!.localeCompare(b.name_producer!))
-                .map((producer: ProducersCardProps) => (
-                  <tr key={producer.idproducer} className="border odd:bg-zinc-200">
-                    <td className="border border-black text-center">
-                      {producer.idproducer}
-                    </td>
-                    <td className="border border-black pl-2">
-                      {producer.name_producer}
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                        .includes(searchProducers.toLowerCase())
+                    );
+                  })
+                  .filter((producer) => producer.name_producer !== undefined)
+                  .sort((a, b) =>
+                    a.name_producer!.localeCompare(b.name_producer!)
+                  )
+                  .map((producer: ProducersCardProps) => (
+                    <tr
+                      key={producer.idproducer}
+                      className="border odd:bg-zinc-200"
+                    >
+                      <td className="border border-black text-center">
+                        {producer.idproducer}
+                      </td>
+                      <td className="border border-black pl-2">
+                        {producer.name_producer}
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </ScrollArea>
     </div>
