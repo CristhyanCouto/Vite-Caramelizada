@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { MoviesType } from "../../lib/movies";
-import { formatRuntime, formatDateTime } from "@/lib/utils";
+import { formatRuntime } from "@/lib/utils";
 import { genreConverter } from "@/lib/genre";
 import { useTranslation } from "react-i18next";
 import i18n from "@/lib/i18n/i18n";
 import { RatedenBackground, RatedPtBackground } from "./ratedenBackground";
+import { FaStar } from "react-icons/fa";
 
 export default function MovieCard(props: MoviesType) {
   const { t } = useTranslation();
@@ -17,7 +18,7 @@ export default function MovieCard(props: MoviesType) {
   return (
     <div>
       <div
-        className="bg-zinc-200 shadow p-2 m-5 h-[450px] w-72 rounded-sm
+        className="shadow p-2 m-5 h-[450px] w-72 rounded-sm
         transition ease-in-out delay-150 bg-zinc-400
         duration-200
         group relative"
@@ -33,74 +34,88 @@ export default function MovieCard(props: MoviesType) {
 
             {/*Showing my rating review in absolute position over the movie cover */}
             <div
-              className="absolute top-0 translate-y-[485%] translate-x-48 p-5 bg-red-500
-            rounded-full"
+              className="absolute top-0 translate-y-[430%] translate-x-[230%] p-5 bg-red-500
+              rounded-full
+              block group-hover:hidden
+              w-20 h-20"
             >
-              <p className="text-white text-2xl">
-                {typeof props.my_rating === "number" &&
-                props.my_rating % 1 === 0
-                  ? `${props.my_rating}.0`
-                  : props.my_rating}
-              </p>{" "}
+              <p className="text-white text-3xl font-bold">
+                {" "}
+                {typeof props.my_rating === "number"
+                  ? props.my_rating.toString().includes(".")
+                    ? props.my_rating
+                    : `${props.my_rating}.0`
+                  : "N/A"}
+              </p>
             </div>
 
             {/* Showing the age rating based on US and  PT-BR */}
             {currentLanguage === "en" ? (
-              <div className="hidden group-hover:block">
-                <div className="absolute top-[76%] ml-5 left-0 z-20 hidden group-hover:block transition-all duration-300">
+              <div className="block group-hover:hidden">
+                <div className="absolute top-[76%] ml-5 left-0 z-20 transition-all duration-300">
                   <RatedenBackground age={props.fk_rated_pg_en ?? 0} />
                 </div>
               </div>
             ) : (
-              <div className="hidden group-hover:block">
-                <div className="absolute top-[76%] ml-5 left-0 z-20 hidden group-hover:block transition-all duration-300">
+              <div className="block group-hover:hidden">
+                <div className="absolute top-[76%] ml-5 left-0 z-20 transition-all duration-300">
                   <RatedPtBackground age={props.fk_rated_pg_pt ?? 0} />
                 </div>
               </div>
             )}
 
+            {/* This div is responsible for showing the hover information and the dark background when hover */}
             <div
-              className="hidden group-hover:block
-            absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute top-0 left-0 w-full h-full group-hover:bg-black bg-opacity-50
+              transition-all duration-300 group-hover:opacity
+              group-hover:bg-opacity-70"
             >
-              {/*Showing Tittle based on language */}
-              {currentLanguage === "en" ? (
-                <div className="mb-4 text-3xl">
-                  <h1 className="text-center">{props.title_en}</h1>
+              {/* This div is responsible for positioning the hover information*/}
+              <div
+                className="hidden group-hover:block
+                absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              >
+                {/*Showing Tittle based on languages en and pt */}
+                <div className="text-center font-bold text-white bg-red-500 rounded-sm py-3">
+                  <h1 className="text-2xl">
+                    {currentLanguage === "en" ? props.title_en : props.title_pt}
+                  </h1>
                 </div>
-              ) : (
-                <div className="mb-4 text-3xl">
-                  <h1 className="text-center">{props.title_pt}</h1>
+
+                {/*Showing Genre based on language, only shows the first 2 genders */}
+                <div className="flex gap-4 my-4 font-bold text-center text-white items-center">
+                  <p className="bg-red-500 rounded-sm w-24 shadow p-2 h-full min-h-[6rem] items-center justify-center flex">
+                    {t(`genre.${genre01}`)}
+                  </p>
+                  <p className="bg-red-500 rounded-sm w-24 shadow p-2 h-full min-h-[6rem] items-center justify-center flex">
+                    {t(`genre.${genre02}`)}
+                  </p>
                 </div>
-              )}
 
-              {/*Showing Genre based on language */}
-              <div className="flex gap-4 mb-4 text-black">
-                <p className="grid bg-zinc-400 rounded-sm w-24 shadow text-center align-center items-center">
-                  {t(`genre.${genre01}`)}
-                </p>
-                <p className="grid bg-zinc-400 rounded-sm w-24 shadow text-center align-center items-center">
-                  {t(`genre.${genre02}`)}
-                </p>
-              </div>
+                {/*Showing Runtime */}
+                <div className="bg-red-500 text-white font-bold rounded-sm shadow py-2">
+                  {props.runtime && (
+                    <p className="text-center">
+                      {t("movies.runtime")}: {formatRuntime(props.runtime)}
+                    </p>
+                  )}
+                </div>
 
-              {/*Showing Runtime */}
-              <div className="text-1xl">
-                {props.runtime && (
-                  <p className="text-center">
-                    {t("movies.runtime")}: {formatRuntime(props.runtime)}
-                  </p>
-                )}
-              </div>
-
-              {/*Showing Release Date */}
-              <div className="text-1xl">
-                {props.release_date && (
-                  <p className="text-center">
-                    {t("movies.releaseDate")}:{" "}
-                    {formatDateTime(props.release_date)}
-                  </p>
-                )}
+                {/* Showing My Rating on hover */}
+                <div className="font-bold">
+                  {props?.my_rating ? (
+                    <div className="grid grid-cols-3 justify-center gap-1 py-2 text-white bg-red-500 rounded-sm shadow mt-4 items-center">
+                      <p className="text-center text-3xl ml-7">
+                        <FaStar />
+                      </p>
+                      <p className="text-center text-3xl">
+                        {props.my_rating.toString().includes(".")
+                          ? props.my_rating
+                          : `${props.my_rating}.0`}
+                      </p>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
           </div>
