@@ -307,9 +307,9 @@ export default function PostGames({
   };
 
   return (
-    <div className="grid">
+    <div className="grid w-full">
       <div className="grid grid-cols-1 justify-center px-6">
-        <h1 className="text-4xl text-center flex justify-center items-center bold p-2">
+        <h1 className="text-4xl text-center flex justify-center items-center bold p-2 mb-5 text-white font-bold">
           Post Games
         </h1>
         <Formik
@@ -317,36 +317,45 @@ export default function PostGames({
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Form className="grid grid-cols-1 p-10 border">
-            <h2 className="text-4xl font-bold">Title</h2>
-            <label htmlFor="title_en">Title EN *</label>
+          <Form className="grid grid-cols-1 p-10 border bg-white rounded-xl">
+            <h2 className="text-4xl font-bold my-2">Title</h2>
+            <label htmlFor="title_en" className="font-bold">Title EN *</label>
             <Field
-              className="border text-green-500"
+              className="border text-green-500 my-1"
               autoComplete="off"
               id="title_en"
               name="title_en"
               placeholder="Abc"
             />
-            <ErrorMessage name="title_en" component="div" />
+            <ErrorMessage
+              name="title_en"
+              className="text-red-500"
+              component="div"
+            />
 
-            <label htmlFor="title_pt">Title PT *</label>
+            <label htmlFor="title_pt" className="font-bold">Title PT *</label>
             <Field
-              className="border text-green-500"
+              className="border text-green-500 my-1"
               autoComplete="off"
               id="title_pt"
               name="title_pt"
               placeholder="Abc"
             />
-            <ErrorMessage name="title_pt" component="div" />
+            <ErrorMessage
+              name="title_pt"
+              className="text-red-500"
+              component="div"
+            />
 
             {/*--------------------------- Release Date ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Release Date</h2>
-            <label htmlFor="release_date">Release Date ?</label>
+            <h2 className="text-4xl font-bold my-2">Release Date</h2>
+            <label htmlFor="release_date" className="font-bold mb-2">Release Date ?</label>
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputReleaseDate"
                 className="border h-10 rounded-sm mr-2 text-green-500"
+                autoComplete="off"
                 type="text"
                 placeholder="Year"
                 onChange={(e) => setYear(Number(e.target.value))}
@@ -378,13 +387,17 @@ export default function PostGames({
               const creatorIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_creator${creatorIndex}`}>
-                  <label htmlFor={`fk_creator${creatorIndex}`}>
+                  <label
+                    className="font-bold"
+                    htmlFor={`fk_creator${creatorIndex}`}
+                  >
                     Creator {creatorIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      className="border text-green-500 w-full"
+                      autoComplete="off"
                       placeholder="Filter Creator"
                       onChange={handleSearchCreator(index)}
                       name={`fk_creator_input${creatorIndex}`}
@@ -403,7 +416,7 @@ export default function PostGames({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mt-2"
                     autoComplete="off"
                     id={`fk_creator${creatorIndex}`}
                     name={`fk_creator${creatorIndex}`}
@@ -460,14 +473,18 @@ export default function PostGames({
               const publisherIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_publisher_games${publisherIndex}`}>
-                  <label htmlFor={`fk_publisher_games${publisherIndex}`}>
+                  <label
+                    className="font-bold"
+                    htmlFor={`fk_publisher_games${publisherIndex}`}
+                  >
                     Publisher {publisherIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      className="border text-green-500 w-full"
                       placeholder="Filter Publisher"
+                      autoComplete="off"
                       onChange={handleSearchPublisher(index)}
                       name={`fk_publisher_games_input${publisherIndex}`}
                       id={`fk_publisher_games_input${publisherIndex}`}
@@ -485,7 +502,7 @@ export default function PostGames({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mt-2"
                     autoComplete="off"
                     id={`fk_publisher_games${publisherIndex}`}
                     name={`fk_publisher_games${publisherIndex}`}
@@ -531,13 +548,16 @@ export default function PostGames({
               const plataformIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_plataform${plataformIndex}`}>
-                  <label htmlFor={`fk_plataform${plataformIndex}`}>
+                  <label
+                    className="font-bold"
+                    htmlFor={`fk_plataform${plataformIndex}`}
+                  >
                     Plataform {plataformIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      className="border text-green-500 w-full"
                       placeholder="Filter Plataform"
                       onChange={handleSearchPlataform(index)}
                       name={`fk_plataform_input${plataformIndex}`}
@@ -556,7 +576,7 @@ export default function PostGames({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mt-2"
                     autoComplete="off"
                     id={`fk_plataform${plataformIndex}`}
                     name={`fk_plataform${plataformIndex}`}
@@ -596,16 +616,16 @@ export default function PostGames({
             {/*--------------------------- Genre EN ----------------------------------- */}
 
             <h2 className="text-4xl font-bold">Genre En</h2>
-            {[...Array(5)].map((_, index) => {
+            {[...Array(10)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div className="flex flex-col" key={`fk_genre_en${genreIndex}`}>
-                  <label htmlFor={`fk_genre_en${genreIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_genre_en${genreIndex}`}>
                     Genre EN {genreIndex}
                   </label>
                   <div className="flex">
                     <input
-                      className="border w-[20%] text-green-500"
+                      className="border w-full text-green-500"
                       type="text"
                       placeholder="Filter Genre EN"
                       onChange={handleSearchGenreEn(index)}
@@ -625,7 +645,7 @@ export default function PostGames({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mt-2"
                     autoComplete="off"
                     id={`fk_genre_en${genreIndex}`}
                     name={`fk_genre_en${genreIndex}`}
@@ -656,20 +676,23 @@ export default function PostGames({
                 </div>
               );
             })}
+            <h2 className="mt-2 font-bold text-green-500">
+              Genre 10 = 2D | 2.5D | 3D
+            </h2>
 
             {/*--------------------------- Genre PT ----------------------------------- */}
 
             <h2 className="text-4xl font-bold">Genre PT</h2>
-            {[...Array(5)].map((_, index) => {
+            {[...Array(10)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div className="flex flex-col" key={`fk_genre_pt${genreIndex}`}>
-                  <label htmlFor={`fk_genre_pt${genreIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_genre_pt${genreIndex}`}>
                     Genre PT {genreIndex}
                   </label>
                   <div className="flex">
                     <input
-                      className="border w-[20%] text-green-500"
+                      className="border w-full text-green-500"
                       type="text"
                       placeholder="Filter Genre PT"
                       onChange={handleSearchGenrePt(index)}
@@ -689,7 +712,7 @@ export default function PostGames({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mt-2"
                     autoComplete="off"
                     id={`fk_genre_pt${genreIndex}`}
                     name={`fk_genre_pt${genreIndex}`}
@@ -720,13 +743,16 @@ export default function PostGames({
                 </div>
               );
             })}
+            <h2 className="mt-2 font-bold text-green-500">
+              Genre 10 = 2D | 2.5D | 3D
+            </h2>
 
             {/*--------------------------- About Gane EN ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">About Game</h2>
-            <label htmlFor="about_game_en">About Game EN</label>
+            <h2 className="text-4xl font-bold my-2">About Game</h2>
+            <label htmlFor="about_game_en" className="font-bold">About Game EN</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="about_game_en"
               name="about_game_en"
@@ -736,9 +762,9 @@ export default function PostGames({
 
             {/*--------------------------- About Game PT ----------------------------------- */}
 
-            <label htmlFor="about_game_pt">About Game PT</label>
+            <label htmlFor="about_game_pt" className="font-bold">About Game PT</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="about_game_pt"
               name="about_game_pt"
@@ -748,37 +774,37 @@ export default function PostGames({
 
             {/*--------------------------- Cover Game URL ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Game Cover URL</h2>
-            <label htmlFor="cover_game_url">Cover Game URL *</label>
+            <h2 className="text-4xl font-bold my-2">Game Cover URL</h2>
+            <label htmlFor="cover_game_url" className="font-bold">Cover Game URL *</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="cover_game_url"
               name="cover_game_url"
               placeholder="https://exemple.com"
             ></Field>
-            <ErrorMessage name="cover_game_url" component="div" />
+            <ErrorMessage name="cover_game_url" className="text-red-500" component="div" />
 
             {/*--------------------------- Trailer Game URL ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Game Trailer URL</h2>
-            <label htmlFor="trailer_game_url">Trailer Game URL *</label>
+            <h2 className="text-4xl font-bold my-2">Game Trailer URL</h2>
+            <label htmlFor="trailer_game_url" className="font-bold">Trailer Game URL *</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="trailer_game_url"
               name="trailer_game_url"
               placeholder="https://exemple.com"
             ></Field>
-            <ErrorMessage name="trailer_game_url" component="div" />
+            <ErrorMessage name="trailer_game_url" className="text-red-500" component="div" />
 
             {/*--------------------------- Image Game URL ----------------------------------- */}
-            <h2 className="text-4xl font-bold">Game Prints</h2>
+            <h2 className="text-4xl font-bold my-2">Game Prints</h2>
             {[...Array(10)].map((_, index) => {
               const imageIndex = (index + 1).toString().padStart(2, "0");
               return (
-                <div key={`image_game_url${imageIndex}`}>
-                  <label htmlFor={`image_game_url${imageIndex}`}>
+                <div key={`image_game_url${imageIndex}`} className="mt-1">
+                  <label className="font-bold" htmlFor={`image_game_url${imageIndex}`}>
                     Image Game URL {imageIndex}
                   </label>
                   <Field
@@ -797,10 +823,10 @@ export default function PostGames({
             })}
 
             {/*--------------------------- My Rating ----------------------------------- */}
-            <h2 className="text-4xl font-bold">My Rating</h2>
-            <label htmlFor="my_rating">My Rating</label>
+            <h2 className="text-4xl font-bold my-2">My Rating</h2>
+            <label htmlFor="my_rating" className="font-bold">My Rating</label>
             <Field
-              className="border"
+              className="border wfull text-green-500"
               autoComplete="off"
               id="my_rating"
               name="my_rating"
@@ -809,11 +835,11 @@ export default function PostGames({
             <ErrorMessage name="my_rating" component="div" />
 
             {/*--------------------------- Multiplayer ----------------------------------- */}
-            <h2 className="text-4xl font-bold">Singleplayer</h2>
-            <label htmlFor="singleplayer">Has Singleplayer</label>
+            <h2 className="text-4xl font-bold my-2">Singleplayer</h2>
+            <label htmlFor="singleplayer" className="font-bold">Has Singleplayer</label>
             <Field
               as="select"
-              className="border"
+              className="border w-[50%] my-2"
               autoComplete="off"
               id="singleplayer"
               name="singleplayer"
@@ -824,11 +850,11 @@ export default function PostGames({
             </Field>
             <ErrorMessage name="singleplayer" component="div" />
 
-            <h2 className="text-4xl font-bold">Multiplayer</h2>
-            <label htmlFor="multiplayer">Has Multiplayer</label>
+            <h2 className="text-4xl font-bold my-2">Multiplayer</h2>
+            <label htmlFor="multiplayer" className="font-bold">Has Multiplayer</label>
             <Field
               as="select"
-              className="border"
+              className="border w-[50%] my-2"
               autoComplete="off"
               id="multiplayer"
               name="multiplayer"
@@ -839,10 +865,10 @@ export default function PostGames({
             </Field>
             <ErrorMessage name="multiplayer" component="div" />
 
-            <label htmlFor="multiplayer_local">Has Multiplayer Local</label>
+            <label htmlFor="multiplayer_local" className="font-bold">Has Multiplayer Local</label>
             <Field
               as="select"
-              className="border"
+              className="border w-[50%] my-2"
               autoComplete="off"
               id="multiplayer_local"
               name="multiplayer_local"
@@ -854,10 +880,10 @@ export default function PostGames({
             <ErrorMessage name="multiplayer_local" component="div" />
 
             {/*--------------------------- My Review EN ----------------------------------- */}
-            <h2 className="text-4xl font-bold">My Review</h2>
-            <label htmlFor="my_review_en">My Review EN</label>
+            <h2 className="text-4xl font-bold my-2">My Review</h2>
+            <label htmlFor="my_review_en" className="font-bold">My Review EN</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="my_review_en"
               name="my_review_en"
@@ -866,9 +892,9 @@ export default function PostGames({
             <ErrorMessage name="my_review_en" component="div" />
 
             {/*--------------------------- My Review PT ----------------------------------- */}
-            <label htmlFor="my_review_pt">My Review PT</label>
+            <label htmlFor="my_review_pt" className="font-bold">My Review PT</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-2"
               autoComplete="off"
               id="my_review_pt"
               name="my_review_pt"
