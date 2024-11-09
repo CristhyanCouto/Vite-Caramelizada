@@ -906,7 +906,7 @@ export default function PostGames({
 
             <div className="flex justify-center mt-4">
               <button
-                className="border w-[20%] rounded-sm bg-zinc-300 hover:bg-zinc-200"
+                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200"
                 type="submit"
               >
                 Submit

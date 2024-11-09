@@ -386,9 +386,9 @@ export default function PostMovies({
   };
 
   return (
-    <div className="grid">
+    <div className="grid w-full">
       <div className="grid grid-cols-1 justify-center px-6">
-        <h1 className="text-4xl text-center flex justify-center items-center bold p-2">
+        <h1 className="text-4xl text-center flex justify-center items-center bold p-2 mb-5 text-white font-bold">
           Post Movies
         </h1>
         <Formik
@@ -396,37 +396,38 @@ export default function PostMovies({
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Form className="grid grid-cols-1 p-10 border">
-            <h2 className="text-4xl font-bold">Title</h2>
-            <label htmlFor="title_en">Title EN *</label>
+          <Form className="grid grid-cols-1 p-10 border bg-white rounded-xl">
+            <h2 className="text-4xl font-bold my-2">Title</h2>
+            <label htmlFor="title_en" className="font-bold">Title EN *</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-1"
               autoComplete="off"
               id="title_en"
               name="title_en"
               placeholder="Abc"
             />
-            <ErrorMessage name="title_en" component="div" />
+            <ErrorMessage name="title_en" className="text-red-500" component="div" />
 
-            <label htmlFor="title_pt">Title PT *</label>
+            <label htmlFor="title_pt" className="font-bold">Title PT *</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 my-1"
               autoComplete="off"
               id="title_pt"
               name="title_pt"
               placeholder="Abc"
             />
-            <ErrorMessage name="title_pt" component="div" />
+            <ErrorMessage name="title_pt" className="text-red-500" component="div" />
 
             {/*--------------------------- Release Date ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Release Date</h2>
-            <label htmlFor="release_date">Release Date ?</label>
+            <h2 className="text-4xl font-bold my-2">Release Date</h2>
+            <label htmlFor="release_date" className="font-bold mb-1">Release Date ?</label>
             <div className="flex flex-row items-center mb-2">
               <input
                 name="inputReleaseDate"
-                className="border h-10 rounded-sm mr-2"
+                className="border h-10 rounded-sm mr-2 text-green-500"
                 type="text"
+                autoComplete="off"
                 placeholder="Year"
                 onChange={(e) => setYear(Number(e.target.value))}
               />
@@ -439,7 +440,7 @@ export default function PostMovies({
             </div>
             <Field
               as="select"
-              className="border"
+              className="border w-full text-green-500"
               autoComplete="off"
               id="release_date"
               name="release_date"
@@ -452,18 +453,19 @@ export default function PostMovies({
 
             {/*--------------------------- Producer ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Producers</h2>
+            <h2 className="text-4xl font-bold my-2">Producers</h2>
             {[...Array(5)].map((_, index) => {
               const producerIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_producer${producerIndex}`}>
-                  <label htmlFor={`fk_producer${producerIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_producer${producerIndex}`}>
                     Producer {producerIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      autoComplete="off"
+                      className="border text-green-500 my-2 w-full"
                       placeholder="Filter Producer"
                       onChange={handleSearchProducer(index)}
                       name={`fk_producer_input${producerIndex}`}
@@ -482,7 +484,7 @@ export default function PostMovies({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_producer${producerIndex}`}
                     name={`fk_producer${producerIndex}`}
@@ -521,19 +523,20 @@ export default function PostMovies({
 
             {/*--------------------------- Directors ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Directors</h2>
+            <h2 className="text-4xl font-bold my-2">Directors</h2>
             {[...Array(5)].map((_, index) => {
               const directorIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_director${directorIndex}`}>
-                  <label htmlFor={`fk_director${directorIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_director${directorIndex}`}>
                     Director {directorIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      className="border text-green-500 my-2 w-full"
                       placeholder="Filter director"
+                      autoComplete="off"
                       onChange={handleSearchDirector(index)}
                       name={`fk_director_input${directorIndex}`}
                       id={`fk_director_input${directorIndex}`}
@@ -551,7 +554,7 @@ export default function PostMovies({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_director${directorIndex}`}
                     name={`fk_director${directorIndex}`}
@@ -603,18 +606,19 @@ export default function PostMovies({
 
             {/*--------------------------- Writers ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Writers</h2>
+            <h2 className="text-4xl font-bold my-2">Writers</h2>
             {[...Array(5)].map((_, index) => {
               const writerIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_writer${writerIndex}`}>
-                  <label htmlFor={`fk_writer${writerIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_writer${writerIndex}`}>
                     Writer {writerIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      autoComplete="off"
+                      className="border text-green-500 w-full my-2"
                       placeholder="Filter writer"
                       onChange={handleSearchWriter(index)}
                       name={`fk_writer_input${writerIndex}`}
@@ -633,7 +637,7 @@ export default function PostMovies({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_writer${writerIndex}`}
                     name={`fk_writer${writerIndex}`}
@@ -682,19 +686,20 @@ export default function PostMovies({
 
             {/*--------------------------- Actors ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Actors</h2>
+            <h2 className="text-4xl font-bold my-2">Actors</h2>
             {[...Array(20)].map((_, index) => {
               const actorIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`fk_actor${actorIndex}`}>
-                  <label htmlFor={`fk_actor${actorIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_actor${actorIndex}`}>
                     Actor {actorIndex}
                   </label>
                   <div className="flex">
                     <input
                       type="text"
-                      className="border text-green-500"
+                      className="border text-green-500 w-full my-2"
                       placeholder="Filter actor"
+                      autoComplete="off"
                       onChange={handleSearchActor(index)}
                       name={`fk_actor_input${actorIndex}`}
                       id={`fk_actor_input${actorIndex}`}
@@ -712,7 +717,7 @@ export default function PostMovies({
                   </div>
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_actor${actorIndex}`}
                     name={`fk_actor${actorIndex}`}
@@ -761,17 +766,18 @@ export default function PostMovies({
 
             {/*--------------------------- Genre EN ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Genre En</h2>
-            {[...Array(5)].map((_, index) => {
+            <h2 className="text-4xl font-bold my-2">Genre En</h2>
+            {[...Array(10)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div className="flex flex-col" key={`fk_genre_en${genreIndex}`}>
-                  <label htmlFor={`fk_genre_en${genreIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_genre_en${genreIndex}`}>
                     Genre EN {genreIndex}
                   </label>
                   <input
-                    className="border w-[20%] text-green-500"
+                    className="border w-full text-green-500 my-2"
                     type="text"
+                    autoComplete="off"
                     placeholder="Filter Genre EN"
                     onChange={handleSearchGenreEn(index)}
                     name={`fk_genre_en_input${genreIndex}`}
@@ -779,7 +785,7 @@ export default function PostMovies({
                   />
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_genre_en${genreIndex}`}
                     name={`fk_genre_en${genreIndex}`}
@@ -813,25 +819,26 @@ export default function PostMovies({
 
             {/*--------------------------- Genre PT ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Genre PT</h2>
-            {[...Array(5)].map((_, index) => {
+            <h2 className="text-4xl font-bold my-2">Genre PT</h2>
+            {[...Array(10)].map((_, index) => {
               const genreIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div className="flex flex-col" key={`fk_genre_pt${genreIndex}`}>
-                  <label htmlFor={`fk_genre_pt${genreIndex}`}>
+                  <label className="font-bold" htmlFor={`fk_genre_pt${genreIndex}`}>
                     Genre PT {genreIndex}
                   </label>
                   <input
-                    className="border w-[20%] text-green-500"
+                    className="border w-full my-2 text-green-500"
                     type="text"
                     placeholder="Filter Genre PT"
+                    autoComplete="off"
                     onChange={handleSearchGenrePt(index)}
                     name={`fk_genre_pt_input${genreIndex}`}
                     id={`fk_genre_pt_input${genreIndex}`}
                   />
                   <Field
                     as="select"
-                    className="border w-[40%]"
+                    className="border w-[50%] mb-2"
                     autoComplete="off"
                     id={`fk_genre_pt${genreIndex}`}
                     name={`fk_genre_pt${genreIndex}`}
@@ -865,11 +872,11 @@ export default function PostMovies({
 
             {/*--------------------------- Rated PG EN ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Rated PG USA - BR</h2>
-            <label htmlFor="fk_rated_pg_en">Rated PG EN</label>
+            <h2 className="text-4xl font-bold my-2">Rated PG USA - BR</h2>
+            <label htmlFor="fk_rated_pg_en" className="font-bold">Rated PG EN</label>
             <Field
               as="select"
-              className="border"
+              className="border w-[50%] my-2"
               autoComplete="off"
               id="fk_rated_pg_en"
               name="fk_rated_pg_en"
@@ -888,10 +895,10 @@ export default function PostMovies({
 
             {/*--------------------------- Rated PG PT ----------------------------------- */}
 
-            <label htmlFor="fk_rated_pg_pt">Rated PG PT</label>
+            <label htmlFor="fk_rated_pg_pt" className="font-bold">Rated PG PT</label>
             <Field
               as="select"
-              className="border"
+              className="border w-[50%] my-2"
               autoComplete="off"
               id="fk_rated_pg_pt"
               name="fk_rated_pg_pt"
@@ -910,10 +917,10 @@ export default function PostMovies({
 
             {/*--------------------------- Runtime ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Runtime</h2>
-            <label htmlFor="runtime">Runtime</label>
+            <h2 className="text-4xl font-bold my-2">Runtime</h2>
+            <label htmlFor="runtime" className="font-bold">Runtime</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="runtime"
               name="runtime"
@@ -923,10 +930,10 @@ export default function PostMovies({
 
             {/*--------------------------- Budget ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Budget</h2>
-            <label htmlFor="budget">Budget</label>
+            <h2 className="text-4xl font-bold my-2">Budget</h2>
+            <label htmlFor="budget" className="font-bold">Budget</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="budget"
               name="budget"
@@ -936,10 +943,10 @@ export default function PostMovies({
 
             {/*--------------------------- Box Office ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Box Office</h2>
-            <label htmlFor="box_office">Box Office</label>
+            <h2 className="text-4xl font-bold my-2">Box Office</h2>
+            <label htmlFor="box_office" className="font-bold">Box Office</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="box_office"
               name="box_office"
@@ -949,10 +956,10 @@ export default function PostMovies({
 
             {/*--------------------------- About Movie EN ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">About Movie</h2>
-            <label htmlFor="about_movie_en">About Movie EN</label>
+            <h2 className="text-4xl font-bold my-2">About Movie</h2>
+            <label htmlFor="about_movie_en" className="font-bold">About Movie EN</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="about_movie_en"
               name="about_movie_en"
@@ -962,9 +969,9 @@ export default function PostMovies({
 
             {/*--------------------------- About Movie PT ----------------------------------- */}
 
-            <label htmlFor="about_movie_pt">About Movie PT</label>
+            <label htmlFor="about_movie_pt" className="font-bold">About Movie PT</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="about_movie_pt"
               name="about_movie_pt"
@@ -974,41 +981,41 @@ export default function PostMovies({
 
             {/*--------------------------- Cover Movie URL ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Movies Cover URL</h2>
-            <label htmlFor="cover_movie_url">Cover Movie URL *</label>
+            <h2 className="text-4xl font-bold my-2">Movies Cover URL</h2>
+            <label htmlFor="cover_movie_url" className="font-bold">Cover Movie URL *</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="cover_movie_url"
               name="cover_movie_url"
               placeholder="https://exemple.com"
             />
-            <ErrorMessage name="cover_movie_url" component="div" />
+            <ErrorMessage name="cover_movie_url" className="text-red-500" component="div" />
 
             {/*--------------------------- Trailer Movie URL ----------------------------------- */}
 
-            <h2 className="text-4xl font-bold">Movies Trailer URL</h2>
-            <label htmlFor="trailer_movie_url">Trailer Movie URL *</label>
+            <h2 className="text-4xl font-bold my-2">Movies Trailer URL</h2>
+            <label htmlFor="trailer_movie_url" className="font-bold">Trailer Movie URL *</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="trailer_movie_url"
               name="trailer_movie_url"
               placeholder="https://exemple.com"
             />
-            <ErrorMessage name="trailer_movie_url" component="div" />
+            <ErrorMessage name="trailer_movie_url" className="text-red-500" component="div" />
 
             {/*--------------------------- Image Movie URL ----------------------------------- */}
-            <h2 className="text-4xl font-bold">Movies Prints</h2>
+            <h2 className="text-4xl font-bold my-2">Movies Prints</h2>
             {[...Array(10)].map((_, index) => {
               const imageIndex = (index + 1).toString().padStart(2, "0");
               return (
                 <div key={`image_movie_url${imageIndex}`}>
-                  <label htmlFor={`image_movie_url${imageIndex}`}>
+                  <label className="font-bold" htmlFor={`image_movie_url${imageIndex}`}>
                     Image Movie URL {imageIndex}
                   </label>
                   <Field
-                    className="border ml-2"
+                    className="border ml-2 my-1"
                     autoComplete="off"
                     id={`image_movie_url${imageIndex}`}
                     name={`image_movie_url${imageIndex}`}
@@ -1023,10 +1030,10 @@ export default function PostMovies({
             })}
 
             {/*--------------------------- My Rating ----------------------------------- */}
-            <h2 className="text-4xl font-bold">My Rating</h2>
-            <label htmlFor="my_rating">My Rating</label>
+            <h2 className="text-4xl font-bold my-2">My Rating</h2>
+            <label htmlFor="my_rating" className="font-bold">My Rating</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="my_rating"
               name="my_rating"
@@ -1035,10 +1042,10 @@ export default function PostMovies({
             <ErrorMessage name="my_rating" component="div" />
 
             {/*--------------------------- My Review EN ----------------------------------- */}
-            <h2 className="text-4xl font-bold">My Review</h2>
-            <label htmlFor="my_review_en">My Review EN</label>
+            <h2 className="text-4xl font-bold my-2">My Review</h2>
+            <label htmlFor="my_review_en" className="font-bold">My Review EN</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="my_review_en"
               name="my_review_en"
@@ -1047,9 +1054,9 @@ export default function PostMovies({
             <ErrorMessage name="my_review_en" component="div" />
 
             {/*--------------------------- My Review PT ----------------------------------- */}
-            <label htmlFor="my_review_pt">My Review PT</label>
+            <label htmlFor="my_review_pt" className="font-bold">My Review PT</label>
             <Field
-              className="border"
+              className="border w-full my-2"
               autoComplete="off"
               id="my_review_pt"
               name="my_review_pt"
@@ -1061,7 +1068,7 @@ export default function PostMovies({
 
             <div className="flex justify-center mt-4">
               <button
-                className="border w-[20%] rounded-sm bg-zinc-300 hover:bg-zinc-200"
+                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200"
                 type="submit"
               >
                 Submit
