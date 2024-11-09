@@ -50,30 +50,30 @@ export default function PostGenrePt({
   };
 
   return (
-    <div className="grid">
+    <div className="grid w-full">
       <div className="grid grid-cols-1 justify-center px-6">
-        <h1 className="text-4xl text-center flex justify-center items-center bold p-2">
-          Post Genre
+        <h1 className="text-4xl text-center flex justify-center items-center bold p-2 text-white my-2">
+          Post Genre Pt
         </h1>
         <Formik
           onSubmit={handleSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Form className="grid grid-cols-1 p-10 border">
-            <label htmlFor="name_genre_pt">Name Genre *</label>
+          <Form className="grid grid-cols-1 p-10 border bg-white rounded-sm">
+            <label htmlFor="name_genre_pt" className="font-bold">Name Genre *</label>
             <Field
-              className="border"
+              className="border w-full text-green-500 rounded-sm p-1 my-2"
               autoComplete="off"
               id="name_genre_pt"
               name="name_genre_pt"
               placeholder="Abc"
             />
-            <ErrorMessage name="name_genre_pt" component="div" />
+            <ErrorMessage name="name_genre_pt" className="text-red-500" component="div" />
 
             <div className="flex justify-center mt-4">
               <button
-                className="border w-[20%] rounded-sm bg-zinc-300 hover:bg-zinc-200"
+                className="border w-[20%] rounded-sm bg-green-500 hover:bg-green-200"
                 type="submit"
               >
                 Submit
