@@ -515,23 +515,67 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'idrated_pg_pt'
             }
         },
+        runtime:{
+            type: DataTypes.TIME,
+            allowNull: true
+        },
         season_count: {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-        about_serie_en: {
+        about_anime_en: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        about_serie_pt: {
+        about_anime_pt: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        cover_serie_url: {
+        cover_anime_url: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        trailer_serie_url: {
+        trailer_anime_url: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url01: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url02: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url03: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url04: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url05: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url06: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url07: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url08: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url09: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        image_anime_url10: {
             type: DataTypes.TEXT,
             allowNull: true
         },

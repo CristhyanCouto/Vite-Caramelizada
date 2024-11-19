@@ -43,3 +43,29 @@ export type RatedPGPtCardProps = {
   idrated_pg_pt: number;
   rating_pg_pt?: string;
 };
+
+export type SeasonsAnimesCardProps = {
+  idseason_anime: number;
+  title_en: string;
+  title_pt: string;
+  release_date?: string;
+  episode_count_animes?: number;
+  runtime?: string;
+  about_season_en?: string;
+  about_season_pt?: string;
+  cover_season_url: string;
+  trailer_season_url: string;
+  image_season_url01?: string;
+  image_season_url02?: string;
+  image_season_url03?: string;
+  image_season_url04?: string;
+  image_season_url05?: string;
+  image_season_url06?: string;
+  image_season_url07?: string;
+  image_season_url08?: string;
+  image_season_url09?: string;
+  image_season_url10?: string;
+  my_rating?: number;
+  my_review_en?: string;
+  my_review_pt?: string;
+};

@@ -5,7 +5,13 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { DatePickerForm } from "./datePickerForm";
 
-export default function PostSeasonAnimes() {
+interface PostSeasonAnimesCardProps {
+  setRefreshComponentCounter?: () => void;
+}
+
+export default function PostSeasonAnimes({
+  setRefreshComponentCounter,
+}: PostSeasonAnimesCardProps) {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [dateOfRelease, setDateOfRelease] = useState<string>("");
   // const [search, setSearch] = useState<string>("");
@@ -105,10 +111,15 @@ export default function PostSeasonAnimes() {
     { resetForm }: { resetForm: () => void }
   ) => {
     const transformedValues = transformEmptyStringsToNull(values);
-    axios.post("http://localhost:3001/seasonsAnimes", transformedValues).then(() => {
-      resetForm();
-      alert("Season posted successfully");
-    });
+    axios
+      .post("http://localhost:3001/seasonsAnimes", transformedValues)
+      .then(() => {
+        if (setRefreshComponentCounter) {
+          setRefreshComponentCounter();
+        }
+        resetForm();
+        alert("Season posted successfully");
+      });
   };
 
   return (
@@ -209,7 +220,6 @@ export default function PostSeasonAnimes() {
               component="div"
             />
 
-            
             {/*--------------------------- Runtime ----------------------------------- */}
 
             <h2 className="text-4xl font-bold my-2">Runtime</h2>
