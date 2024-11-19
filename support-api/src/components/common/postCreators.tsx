@@ -157,7 +157,7 @@ export default function PostCreators({ setRefreshComponentCounter }: PostCreator
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Form className="grid grid-cols-1 p-10 border">
+          <Form className="grid grid-cols-1 p-10 border bg-white">
             <label htmlFor="first_name">First Name *</label>
             <Field
               className="border"

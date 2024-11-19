@@ -1,3 +1,4 @@
+import AnimeCardList from '@/components/common/animeCardList'
 import Page from '@/components/common/page'
 import { useTranslation } from 'react-i18next'
 
@@ -6,7 +7,7 @@ export default function Animes() {
   return (
     <div>
       <Page title={t('animes.title')}>
-        <h1>Animes</h1>
+        <AnimeCardList />
       </Page>
     </div>
   )

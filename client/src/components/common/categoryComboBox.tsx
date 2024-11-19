@@ -719,9 +719,144 @@ function PlataformsComboBoxGames({
   );
 }
 
+function CategoryComboBoxAnimes({
+  sortValue,
+  setSortValue,
+}: {
+  sortValue: string[];
+  setSortValue: (value: string[]) => void;
+}) {
+  const [open, setOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
+
+  //Genre list
+  const { t } = useTranslation();
+
+  const sorts = [
+    { value: "1", label: `${t("genre.2.5d")}` },
+    { value: "2", label: `${t("genre.2d")}` },
+    { value: "3", label: `${t("genre.3d")}` },
+    { value: "5", label: `${t("genre.animation")}` },
+    { value: "7", label: `${t("genre.adventure")}` },
+    { value: "8", label: `${t("genre.action")}` },
+    { value: "9", label: `${t("genre.basedOnRealLife")}` },
+    { value: "14", label: `${t("genre.comedy")}` },
+    { value: "15", label: `${t("genre.racing")}` },
+    { value: "16", label: `${t("genre.crime")}` },
+    { value: "17", label: `${t("genre.culinary")}` },
+    { value: "18", label: `${t("genre.shortFilm")}` },
+    { value: "19", label: `${t("genre.cyberpunk")}` },
+    { value: "20", label: `${t("genre.docufiction")}` },
+    { value: "21", label: `${t("genre.documentary")}` },
+    { value: "22", label: `${t("genre.drama")}` },
+    { value: "24", label: `${t("genre.educational")}` },
+    { value: "25", label: `${t("genre.espionage")}` },
+    { value: "26", label: `${t("genre.sports")}` },
+    { value: "28", label: `${t("genre.fantasy")}` },
+    { value: "29", label: `${t("genre.western")}` },
+    { value: "30", label: `${t("genre.scienceFiction")}` },
+    { value: "32", label: `${t("genre.stealth")}` },
+    { value: "34", label: `${t("genre.war")}` },
+    { value: "36", label: `${t("genre.horror")}` },
+    { value: "37", label: `${t("genre.darkHumor")}` },
+    { value: "38", label: `${t("genre.indie")}` },
+    { value: "41", label: `${t("genre.longFilm")}` },
+    { value: "42", label: `${t("genre.fight")}` },
+    { value: "43", label: `${t("genre.mafia")}` },
+    { value: "44", label: `${t("genre.mistery")}` },
+    { value: "48", label: `${t("genre.musicals")}` },
+    { value: "50", label: `${t("genre.policeLiterature")}` },
+    { value: "53", label: `${t("genre.romance")}` },
+    { value: "58", label: `${t("genre.sitcom")}` },
+    { value: "60", label: `${t("genre.survival")}` },
+    { value: "61", label: `${t("genre.superHero")}` },
+    { value: "62", label: `${t("genre.suspense")}` },
+    { value: "64", label: `${t("genre.terror")}` },
+    { value: "65", label: `${t("genre.thriller")}` },
+    { value: "69", label: `${t("genre.zombie")}` },
+    { value: "70", label: `${t("genre.steamPunk")}` },
+    { value: "71", label: `${t("genre.postApocalypticFiction")}` },
+  ];
+
+  const filteredSorts = sorts.filter((sort) =>
+    sort.label.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const handleSelect = (currentValue: string) => {
+    const newSortValue = sortValue.includes(currentValue)
+      ? sortValue.filter((value) => value !== currentValue)
+      : sortValue.length < 5
+      ? [...sortValue, currentValue]
+      : sortValue;
+
+    setSortValue(newSortValue);
+  };
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className="w-[200px] justify-between"
+        >
+          {t("sortComboBox.genres")}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[200px] p-0">
+        <Command>
+          <div className="relative">
+            <input
+              type="text"
+              placeholder={`${t("sortComboBox.search")}...`}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 text-sm border-b outline-none"
+            />
+            <Button
+              className="w-2 h-6 shrink-0 opacity-50
+            fixed top-[2%] left-[80%] right-0"
+              onClick={() => setSortValue([])}
+            >
+              x
+            </Button>
+          </div>
+          <CommandList>
+            <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
+            <CommandGroup>
+              {filteredSorts
+                .sort((a, b) => a.label.localeCompare(b.label))
+                .map((sort) => (
+                  <CommandItem
+                    key={sort.value}
+                    value={sort.value}
+                    onSelect={() => sort.value && handleSelect(sort.value)}
+                  >
+                    <Check
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        sort.value && sortValue.includes(sort.value)
+                          ? "opacity-100"
+                          : "opacity-0"
+                      )}
+                    />
+                    {sort.label}
+                  </CommandItem>
+                ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
 export {
   CategoryComboBoxMovies,
   CategoryComboBoxGames,
   MultiplayerComboBoxGames,
   PlataformsComboBoxGames,
+  CategoryComboBoxAnimes,
 };
