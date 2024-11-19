@@ -44,7 +44,7 @@ function NavbarItem({ href, label }: Navbar02Props) {
         <Link to={href}
         className={twMerge(
             "flex items-center gap-3 p-2 rounded-sm hover:bg-zinc-400 transition-all text-white text-2xl",
-            isActive() && "bg-black/20"
+            isActive() && "bg-white/20"
         )}
         >
             {getIcon(label)}
@@ -58,8 +58,8 @@ function NavbarItem({ href, label }: Navbar02Props) {
 export default function Navbar02() {
     const { t } = useTranslation();
     return (
-    <div className="w-full flex items-center gap-4 bg-zinc-800 px-2 py-1">
-      <div className="hidden flex-1 md:flex items-center justify-center text-center gap-2 h-16">
+    <div className="w-full flex items-center gap-4 bg-zinc-900 px-2 py-1">
+      <div className="hidden flex-1 md:flex items-center justify-center text-center gap-12 h-16">
         <NavbarItem href="/movies" label={t("navbar02.movies")} />
         <NavbarItem href="/series" label={t("navbar02.series")} />
         <NavbarItem href="/animes" label={t("navbar02.animes")} />

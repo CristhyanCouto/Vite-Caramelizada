@@ -10,6 +10,13 @@ router.get('/', async (req, res) => {
     res.json(listOfAnimes);
 });
 
+//Get request to get a specific anime by id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    const anime = await animes.findByPk(id);
+    res.json(anime);
+});
+
 //Post request to create a new record in the animes table
 router.post('/', async (req, res) => {
     const anime = req.body;

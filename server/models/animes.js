@@ -379,6 +379,46 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'idgenre_en'
             }
         },
+        fk_genre_en06: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_ens',
+                key: 'idgenre_en'
+            }
+        },
+        fk_genre_en07: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_ens',
+                key: 'idgenre_en'
+            }
+        },
+        fk_genre_en08: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_ens',
+                key: 'idgenre_en'
+            }
+        },
+        fk_genre_en09: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_ens',
+                key: 'idgenre_en'
+            }
+        },
+        fk_genre_en10: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_ens',
+                key: 'idgenre_en'
+            }
+        },
         fk_genre_pt01: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -412,6 +452,46 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         fk_genre_pt05: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_pts',
+                key: 'idgenre_pt'
+            }
+        },
+        fk_genre_pt06: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_pts',
+                key: 'idgenre_pt'
+            }
+        },
+        fk_genre_pt07: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_pts',
+                key: 'idgenre_pt'
+            }
+        },
+        fk_genre_pt08: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_pts',
+                key: 'idgenre_pt'
+            }
+        },
+        fk_genre_pt09: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'genre_pts',
+                key: 'idgenre_pt'
+            }
+        },
+        fk_genre_pt10: {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
