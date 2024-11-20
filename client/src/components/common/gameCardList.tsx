@@ -135,7 +135,7 @@ export default function GameCardList() {
           setSortValue={setSortModes}
         />
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center min-h-96">
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
           {gameData &&
             gameData

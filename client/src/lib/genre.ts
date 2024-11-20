@@ -147,6 +147,8 @@ export const genreConverter = (genre: number) => {
             return "postApocalypticFiction";
         case 72:
             return "realTimeStrategy";
+        case 73:
+                return "anime";
         default:
             return "unknownGenre";
     }

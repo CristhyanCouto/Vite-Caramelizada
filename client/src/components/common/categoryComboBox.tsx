@@ -446,6 +446,7 @@ function CategoryComboBoxGames({
       label: `${t("genre.zombie")}`,
     },
     { value: "72", label: `${t("genre.realTimeStrategy")}` },
+    { value: "73", label: `${t("genre.anime")}` },
   ];
 
   const filteredSorts = sorts.filter((sort) =>
@@ -497,7 +498,9 @@ function CategoryComboBoxGames({
           <CommandList>
             <CommandEmpty>{t("sortComboBox.noSearchResults")}.</CommandEmpty>
             <CommandGroup>
-              {filteredSorts.map((sort) => (
+              {filteredSorts
+              .sort((a, b) => a.label.localeCompare(b.label))
+              .map((sort) => (
                 <CommandItem
                   key={sort.value}
                   value={sort.value}
