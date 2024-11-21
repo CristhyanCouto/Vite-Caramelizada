@@ -162,7 +162,7 @@ export default function SeasonAnime(seasonAnimeProps: seasonAnimeProps) {
                     <div className="max-w-4xl flex flex-col items-center justify-center m-auto bg-black text-white">
                       <div className="">
                         <h2 className="text-4xl text-center mb-4">
-                          {t("movies.movieScreenShots")}
+                          {t("animes.animeScreenShots")}
                         </h2>
                       </div>
                       <div className="text-black">

@@ -1,6 +1,9 @@
 {
     "animes": {
-        "title": "Animes"
+        "title": "Animes",
+        "animeScreenShots": "Anime Prints",
+        "animeSeason": "Temporada",
+        "animeSeasons": "Temporadas"
     },
     "books": {
         "title": "Livros"

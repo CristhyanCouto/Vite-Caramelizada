@@ -265,7 +265,7 @@ export default function AnimePage() {
                     <div className="max-w-5xl flex flex-col items-center justify-center m-auto bg-black text-white">
                       <div className="">
                         <h2 className="text-4xl text-center mb-4">
-                          {t("movies.movieScreenShots")}
+                          {t("animes.animeScreenShots")}
                         </h2>
                       </div>
                       <div className="text-black">
@@ -278,34 +278,44 @@ export default function AnimePage() {
                   <div className="p-2 bg-black">
                     <div className="max-w-5xl bg-black text-white border border-zinc-400 py-4">
                       <h2 className="text-4xl text-center">
-                        {t("animes.seasons")}
+                        {t("animes.animeSeasons")}
                       </h2>
                       <div className="flex flex-wrap justify-center gap-4 px-10">
-                        {Array.from({ length: 30 }, (_, index) => {
-                          const seasonIndex = (index + 1)
-                            .toString()
-                            .padStart(2, "0");
-                          const seasonKey = `fk_season${seasonIndex}`;
-                          const seasonData = animeData ? animeData[seasonKey as keyof AnimesType] : null;
-                          if (!seasonData) {
-                            return null;
-                          }
-                          const seasonTitle = t(`animes.season${seasonIndex}`);
-                          return (
-                            <Collapsible key={seasonKey}>
-                              <CollapsibleTrigger>
-                                <h3 className="text-2xl text-center">
-                                  {seasonTitle}
-                                </h3>
-                              </CollapsibleTrigger>
-                              <CollapsibleContent>
-                                <SeasonAnime
-                                  seasonIndex={Number(seasonIndex)}
-                                />
-                              </CollapsibleContent>
-                            </Collapsible>
-                          );
-                        }).filter(Boolean)}
+                        {(() => {
+                          let shouldContinue = true; // Flag para interromper o loop
+                          return Array.from({ length: 30 }, (_, index) => {
+                            if (!shouldContinue) return null; // Interrompe o processamento se for falso
+
+                            const seasonIndex = (index + 1)
+                              .toString()
+                              .padStart(2, "0");
+                            const seasonKey = `fk_season${seasonIndex}`;
+                            const seasonData = animeData
+                              ? animeData[seasonKey as keyof AnimesType]
+                              : null;
+
+                            if (!seasonData) {
+                              shouldContinue = false; // Interrompe ao encontrar o primeiro null
+                              return null;
+                            }
+
+                            const seasonTitle = t("animes.animeSeason");
+                            return (
+                              <Collapsible key={seasonKey}>
+                                <CollapsibleTrigger className="bg-red-500 border rounded-lg p-2 my-2">
+                                  <h3 className="text-2xl text-center">
+                                    {seasonTitle} {seasonIndex}
+                                  </h3>
+                                </CollapsibleTrigger>
+                                <CollapsibleContent>
+                                  <SeasonAnime
+                                    seasonIndex={Number(seasonIndex)}
+                                  />
+                                </CollapsibleContent>
+                              </Collapsible>
+                            );
+                          }).filter(Boolean); // Remove os nulos do array final
+                        })()}
                       </div>
                     </div>
                   </div>
@@ -489,6 +499,53 @@ export default function AnimePage() {
                       </div>
                     </div>
                   </div>
+
+                  {/*Seasons */}
+                  <div className="p-2 bg-black">
+                    <div className="max-w-5xl bg-black text-white border border-zinc-400 py-4">
+                      <h2 className="text-4xl text-center">
+                        {t("animes.animeSeasons")}
+                      </h2>
+                      <div className="flex flex-wrap justify-center gap-4 px-10">
+                        {(() => {
+                          let shouldContinue = true; // Flag para interromper o loop
+                          return Array.from({ length: 30 }, (_, index) => {
+                            if (!shouldContinue) return null; // Interrompe o processamento se for falso
+
+                            const seasonIndex = (index + 1)
+                              .toString()
+                              .padStart(2, "0");
+                            const seasonKey = `fk_season${seasonIndex}`;
+                            const seasonData = animeData
+                              ? animeData[seasonKey as keyof AnimesType]
+                              : null;
+
+                            if (!seasonData) {
+                              shouldContinue = false; // Interrompe ao encontrar o primeiro null
+                              return null;
+                            }
+
+                            const seasonTitle = t("animes.animeSeason");
+                            return (
+                              <Collapsible key={seasonKey}>
+                                <CollapsibleTrigger className="bg-red-500 border rounded-lg p-2 my-2">
+                                  <h3 className="text-2xl text-center">
+                                    {seasonTitle} {seasonIndex}
+                                  </h3>
+                                </CollapsibleTrigger>
+                                <CollapsibleContent>
+                                  <SeasonAnime
+                                    seasonIndex={Number(seasonIndex)}
+                                  />
+                                </CollapsibleContent>
+                              </Collapsible>
+                            );
+                          }).filter(Boolean); // Remove os nulos do array final
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+
                   {/*Creators */}
                   <div className="p-2 bg-black">
                     <div className="max-w-5xl bg-black text-white border border-zinc-400 py-4">
