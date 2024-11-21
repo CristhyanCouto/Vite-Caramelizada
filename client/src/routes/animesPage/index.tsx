@@ -15,6 +15,9 @@ import ProducerCard from "@/components/common/producerCard";
 import PictureCarousel from "@/components/common/pictureCarousel";
 import { AnimesType } from "@/lib/animes";
 import CreatorCard from "@/components/common/creatorCard";
+import SeasonAnime from "@/components/common/seasonAnime";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+import { CollapsibleTrigger } from "@radix-ui/react-collapsible";
 
 export default function AnimePage() {
   const { animesId } = useParams();
@@ -270,6 +273,43 @@ export default function AnimePage() {
                       </div>
                     </div>
                   </div>
+
+                  {/*Seasons */}
+                  <div className="p-2 bg-black">
+                    <div className="max-w-5xl bg-black text-white border border-zinc-400 py-4">
+                      <h2 className="text-4xl text-center">
+                        {t("animes.seasons")}
+                      </h2>
+                      <div className="flex flex-wrap justify-center gap-4 px-10">
+                        {Array.from({ length: 30 }, (_, index) => {
+                          const seasonIndex = (index + 1)
+                            .toString()
+                            .padStart(2, "0");
+                          const seasonKey = `fk_season${seasonIndex}`;
+                          const seasonData = animeData ? animeData[seasonKey as keyof AnimesType] : null;
+                          if (!seasonData) {
+                            return null;
+                          }
+                          const seasonTitle = t(`animes.season${seasonIndex}`);
+                          return (
+                            <Collapsible key={seasonKey}>
+                              <CollapsibleTrigger>
+                                <h3 className="text-2xl text-center">
+                                  {seasonTitle}
+                                </h3>
+                              </CollapsibleTrigger>
+                              <CollapsibleContent>
+                                <SeasonAnime
+                                  seasonIndex={Number(seasonIndex)}
+                                />
+                              </CollapsibleContent>
+                            </Collapsible>
+                          );
+                        }).filter(Boolean)}
+                      </div>
+                    </div>
+                  </div>
+
                   {/*Creators */}
                   <div className="p-2 bg-black">
                     <div className="max-w-5xl bg-black text-white border border-zinc-400 py-4">

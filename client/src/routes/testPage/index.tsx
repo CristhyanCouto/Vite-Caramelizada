@@ -1,12 +1,10 @@
-
-
+import SeasonAnime from "@/components/common/seasonAnime";
 
 export default function TestPage() {
 
-
   return (
     <div>
-      <h1>Test Page</h1>
+      <SeasonAnime  seasonIndex={1}/>
     </div>
   )
 }
